@@ -40,16 +40,24 @@ Please also refer to a relevant reporting checklist (e.g. STROBE) when
 describing the study. Find checklists [here](https://www.equator-network.org/).
 :::
 
-## Background
+
+## Study information
+
+### Title
+
+*WP2-WP4 connection protocol: definition of risk group at stage of pregnancy*
+
+### Description
 
 The work in DP-Next WP4 will be focused on reduction of diabetes risk in women who are pregnant and their families. The rationale for this is that perhaps the current definition of gestational diabetes in Denmark uses too high a threshold and that many women below the current GDM threshold are still at elevated risk of GDM at a subsequent pregnancy and at elevated risk of T2D later in life. Furthermore, there is a general impression that pregnancies are times when women and their families are more receptive to health messages. As there is already a coordinated network of care around pregnancies, it may be easier to identify a core set of stakeholders and work with them to map and remove barriers to healthy lifestyle offerings.
 
-### Definition of risk group for WP4 in WP2
+### Objectives and hypotheses
 
-DP-Next WP2 aims to develop diabetes risk prediction models for the entire population based exclusively on register-based data. A subproject for WP2 will focus on calculating diabetes risk specifically for women in pregnancy, in order to provide a clear selection of at-risk women that WP4 can focus on. An added benefit of focus on this specific group is that various additional relevant variables are available for pregnant women based on the registration of their first trimester pregnancy checkup. In particular BMI, smoking status and blood pressure are recorded, as well as HbA1c in many cases.
+### Definition of risk group for intervention work package (WP4) in prediction work package (WP2)
 
-## Derivation of specific pregnancy-connected risk prediction model
+DP-Next prediction-arm aims to develop diabetes risk prediction models for the entire population based exclusively on register-based data. A subproject for WP2 will focus on calculating diabetes risk specifically for women in pregnancy, in order to provide a clear selection of at-risk women that WP4 can focus on. An added benefit of focus on this specific group is that various additional relevant variables are available for pregnant women based on the registration of their first trimester pregnancy checkup. In particular BMI, smoking status and blood pressure are recorded, as well as HbA1c in many cases.
 
+## Design plan for derivation of specific pregnancy-connected risk prediction model
 ### Cohort definition (model derivation)
 
 WP2 will derive the model for a cohort of women who: - have been pregnant at least once between 2010 and 2015
@@ -129,6 +137,15 @@ For validation, we will use two approaches: first, we will subset one region fro
 
 The best performing model from the super learner will be trained on data from the entire period from 2010 to 2015 and exported from the protected enviorment it was developed in. It will then be built into an R Shiny app, which will be provided to the group in WP4. Our model will provide an estimate of the 10 year risk of type 2 diabetes and the expected 5 year HbA1c after pregnancy. Our approach follows established principles in machine learning and statistical modeling, adhering to standardized practices for prediction, reporting, and validation [@collins2024; @lopez-ayala2025; @collins2024a; @riley2024].
 
+
+## Definition of focus group for WP4
+
+After the pregnancy risk model has been developed, it can be run for more recent age cohorts, and an up-to-date descriptive analysis can be made of the distribution of long-term T2D risk among recently pregnant women. This descriptive analysis will show which data are most informative for the estimation of future diabetes risk. It can also be used to explore geographical variation and clustering of risk factors. WP4 can then choose a more focused group of high-risk women in the postpartum period, and geographical settings. It may be worth considering focusing on GPs that measure HbA1c routinely in pregnant women (improved risk prediction), and on women above a given BMI threshold.
+
+
+
+
+::: content-hidden
 ### Discussion points ####
 
 - How to handle double preqnancy?
@@ -141,186 +158,6 @@ The best performing model from the super learner will be trained on data from th
   - Only if someone ask for this. Also, it can lead to causal misinterpretations
 - Winner of predcition competition as final model or evaluate top candidates. 
 
-## Definition of focus group for WP4
-
-After the pregnancy risk model has been developed, it can be run for more recent age cohorts, and an up-to-date descriptive analysis can be made of the distribution of long-term T2D risk among recently pregnant women. This descriptive analysis will show which data are most informative for the estimation of future diabetes risk. It can also be used to explore geographical variation and clustering of risk factors. WP4 can then choose a more focused group of high-risk women in the postpartum period, and geographical settings. It may be worth considering focusing on GPs that measure HbA1c routinely in pregnant women (improved risk prediction), and on women above a given BMI threshold.
-
-
-## Study information
-
-### Title
-
-::: content-hidden
-*Put in the title of your study. Remember to include your study design in the
-title.*
 :::
-
-### Description
-
-::: content-hidden
-Overall description of your project. Think of this as what you would reply if a
-colleague asked you what your project was about.
-:::
-
-### Objectives and hypotheses
-
-::: content-hidden
-- Put in a very brief introduction to the topic. Explain the scientific
-  background and rationale
-- Put in the research aim/objective
-- If relevant, list your specific hypotheses
-:::
-
-## Design plan
-
-### Study type
-
-::: content-hidden
-Note: Leave the below text here.
-:::
-
-**Observational Study**. Data is collected from study subjects that are not
-randomly assigned to a treatment. This includes surveys, natural experiments,
-and regression discontinuity designs.
-
-### Blinding
-
-::: content-hidden
-Note: Leave the below text here.
-:::
-
-No blinding is involved in this study.
-
-### Study design
-
-::: content-hidden
-Describe your study design. Typical study designs for observation studies
-include cohort, cross sectional, and case-control studies
-
-This question has a variety of possible answers. The key is for a researcher to
-be as detailed as is necessary given the specifics of their design. Be careful
-to determine if every parameter has been specified in the description of the
-study design. There may be some overlap between this question and the following
-questions. That is OK, as long as sufficient detail is given in one of the areas
-to provide all of the requested information.
-
-Put in overall information about the study design. Key elements of the study
-design, the location, relevant dates, periods of recruitment etc. For instance,
-include that it is a cohort and cross-sectional (most likely).
-:::
-
-## Sampling plan
-
-### Existing data
-
-::: content-hidden
-Note: Leave the below text here.
-:::
-
-**Registration prior to analysis of the data**. As of the date of submission,
-the data exist and you have accessed it, though no analysis has been conducted
-related to the research plan (including calculation of summary statistics). A
-common situation for this scenario when a large dataset exists that is used for
-many different studies over time, or when a data set is randomly split into a
-sample for exploratory analyses, and the other section of data is reserved for
-later confirmatory data analysis.
-
-### Explanation of existing data
-
-::: content-hidden
-Describe the data source being used, ideally linking to its website that has
-more information.
-:::
-
-### Data collection procedures
-
-::: content-hidden
-- If relevant, describe if or how the subset of data was selected or chosen
-  participant
-- Describe how the exposure was assessed
-- Describe how the outcome was assessed
-- Describe how the covariates were assessed
-:::
-
-### Sample size
-
-::: content-hidden
-Describe the participants. Describe the eligibility criteria and sources of
-selection of participants. At this point it may not be possible to know your
-sample size.
-:::
-
-### Sample size rationale
-
-::: content-hidden
-If relevant, describe why you chose the sample size that you did.
-:::
-
-## Variables
-
-### Measures variables
-
-::: content-hidden
-List the exposure(s), outcome(s), and covariates
-:::
-
-## Analysis plan
-
-### Statistical models
-
-::: content-hidden
-Describe your statistical analysis. This is essentially your statistical
-analysis plan.
-
-Remember to mention statistical software to be used, analysis of baseline
-characteristics, adjustment for confounding, selection of potential confounders,
-examined subgroups, how missing data was handled, how loss to follow-up was
-addressed and sensitivity analyses.
-:::
-
-### Transformations
-
-::: content-hidden
-Describe any transformations you will make to the data, such as centering,
-recoding, etc. This will likely change during the actual analysis, but at least
-here you can give a general idea for what you will do to the data.
-:::
-
-### Inference criteria
-
-::: content-hidden
-Describe how you will infer that a result is meaningful or not. For instance, if
-using p-values, indicate what the threshold is and WHY. Also what steps you are
-taking to minimize misclassification/false discovery rate.
-:::
-
-### Data exclusion
-
-::: content-hidden
-Describe what data you will exclude and why. For instance, dropping type 1
-diabetes since you are only looking at type 2 diabetes. Or how you will handle
-outliers.
-:::
-
-### Missing data
-
-::: content-hidden
-Describe how you will handle missing or incomplete data. This will likely change
-when you actually do your analysis, but its a good first step.
-:::
-
-### Exploratory analyses (optional)
-
-::: content-hidden
-Describe any exploratory analyses you will do and that you might report
-on/include in the manuscript. Exploratory analysis is on where you have not made
-a hypothesis or prediction about, and instead are seeing what patterns or
-associations might exist. This could be to help you in your main analysis or it
-could be the main aim of your project.
-:::
-
-## Other
-
-*add the references here*
 
 ## References
