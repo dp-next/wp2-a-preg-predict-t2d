@@ -49,7 +49,7 @@ describing the study. Find checklists [here](https://www.equator-network.org/).
 
 ### Description
 
-The work in DP-Next WP4 will be focused on reduction of diabetes risk in women who are pregnant and their families. The rationale for this is that perhaps the current definition of gestational diabetes in Denmark uses too high a threshold and that many women below the current GDM threshold are still at elevated risk of GDM at a subsequent pregnancy and at elevated risk of T2D later in life. Furthermore, there is a general impression that pregnancies are times when women and their families are more receptive to health messages. As there is already a coordinated network of care around pregnancies, it may be easier to identify a core set of stakeholders and work with them to map and remove barriers to healthy lifestyle offerings.
+The work in DP-Next intervention-arm (WP4) will be focused on reduction of diabetes risk in women who are pregnant and their families. The rationale for this is that perhaps the current definition of gestational diabetes in Denmark uses too high a threshold and that many women below the current GDM threshold are still at elevated risk of GDM at a subsequent pregnancy and at elevated risk of T2D later in life. Furthermore, there is a general impression that pregnancies are times when women and their families are more receptive to health messages. As there is already a coordinated network of care around pregnancies, it may be easier to identify a core set of stakeholders and work with them to map and remove barriers to healthy lifestyle offerings.
 
 ### Objectives and hypotheses
 
@@ -127,7 +127,7 @@ With all predictors defined in the play data, we will continue to use these data
 
 ### Developing prediction model
 
-Once all predictors and statistical models have been defined, we will use the training dataset from pregnant women in the period 2010 to 2013. Prior HbA1c before index is available from 10% in 2010 to 25% in 2015 and is available in 40% in 2020. A prior HbA1c before index is available for 10% of women in 2010, 25% in 2015 and 40% in 2020. We will handle prior HbA1c in three ways, 1) an indicator of a present or absent measurement togehter with calendar-time, 2) a submodel restricted to complete cases, and 3) multiple imputation from the markers available at baseline. All models will be included in a super learner which will choose the best performing model using cross validation based on the Brier score. 
+Once all predictors and statistical models have been defined, we will use the training dataset from pregnant women in the period 2010 to 2013. A prior HbA1c before index is available for 10% of women in 2010, 25% in 2015 and 40% in 2020. We will handle prior HbA1c in three ways, 1) an indicator of a present or absent measurement togehter with calendar-time, 2) a submodel restricted to complete cases, and 3) multiple imputation from the markers available at baseline. All models will be included in a super learner which will choose the best performing model using cross validation based on the Brier score. 
 
 ### Validation
 
@@ -137,12 +137,9 @@ For validation, we will use two approaches: first, we will subset one region fro
 
 The best performing model from the super learner will be trained on data from the entire period from 2010 to 2015 and exported from the protected enviorment it was developed in. It will then be built into an R Shiny app, which will be provided to the group in WP4. Our model will provide an estimate of the 10 year risk of type 2 diabetes and the expected 5 year HbA1c after pregnancy. Our approach follows established principles in machine learning and statistical modeling, adhering to standardized practices for prediction, reporting, and validation [@collins2024; @lopez-ayala2025; @collins2024a; @riley2024].
 
-
 ## Definition of focus group for WP4
 
 After the pregnancy risk model has been developed, it can be run for more recent age cohorts, and an up-to-date descriptive analysis can be made of the distribution of long-term T2D risk among recently pregnant women. This descriptive analysis will show which data are most informative for the estimation of future diabetes risk. It can also be used to explore geographical variation and clustering of risk factors. WP4 can then choose a more focused group of high-risk women in the postpartum period, and geographical settings. It may be worth considering focusing on GPs that measure HbA1c routinely in pregnant women (improved risk prediction), and on women above a given BMI threshold.
-
-
 
 
 ::: content-hidden
