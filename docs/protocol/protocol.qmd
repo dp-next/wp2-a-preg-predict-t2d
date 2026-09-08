@@ -1,11 +1,14 @@
 ---
 title: "WP2-WP4 connection protocol: definition of risk group at stage of pregnancy"
-# Add all contributors here
+# Add all contributors here (orders are unspecified)
 author:
   - name: Hjalte Mikkelsen
     affiliation:
       - name: Steno Diabetes Center Copenhagen
   - name: Jonas Rosborg Schaaarup
+    affiliation:
+      - name: Steno Diabetes Center Aarhus
+  - name: Elpida Vounzoulaki
     affiliation:
       - name: Steno Diabetes Center Aarhus
  - name: Daniel R. Witte
@@ -14,6 +17,7 @@ author:
   - name: Thomas Gerds
     affiliation:
       - name: Steno Diabetes Center Copenhagen
+
   - name: Stine Byberg
     affiliation:
       - name: Steno Diabetes Center Copenhagen
