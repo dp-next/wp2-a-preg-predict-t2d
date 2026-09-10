@@ -11,13 +11,15 @@ author:
   - name: Elpida Vounzoulaki
     affiliation:
       - name: Steno Diabetes Center Aarhus
+  - name: Ulla Kampmann
+    affiliation:
+      - name: Steno Diabetes Center Aarhus
  - name: Daniel R. Witte
     affiliation:
       - name: Steno Diabetes Center Aarhus
   - name: Thomas Gerds
     affiliation:
       - name: Steno Diabetes Center Copenhagen
-
   - name: Stine Byberg
     affiliation:
       - name: Steno Diabetes Center Copenhagen
