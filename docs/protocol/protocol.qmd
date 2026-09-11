@@ -224,9 +224,11 @@ stages as well as delivery can be incorporated in the risk model.
 
 : Table 1: Available potential predictors in the National Registries
 
-Some of above data in Table 1 will be more complete than other Therfore
-will define a cohort based on full availabliility and subcohorts based
-partly availbility.
+Because the data sources in Table 1 differ in temporal and regional
+coverage, we will develop the model in a main cohort using predictors
+available nationwide for all index births. We will evaluate additional
+predictors in subcohorts defined by the coverage of each partially
+available source.
 
 ### Definition of cohort
 
@@ -239,8 +241,13 @@ laboraory measurement).
 
 - Explain family disease history risk factors
 
-Most pregnancies complete check-ups throughout. BMI and smoking are
-standard procedure
+Nearly all pregnant women attend the scheduled antenatal visits, where
+BMI and smoking status are recorded as standard in the first and third
+trimesters. First-trimester BMI is minimally affected by gestational
+weight gain and therefore approximates pre-pregnancy weight status, a
+major determinant of type 2 diabetes. Smoking is associated with a
+higher risk of type 2 diabetes, possibly through systemic inflammation
+and central fat accumulation.
 
 - OGTT Include as indication of suspection of GDM (BEWARE GUIDELINE MAY
   CHNAGE THIS TEST OVER TIME)
