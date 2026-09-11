@@ -5,7 +5,7 @@ author:
   - name: Hjalte Mikkelsen
     affiliation:
       - name: Steno Diabetes Center Copenhagen
-  - name: Jonas Rosborg Schaaarup
+  - name: Jonas Rosborg Schaarup
     affiliation:
       - name: Steno Diabetes Center Aarhus
   - name: Elpida Vounzoulaki
@@ -14,7 +14,7 @@ author:
   - name: Ulla Kampmann
     affiliation:
       - name: Steno Diabetes Center Aarhus
- - name: Daniel R. Witte
+  - name: Daniel R. Witte
     affiliation:
       - name: Steno Diabetes Center Aarhus
   - name: Thomas Gerds
@@ -28,6 +28,9 @@ format: html
 # bibliography: "file/path"
 execute:
   echo: true
+editor: 
+  markdown: 
+    wrap: 72
 ---
 
 ```{r}
@@ -38,130 +41,341 @@ execute:
 ```
 
 ::: content-hidden
-This is a template for writing your protocol in a format that based on features
-used in the [Open Science Framework registry](https://osf.io/) for all types of
-studies. Because this database is not for observational studies per se, there
-are fields that are not relevant for you to fill in. These fields have not been
-included in this template. Also, all fields where you have to check a list of
-items or similar, have also been excluded from this template.
+This is a template for writing your protocol in a format that based on
+features used in the [Open Science Framework registry](https://osf.io/)
+for all types of studies. Because this database is not for observational
+studies per se, there are fields that are not relevant for you to fill
+in. These fields have not been included in this template. Also, all
+fields where you have to check a list of items or similar, have also
+been excluded from this template.
 
 Please also refer to a relevant reporting checklist (e.g. STROBE) when
-describing the study. Find checklists [here](https://www.equator-network.org/).
+describing the study. Find checklists
+[here](https://www.equator-network.org/).
 :::
-
 
 ## Study information
 
 ### Title
 
-*WP2-WP4 connection protocol: definition of risk group at stage of pregnancy*
+*WP2-WP4 connection protocol: definition of risk group at stage of
+pregnancy*
 
 ### Description
 
-The work in DP-Next intervention-arm (WP4) will be focused on reduction of diabetes risk in women who are pregnant and their families. The rationale for this is that perhaps the current definition of gestational diabetes in Denmark uses too high a threshold and that many women below the current GDM threshold are still at elevated risk of GDM at a subsequent pregnancy and at elevated risk of T2D later in life. Furthermore, there is a general impression that pregnancies are times when women and their families are more receptive to health messages. As there is already a coordinated network of care around pregnancies, it may be easier to identify a core set of stakeholders and work with them to map and remove barriers to healthy lifestyle offerings.
+The work in DP-Next intervention-arm (WP4) will be focused on reduction
+of diabetes risk in women who are pregnant and their families. The
+rationale for this is that perhaps the current definition of gestational
+diabetes in Denmark uses too high a threshold and that many women below
+the current GDM threshold are still at elevated risk of GDM at a
+subsequent pregnancy and at elevated risk of T2D later in life.
+Furthermore, there is a general impression that pregnancies are times
+when women and their families are more receptive to health messages. As
+there is already a coordinated network of care around pregnancies, it
+may be easier to identify a core set of stakeholders and work with them
+to map and remove barriers to healthy lifestyle offerings.
 
-### Objectives and hypotheses
+## Objectives and hypotheses
 
 ### Definition of risk group for intervention work package (WP4) in prediction work package (WP2)
 
-DP-Next prediction-arm aims to develop diabetes risk prediction models for the entire population based exclusively on register-based data. A subproject for WP2 will focus on calculating diabetes risk specifically for women in pregnancy, in order to provide a clear selection of at-risk women that WP4 can focus on. An added benefit of focus on this specific group is that various additional relevant variables are available for pregnant women based on the registration of their first trimester pregnancy checkup. In particular BMI, smoking status and blood pressure are recorded, as well as HbA1c in many cases.
+DP-Next prediction-arm aims to develop diabetes risk prediction models
+for the entire population based exclusively on register-based data. This
+subproject for prediction group (WP2) will focus on calculating diabetes
+risk specifically for women in pregnancy, in order to provide a clear
+selection of at-risk women that intervention group (WP4) can focus on.
+An added benefit of focus on this specific group is that various
+additional relevant variables are available for pregnant women based on
+the registration of their first trimester pregnancy checkup. In
+particular BMI, smoking status and blood pressure are recorded, as well
+as HbA1c in many cases.
+
+Specific aim:
+
+- Develop and validate a prediction model that identifies women at high
+  risk of type 2 diabetes after the time of giving birth
 
 ## Design plan for derivation of specific pregnancy-connected risk prediction model
-### Cohort definition (model derivation)
 
-WP2 will derive the model for a cohort of women who: - have been pregnant at least once between 2010 and 2015
+### Study population (model derivation)
+
+WP2 will derive the model for a cohort of women who:
+
+- Have been pregnant at least once between 2010 and 2015
+
+- Do not have a previous diagnosis of type 1 or type 2 diabetes
 
 ### Time window for prediction
 
-The model will be designed to predict the 10-year risk of incident T2D, according to the OSDC As a secondary outcome, HbA1c levels and trajectories 5 and 10 years after the index birth may be used if data availability for HbA1c permits.
+The model will predict the 10-year risk of registry-defined incident
+T2D. We chose a 10-year horizon because the population is young and few
+will develop T2D within a shorter period. If HbA1c data allow, secondary
+outcomes will be HbA1c levels at 5 and 10 years after the index birth
+and HbA1c trajectories over this period.
 
-### Definition of data universe for prediction
+### Definition of available data for prediction
 
-The prediction models will be built based on general register-based data supplemented with the results of the women's first, third trimester and post-partum checkups. As the aim is to focus the intervention on the post-partum period, risk indicators from pre-pregnancy and all pregnancy stages as well as delivery can be incorporated in the risk model.
+The prediction models will be built based on general register-based data
+supplemented with the results of the women's first, third trimester and
+post-partum checkups. As the aim is to focus the intervention on the
+post-partum period, risk indicators from pre-pregnancy and all pregnancy
+stages as well as delivery can be incorporated in the risk model.
 
-- Pre-pregnancy: based on pre-existing register-based data, following the same general-population strategy defined in WP2. Data will include items such as
+- Pre-pregnancy: based on pre-existing register-based data, following
+  the same general-population strategy defined in WP2.
 
-  - Pre-existing diagnosis codes from NPR; Use uploaded tsv file
-  - PCOS (e.g use of metformin before pregnancy or ICD-10 (DE282)) - risk of overestimation as most serve cases are diagnosed in the registries
-  - Medication from LMDB (e.g. antihypertensives and antidepressants) use R package (codeCollection::ATCKoodit)
-  - Laboratory measurements:
-    - HbA1c and lipids: 5 years prior to index pregnancy
-    - Hb, markers of liver and kidney function if available, inflammatory markers
-  - Family History of T2D: OSDC combined with multigenerational registry
-  - Previous GDM
-  - GDM in sisters
-  - Socio-economic indicators *STINE: which sociodemographic indicators?
-  - Ethnicity
+- First trimester: additional data collected at the first trimester
+  pregnancy checkup
 
-- First trimester: additional data collected at the first trimester pregnancy checkup:
+- Third trimester: additional data collected at subsequent pregnancy
+  checkups (We need to check availability)
 
-  - BMI; can be found in mfr and mfr_nyfoedte
-  - Smoking; rygning_afl
-  - HbA1c (updated)
-  - OGTT if available -age of mother at pregnancy
+- Post-partum: additional data collected around the delivery, early
+  health status of the baby and post-partum checkups:
 
-- Third trimester: additional data collected at subsequent pregnancy checkups:
++----------------------------------+-----------------------------------+
+| Type                             | Variables                         |
++==================================+===================================+
+| ***Pre-pregnancy variables***    |                                   |
++----------------------------------+-----------------------------------+
+| Demographic variables            | Age                               |
+|                                  |                                   |
+|                                  | Ethnicity (western vs non-western |
+|                                  | from WHO)                         |
+|                                  |                                   |
+|                                  | Socioeconomic indicators:         |
+|                                  |                                   |
+|                                  | - Education                       |
+|                                  |                                   |
+|                                  | - Income                          |
++----------------------------------+-----------------------------------+
+| Diagnosis                        | All ICD codes 10-year prior child |
+|                                  | brith from National Patient       |
+|                                  | Registry                          |
+|                                  |                                   |
+|                                  | Specific diagnosis                |
+|                                  |                                   |
+|                                  | - Polyendocrine metabolic ovarian |
+|                                  |   syndrome (PMOS)                 |
+|                                  | - Gestational diabetes (GDM)      |
+|                                  |   current or previous             |
++----------------------------------+-----------------------------------+
+| Medication                       | All ATC codes 10-year prior child |
+|                                  | brith from National Prescription  |
+|                                  | Registry                          |
++----------------------------------+-----------------------------------+
+| Biochemical meseures             | From Laboratory Registry:         |
+|                                  |                                   |
+|                                  | - HbA1c and lipids: 5 years prior |
+|                                  |   to index pregnancy              |
+|                                  | - Hb, markers of liver and kidney |
+|                                  |   function if available,          |
+|                                  |   inflammatory markers            |
++----------------------------------+-----------------------------------+
+| Family disease history           | Based on multigenerational        |
+|                                  | linkage:                          |
+|                                  |                                   |
+|                                  | - Family History of T2D: OSDC     |
+|                                  |   combined with multigenerational |
+|                                  |   registry                        |
+|                                  | - GDM in mother or sisters        |
++----------------------------------+-----------------------------------+
+| ***First trimester***            |                                   |
++----------------------------------+-----------------------------------+
+|                                  | Body mass index                   |
+|                                  |                                   |
+|                                  | Smoking status                    |
+|                                  |                                   |
+|                                  | Oral glucose tolerance test       |
+|                                  | (OGTT) as indication of test for  |
+|                                  | GDM                               |
+|                                  |                                   |
+|                                  | HbA1c as part of blood test       |
++----------------------------------+-----------------------------------+
+| ***Third trimester***            |                                   |
++----------------------------------+-----------------------------------+
+|                                  | - BMI (updated) \*\*\*STINE       |
+|                                  |   COMMENT: is BMI in 3rd          |
+|                                  |   trimester relevant? It is not a |
+|                                  |   good indication of obesity      |
+|                                  | - Smoking in order to track       |
+|                                  |   changes                         |
+|                                  | - updated HbA1c                   |
+|                                  | - OGTT if available               |
++----------------------------------+-----------------------------------+
+| ***Post-partum***                |                                   |
++----------------------------------+-----------------------------------+
+|                                  | - BMI (updated)                   |
+|                                  | - Gestational age at birth date   |
+|                                  | - Baby birth weight,              |
+|                                  |   anthropometrics                 |
+|                                  | - Type of delivery                |
+|                                  | - Delivery complications          |
+|                                  | - Details of post-partum maternal |
+|                                  |   health (e.g. preclampsia)       |
+|                                  | - Twins/multiple children in one  |
+|                                  |   pregancny                       |
+|                                  |   - If a woman delivers twins or  |
+|                                  |     more babies, this usually     |
+|                                  |     affect the risk of            |
+|                                  |     complications, type of        |
+|                                  |     delivery and gestational age  |
++----------------------------------+-----------------------------------+
 
-  - BMI (updated)  ***STINE COMMENT: is BMI in 3rd trimester relevant? It is not a good indication of obesity
-  - Smoking
-  - HbA1c (updated)
-  - OGTT if available
+: Table 1: Available potential predictors in the National Registries
 
-- Post-partum: additional data collected around the delivery, early health status of the baby and post-partum checkups:
+Some of above data in Table 1 will be more complete than other Therfore
+will define a cohort based on full availabliility and subcohorts based
+partly availbility.
 
-  - BMI (updated)
-  - Gestational age at birth date: Can be found in mfr and mfr_nyfoedte
-  - Type of delivery
-  - Delivery complications
-  - Baby birth weight, anthropometrics: can be found in mfr and mfr_nyfoedte
-  - Details of post-partum maternal health -twins/multiple children in one pregancny - if a woman delivers twins or more babies, this usually affect the risk of complications, type of delivery and gestational age
+### Definition of cohort
 
-In the case of multiple pregnancies, the risk model is updated after each pregnancy. This model integrates data from all stages around a pregnancy and is focused on an intervention timing in the post-partum period.
+In the full cohort, we will use all pre-pregnancy variables (except
+laboraory measurement).
+
+- Explain demogrphic risk facotrs
+
+- Explain diagnosis and prescription risk factors
+
+- Explain family disease history risk factors
+
+Most pregnancies complete check-ups throughout. BMI and smoking are
+standard procedure
+
+- OGTT Include as indication of suspection of GDM (BEWARE GUIDELINE MAY
+  CHNAGE THIS TEST OVER TIME)
+
+### Definition of subcohorts
+
+In the case of multiple pregnancies, the risk model is updated after
+each pregnancy. This model integrates data from all stages around a
+pregnancy and is focused on an intervention timing in the post-partum
+period.
 
 ## Statistical methods
 
 ### Descriptive statistics
 
-First, we will characterise the study population by demographic factors (age, ethnicity, socioeconomic position) and by pregnancy related factors from the first trimester and the postpartum period. Using the OSDC algorithm, we will examine trends in the incidence of type 2 diabetes in the population and across regions. 
+First, we will characterise the study population by demographic factors
+(age, ethnicity, socioeconomic position) and by pregnancy related
+factors from the first trimester and the postpartum period. Using the
+OSDC algorithm, we will examine trends in the incidence of type 2
+diabetes in the population and across regions.
 
 ### Variable processing
 
-We will include predefined variables based on their established association with the risk of type 2 diabetes, as listed in *Definition of the potential predicters for prediction*. Diagnoses and medications may carry hidden indications for type 2 diabetes risk; however, the number of potential indicators is large. To select candidates for our prediction model, we will create a play dataset based on a pregnancy population from 2004 to 2010 to define the set of predictors. Women with pregnancies in this period and after 2010 are excluded from play data, as their potential event must only be in the development data.  We will include a 10 year history of each diagnosis and medication and uniformly test the association between each diagnosis and each medication and 10 year type 2 diabetes risk. We will produce a Manhattan plot with groupings of ICD-10 and ATC codes on the x axis. We will bring the candidates to domain experts in pregnancy related metabolic factors from SDCA and SDCC and discuss: (1) whether the indications are biased; and (2) the opportunity to collapse overlapping predictors (for example, a diagnosis of hypertension together with a prescription for antihypertensive medication). In a second step, we will use the combined variables and estimate each one 10 year risk with diabetes . We will then produce a plot with prevalence in the population on the x axis and the magnitude of the association on the y axis. In a second iteration with the domain experts, we will discuss the relevance of each predictor based on prevalence of the diagnosis and magnitude of risk. The candidates remaining after this discussion will be included as candidate predictors for the main model.
+We will include predefined variables based on their established
+association with the risk of type 2 diabetes, as listed in *Definition
+of the potential predicters for prediction*. Diagnoses and medications
+may carry hidden indications for type 2 diabetes risk; however, the
+number of potential indicators is large. To select candidates for our
+prediction model, we will create a play dataset based on a pregnancy
+population from 2004 to 2010 to define the set of predictors. Women with
+pregnancies in this period and after 2010 are excluded from play data,
+as their potential event must only be in the development data. We will
+include a 10 year history of each diagnosis and medication and uniformly
+test the association between each diagnosis and each medication and 10
+year type 2 diabetes risk. We will produce a Manhattan plot with
+groupings of ICD-10 and ATC codes on the x axis. We will bring the
+candidates to domain experts in pregnancy related metabolic factors from
+SDCA and SDCC and discuss: (1) whether the indications are biased; and
+(2) the opportunity to collapse overlapping predictors (for example, a
+diagnosis of hypertension together with a prescription for
+antihypertensive medication). In a second step, we will use the combined
+variables and estimate each one 10 year risk with diabetes . We will
+then produce a plot with prevalence in the population on the x axis and
+the magnitude of the association on the y axis. In a second iteration
+with the domain experts, we will discuss the relevance of each predictor
+based on prevalence of the diagnosis and magnitude of risk. The
+candidates remaining after this discussion will be included as candidate
+predictors for the main model.
 
 ### Statistical model selection
 
-With all predictors defined in the play data, we will continue to use these data to select our candidate statistical models. The dataset will be provided to the team of prediction modellers, who will compete to create the best performing model while remaining methodologically available to each other. As the primary outcome, the model will aim to predict events of type 2 diabetes and, if the data allow, to predict 5 year HbA1c levels after pregnancy. The methods available for the modellers to choose from could include Cox proportional hazards, Poisson regression, LASSO, and random forest, each of which could be applied separately or combined in a super learner. The candidate models selected on the basis of this step will then be brought to the development dataset.
+With all predictors defined in the play data, we will continue to use
+these data to select our candidate statistical models. The dataset will
+be provided to the team of prediction modellers, who will compete to
+create the best performing model while remaining methodologically
+available to each other. As the primary outcome, the model will aim to
+predict events of type 2 diabetes and, if the data allow, to predict 5
+year HbA1c levels after pregnancy. The methods available for the
+modellers to choose from could include Cox proportional hazards, Poisson
+regression, LASSO, and random forest, each of which could be applied
+separately or combined in a super learner. The candidate models selected
+on the basis of this step will then be brought to the development
+dataset.
 
 ### Developing prediction model
 
-Once all predictors and statistical models have been defined, we will use the training dataset from pregnant women in the period 2010 to 2013. A prior HbA1c before index is available for 10% of women in 2010, 25% in 2015 and 40% in 2020. We will handle prior HbA1c in three ways, 1) an indicator of a present or absent measurement togehter with calendar-time, 2) a submodel restricted to complete cases, and 3) multiple imputation from the markers available at baseline. All models will be included in a super learner which will choose the best performing model using cross validation based on the Brier score. 
+Once all predictors and statistical models have been defined, we will
+use the training dataset from pregnant women in the period 2010 to 2013.
+A prior HbA1c before index is available for 10% of women in 2010, 25% in
+2015 and 40% in 2020. We will handle prior HbA1c in three ways, 1) an
+indicator of a present or absent measurement togehter with
+calendar-time, 2) a submodel restricted to complete cases, and 3)
+multiple imputation from the markers available at baseline. All models
+will be included in a super learner which will choose the best
+performing model using cross validation based on the Brier score.
 
 ### Validation
 
-For validation, we will use two approaches: first, we will subset one region from the development dataset to test performance across regions; second, we will subset the two latest years, 2013 to 2015, to test performance on newer data, which will reflect the situation when the model is deployed on the 2027 population. Predictive performance will be assessed by the Brier score net benifit, and decision curve analysis. We wiil subdive and test performance across age-groups, parity, and HbA1c present or absent at baseline.
+For validation, we will use two approaches: first, we will subset one
+region from the development dataset to test performance across regions;
+second, we will subset the two latest years, 2013 to 2015, to test
+performance on newer data, which will reflect the situation when the
+model is deployed on the 2027 population. Predictive performance will be
+assessed by the Brier score net benifit, and decision curve analysis. We
+wiil subdive and test performance across age-groups, parity, and HbA1c
+present or absent at baseline.
 
 ### Choosing and creating the final prediction model
 
-The best performing model from the super learner will be trained on data from the entire period from 2010 to 2015 and exported from the protected enviorment it was developed in. It will then be built into an R Shiny app, which will be provided to the group in WP4. Our model will provide an estimate of the 10 year risk of type 2 diabetes and the expected 5 year HbA1c after pregnancy. Our approach follows established principles in machine learning and statistical modeling, adhering to standardized practices for prediction, reporting, and validation [@collins2024; @lopez-ayala2025; @collins2024a; @riley2024].
+The best performing model from the super learner will be trained on data
+from the entire period from 2010 to 2015 and exported from the protected
+enviorment it was developed in. It will then be built into an R Shiny
+app, which will be provided to the group in WP4. Our model will provide
+an estimate of the 10 year risk of type 2 diabetes and the expected 5
+year HbA1c after pregnancy. Our approach follows established principles
+in machine learning and statistical modeling, adhering to standardized
+practices for prediction, reporting, and validation [@collins2024;
+@lopez-ayala2025; @collins2024a; @riley2024].
 
 ## Definition of focus group for WP4
 
-After the pregnancy risk model has been developed, it can be run for more recent age cohorts, and an up-to-date descriptive analysis can be made of the distribution of long-term T2D risk among recently pregnant women. This descriptive analysis will show which data are most informative for the estimation of future diabetes risk. It can also be used to explore geographical variation and clustering of risk factors. WP4 can then choose a more focused group of high-risk women in the postpartum period, and geographical settings. It may be worth considering focusing on GPs that measure HbA1c routinely in pregnant women (improved risk prediction), and on women above a given BMI threshold.
+After the pregnancy risk model has been developed, it can be run for
+more recent age cohorts, and an up-to-date descriptive analysis can be
+made of the distribution of long-term T2D risk among recently pregnant
+women. This descriptive analysis will show which data are most
+informative for the estimation of future diabetes risk. It can also be
+used to explore geographical variation and clustering of risk factors.
+WP4 can then choose a more focused group of high-risk women in the
+postpartum period, and geographical settings. It may be worth
+considering focusing on GPs that measure HbA1c routinely in pregnant
+women (improved risk prediction), and on women above a given BMI
+threshold.
 
+## Perspective
+
+Our long-term goal is to implement the model as a clinically ready tool
+at the postpartum check-up in general practice, so that women at high
+risk of type 2 diabetes can be offered prevention early.
 
 ::: content-hidden
-### Discussion points ####
+### Discussion points
 
 - How to handle double preqnancy?
   - Include number of births as a variable
   - Only handle variable of most recent pregnancy
 - How to handle subpopulation with relevant predictors (e.g. HbA1c).
-  - Investigate descriptives of subpopulation with HbA1c with target population (all pregnant women)
-  - HbA1c (yes/no) and interaction if HbA1c yes then include value - if posible.....
+  - Investigate descriptives of subpopulation with HbA1c with target
+    population (all pregnant women)
+  - HbA1c (yes/no) and interaction if HbA1c yes then include value - if
+    posible.....
 - Can the model provide explainability? What weights into the risk?
-  - Only if someone ask for this. Also, it can lead to causal misinterpretations
-- Winner of predcition competition as final model or evaluate top candidates. 
-
+  - Only if someone ask for this. Also, it can lead to causal
+    misinterpretations
+- Winner of predcition competition as final model or evaluate top
+  candidates.
 :::
 
 ## References
