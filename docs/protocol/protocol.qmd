@@ -58,8 +58,8 @@ describing the study. Find checklists
 
 ### Title
 
-*WP2-WP4 connection protocol: definition of risk group at stage of
-pregnancy*
+Prediction- (WP2) and intervention-arm (WP4) connection protocol:
+definition of risk group at stage of pregnancy
 
 ### Description
 
@@ -81,7 +81,7 @@ to map and remove barriers to healthy lifestyle offerings.
 
 DP-Next prediction-arm aims to develop diabetes risk prediction models
 for the entire population based exclusively on register-based data. This
-subproject for prediction group (WP2) will focus on calculating diabetes
+subproject for prediction-arm (WP2) will focus on calculating diabetes
 risk specifically for women in pregnancy, in order to provide a clear
 selection of at-risk women that intervention group (WP4) can focus on.
 An added benefit of focus on this specific group is that various
@@ -90,28 +90,37 @@ the registration of their first trimester pregnancy checkup. In
 particular BMI, smoking status and blood pressure are recorded, as well
 as HbA1c in many cases.
 
-Specific aim:
+This study aim:
 
 - Develop and validate a prediction model that identifies women at high
   risk of type 2 diabetes after the time of giving birth
+
+Our long-term goal is to implement the model as a clinically ready tool
+at the postpartum check-up in general practice, so that women at high
+risk of type 2 diabetes can be offered timely initiatives designed from
+intervention-arm (WP4) in DP-NEXT.
 
 ## Design plan for derivation of specific pregnancy-connected risk prediction model
 
 ### Study population (model derivation)
 
-WP2 will derive the model for a cohort of women who:
+Prediction-arm (WP2) will derive the model for a cohort of women who:
 
 - Have been pregnant at least once between 2010 and 2015
 
-- Do not have a previous diagnosis of type 1 or type 2 diabetes
+- Do not have a previous diagnosis of type 1 or type 2 diabetes at index
+  date
 
 ### Time window for prediction
 
-The model will predict the 10-year risk of registry-defined incident
-T2D. We chose a 10-year horizon because the population is young and few
-will develop T2D within a shorter period. If HbA1c data allow, secondary
-outcomes will be HbA1c levels at 5 and 10 years after the index birth
-and HbA1c trajectories over this period.
+The index date is defined as one week after delivery, corresponding to
+the postpartum check-up at which the model is intended to be used.
+Variables from the first trimester through the postpartum are therefore
+complete at the index date. The model will predict the 10-year risk of
+registry-defined incident T2D. We chose a 10-year horizon because the
+population is young and few will develop T2D within a shorter period. If
+HbA1c data allow, secondary outcomes will be HbA1c levels at 5 and 10
+years after the index birth and HbA1c trajectories over this period.
 
 ### Definition of available data for prediction
 
@@ -236,7 +245,7 @@ stages as well as delivery can be incorporated in the risk model.
 Because the data sources in Table 1 differ in temporal and regional
 coverage, we will develop the model in a main cohort using predictors
 available nationwide for all index births. We will evaluate additional
-predictors in subcohorts defined by the coverage of each partially
+predictors in sub-cohorts defined by the coverage of each partially
 available source.
 
 ### Definition of cohort
@@ -304,7 +313,7 @@ diabetes in the population and across regions.
 
 We will include predefined variables based on their established
 association with the risk of type 2 diabetes, as listed in *Definition
-of the potential predicters for prediction*. Diagnoses and medications
+of the potential predictors for prediction*. Diagnoses and medications
 may carry hidden indications for type 2 diabetes risk; however, the
 number of potential indicators is large. To select candidates for our
 prediction model, we will create a play dataset based on a pregnancy
@@ -369,7 +378,7 @@ age-groups, parity, and HbA1c present or absent at baseline.
 
 The best performing model from the super learner will be trained on data
 from the entire period from 2010 to 2015 and exported from the protected
-enviorment it was developed in. It will then be built into an R Shiny
+environment it was developed in. It will then be built into an R Shiny
 app, which will be provided to the group in WP4. Our model will provide
 an estimate of the 10 year risk of type 2 diabetes and the expected 5
 year HbA1c after pregnancy. Our approach follows established principles
@@ -377,7 +386,7 @@ in machine learning and statistical modeling, adhering to standardized
 practices for prediction, reporting, and validation [@collins2024;
 @lopez-ayala2025; @collins2024a; @riley2024].
 
-## Definition of focus group for WP4
+## Definition of focus group for intervention-arm (WP4)
 
 After the pregnancy risk model has been developed, it can be run for
 more recent age cohorts, and an up-to-date descriptive analysis can be
@@ -390,12 +399,6 @@ postpartum period, and geographical settings. It may be worth
 considering focusing on GPs that measure HbA1c routinely in pregnant
 women (improved risk prediction), and on women above a given BMI
 threshold.
-
-## Perspective
-
-Our long-term goal is to implement the model as a clinically ready tool
-at the postpartum check-up in general practice, so that women at high
-risk of type 2 diabetes can be offered prevention early.
 
 ::: content-hidden
 ### Discussion points
