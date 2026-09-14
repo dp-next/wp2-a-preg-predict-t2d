@@ -152,105 +152,99 @@ stages as well as delivery can be incorporated in the risk model.
 - Post-partum: additional data collected around the delivery, early
   health status of the baby and post-partum checkups:
 
-+----------------------------------+-----------------------------------+
-| Type                             | Variables                         |
-+==================================+===================================+
-| ***Pre-pregnancy variables***    |                                   |
-+----------------------------------+-----------------------------------+
-| Demographic variables            | Age                               |
-|                                  |                                   |
-|                                  | Ethnicity (western vs non-western |
-|                                  | from WHO)                         |
-|                                  |                                   |
-|                                  | Socioeconomic indicators:         |
-|                                  |                                   |
-|                                  | - Education                       |
-|                                  |                                   |
-|                                  | - Income                          |
-+----------------------------------+-----------------------------------+
-| Diagnosis                        | All ICD codes 10-year prior child |
-|                                  | brith from National Patient       |
-|                                  | Registry                          |
-|                                  |                                   |
-|                                  | Specific diagnosis                |
-|                                  |                                   |
-|                                  | - Polyendocrine metabolic ovarian |
-|                                  |   syndrome (PMOS)                 |
-|                                  | - Gestational diabetes (GDM)      |
-|                                  |   current or previous             |
-+----------------------------------+-----------------------------------+
-| Medication                       | All ATC codes 10-year prior child |
-|                                  | brith from National Prescription  |
-|                                  | Registry                          |
-+----------------------------------+-----------------------------------+
-| Biochemical meseures             | From Laboratory Registry:         |
-|                                  |                                   |
-|                                  | - HbA1c and lipids: 5 years prior |
-|                                  |   to index pregnancy              |
-|                                  | - Hb, markers of liver and kidney |
-|                                  |   function if available,          |
-|                                  |   inflammatory markers            |
-+----------------------------------+-----------------------------------+
-| Family disease history           | Based on multigenerational        |
-|                                  | registry linkage:                 |
-|                                  |                                   |
-|                                  | - Family History of T2D: OSDC     |
-|                                  |   combined with multigenerational |
-|                                  |   registry                        |
-|                                  | - GDM in mother or sisters        |
-+----------------------------------+-----------------------------------+
-| ***First trimester***            |                                   |
-+----------------------------------+-----------------------------------+
-|                                  | Body mass index                   |
-|                                  |                                   |
-|                                  | Smoking status                    |
-|                                  |                                   |
-|                                  | Oral glucose tolerance test       |
-|                                  | (OGTT) as indication of test for  |
-|                                  | GDM                               |
-|                                  |                                   |
-|                                  | HbA1c as part of blood test       |
-+----------------------------------+-----------------------------------+
-| ***Third trimester***            |                                   |
-+----------------------------------+-----------------------------------+
-|                                  | BMI (updated) \*\*\*STINE         |
-|                                  | COMMENT: is BMI in 3rd trimester  |
-|                                  | relevant? It is not a good        |
-|                                  | indication of obesity             |
-|                                  |                                   |
-|                                  | Smoking in order to track changes |
-|                                  |                                   |
-|                                  | updated HbA1c                     |
-|                                  |                                   |
-|                                  | OGTT if available                 |
-+----------------------------------+-----------------------------------+
-| ***Post-partum***                |                                   |
-+----------------------------------+-----------------------------------+
-|                                  | BMI (updated)                     |
-|                                  |                                   |
-|                                  | Gestational age at birth date     |
-|                                  |                                   |
-|                                  | Baby birth weight,                |
-|                                  | anthropometrics                   |
-|                                  |                                   |
-|                                  | Type of delivery                  |
-|                                  |                                   |
-|                                  | Delivery complications            |
-|                                  |  (e.g. shoulder                   |
-|                                  |   dystocia, birth trauma)         |
-|                                  |                                   |
-|                                  | Details of post-partum maternal   |
-|                                  | health (e.g. preclampsia)         |
-|                                  |                                   |
-|                                  | Twins/multiple children in one    |
-|                                  | pregancny                         |
-|                                  |                                   |
-|                                  | - If a woman delivers twins or    |
-|                                  |   more babies, this usually       |
-|                                  |   affect the risk of              |
-|                                  |   complications, type of delivery |
-|                                  |   and gestational age             |
-+----------------------------------+-----------------------------------+
++-------------------------------+--------------------------------------+
+| Type                          | Variables                            |
++===============================+======================================+
+| ***Pre-pregnancy variables*** |                                      |
++-------------------------------+--------------------------------------+
+| Demographic variables         | Age                                  |
+|                               |                                      |
+|                               | Ethnicity (western vs non-western    |
+|                               | from WHO)                            |
+|                               |                                      |
+|                               | Socioeconomic indicators:            |
+|                               |                                      |
+|                               | - Education                          |
+|                               |                                      |
+|                               | - Income                             |
++-------------------------------+--------------------------------------+
+| Diagnosis                     | All ICD codes 10-year prior child    |
+|                               | brith from National Patient Registry |
+|                               |                                      |
+|                               | Specific diagnosis                   |
+|                               |                                      |
+|                               | - Polyendocrine metabolic ovarian    |
+|                               |   syndrome (PMOS)                    |
+|                               | - Gestational diabetes (GDM) current |
+|                               |   or previous                        |
++-------------------------------+--------------------------------------+
+| Medication                    | All ATC codes 10-year prior child    |
+|                               | brith from National Prescription     |
+|                               | Registry                             |
++-------------------------------+--------------------------------------+
+| Biochemical meseures          | From Laboratory Registry:            |
+|                               |                                      |
+|                               | - HbA1c and lipids: 5 years prior to |
+|                               |   index pregnancy                    |
+|                               | - Hb, markers of liver and kidney    |
+|                               |   function if available,             |
+|                               |   inflammatory markers               |
++-------------------------------+--------------------------------------+
+| Family disease history        | Based on multigenerational registry  |
+|                               | linkage:                             |
+|                               |                                      |
+|                               | - Family History of T2D: OSDC        |
+|                               |   combined with multigenerational    |
+|                               |   registry                           |
+|                               | - GDM in mother or sisters           |
++-------------------------------+--------------------------------------+
+| ***First trimester***         |                                      |
++-------------------------------+--------------------------------------+
+|                               | Body mass index                      |
+|                               |                                      |
+|                               | Smoking status                       |
+|                               |                                      |
+|                               | Oral glucose tolerance test (OGTT)   |
+|                               | as indication of test for GDM        |
+|                               |                                      |
+|                               | HbA1c as part of blood test          |
++-------------------------------+--------------------------------------+
+| ***Third trimester***         |                                      |
++-------------------------------+--------------------------------------+
+|                               | BMI (updated) \*\*\*STINE COMMENT:   |
+|                               | is BMI in 3rd trimester relevant? It |
+|                               | is not a good indication of obesity  |
+|                               |                                      |
+|                               | Smoking in order to track changes    |
+|                               |                                      |
+|                               | updated HbA1c                        |
+|                               |                                      |
+|                               | OGTT if available                    |
++-------------------------------+--------------------------------------+
+| ***Post-partum***             |                                      |
++-------------------------------+--------------------------------------+
+|                               | BMI (updated)                        |
+|                               |                                      |
+|                               | Gestational age at birth date        |
+|                               |                                      |
+|                               | Baby birth weight, anthropometrics   |
+|                               |                                      |
+|                               | Type of delivery                     |
+|                               |                                      |
+|                               | Delivery complications (e.g.         |
+|                               | shoulder dystocia, birth trauma)     |
+|                               |                                      |
+|                               | Details of post-partum maternal      |
+|                               | health (e.g. preclampsia)            |
+|                               |                                      |
+|                               | Twins/multiple children in one       |
+|                               | pregancny                            |
+|                               |                                      |
+|                               | - If a woman delivers twins or more  |
+|                               |   babies, this usually affect the    |
+|                               |   risk of complications, type of     |
+|                               |   delivery and gestational age       |
++-------------------------------+--------------------------------------+
 
 : Table 1: Available potential predictors in the National Registries
 
