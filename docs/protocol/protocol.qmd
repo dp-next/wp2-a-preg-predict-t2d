@@ -1,5 +1,6 @@
 ---
-title: "WP2-WP4 connection protocol: definition of risk group at stage of pregnancy"
+title: "Prediction- (WP2) and intervention-arm (WP4) connection protocol:
+definition of risk group at stage of child delivery"
 # Add all contributors here (orders are unspecified)
 author:
   - name: Hjalte Mikkelsen
@@ -20,14 +21,22 @@ author:
   - name: Thomas Gerds
     affiliation:
       - name: Steno Diabetes Center Copenhagen
+  - name: Karoline Kragelund Nielsen
+    affiliation: 
+      - name: Steno Diabetes Center Copenhagen
   - name: Stine Byberg
     affiliation:
       - name: Steno Diabetes Center Copenhagen
 date: last-modified
-format: html
-# bibliography: "file/path"
+format:  
+  docx:
+    toc: true
+    number-sections: true
+    reference-doc: template-doc.docx
 execute:
-  echo: true
+  echo: true #html
+# bibliography: "file/path"
+ 
 editor: 
   markdown: 
     wrap: 72
@@ -59,7 +68,7 @@ describing the study. Find checklists
 ### Title
 
 Prediction- (WP2) and intervention-arm (WP4) connection protocol:
-definition of risk group at stage of pregnancy
+definition of risk group at stage of child delivery
 
 ### Description
 
@@ -98,7 +107,7 @@ This study aim:
 Our long-term goal is to implement the model as a clinically ready tool
 at the postpartum check-up in general practice, so that women at high
 risk of type 2 diabetes can be offered timely initiatives designed from
-intervention-arm (WP4) in DP-NEXT.
+intervention-arm (WP4) in DP-NEXT to improve metabolic health.
 
 ## Design plan for derivation of specific pregnancy-connected risk prediction model
 
@@ -182,7 +191,7 @@ stages as well as delivery can be incorporated in the risk model.
 |                                  |   inflammatory markers            |
 +----------------------------------+-----------------------------------+
 | Family disease history           | Based on multigenerational        |
-|                                  | linkage:                          |
+|                                  | registry linkage:                 |
 |                                  |                                   |
 |                                  | - Family History of T2D: OSDC     |
 |                                  |   combined with multigenerational |
@@ -280,7 +289,7 @@ Macrosomia, defined as a birth weight above 4000 g, is associated with
 elevated maternal risk of type 2 diabetes and may reflect hyperglycaemia
 during pregnancy that screening did not capture.
 
-### Definition of subcohorts
+#### Definition of subcohorts
 
 In women with more than one pregnancy, the model is updated after each
 birth, so that every birth contributes an index date. The model
@@ -371,8 +380,9 @@ region from the development dataset to test performance across regions;
 second, we will subset the two latest years, 2013 to 2015, to test
 performance on newer data, which will reflect the situation when the
 model is deployed on the 2027 population. Predictive performance will be
-assessed by the Brier score. We wiil subdive and test performance across
-age-groups, parity, and HbA1c present or absent at baseline.
+assessed by the Brier score to emphasize on individual calbraition of
+risk. We will subdivide and test performance across age-groups, parity,
+and HbA1c present or absent at baseline.
 
 ### Choosing and creating the final prediction model
 
