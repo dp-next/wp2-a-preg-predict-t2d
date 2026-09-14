@@ -236,6 +236,8 @@ stages as well as delivery can be incorporated in the risk model.
 |                                  | Type of delivery                  |
 |                                  |                                   |
 |                                  | Delivery complications            |
+|                                  |  (e.g. shoulder                   |
+|                                  |   dystocia, birth trauma)         |
 |                                  |                                   |
 |                                  | Details of post-partum maternal   |
 |                                  | health (e.g. preclampsia)         |
