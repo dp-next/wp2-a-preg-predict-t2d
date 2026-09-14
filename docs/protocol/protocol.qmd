@@ -240,7 +240,7 @@ stages as well as delivery can be incorporated in the risk model.
 |                                  | health (e.g. preclampsia)         |
 |                                  |                                   |
 |                                  | Twins/multiple children in one    |
-|                                  | pregancny                         |
+|                                  | pregnancy                         |
 |                                  |                                   |
 |                                  | - If a woman delivers twins or    |
 |                                  |   more babies, this usually       |
