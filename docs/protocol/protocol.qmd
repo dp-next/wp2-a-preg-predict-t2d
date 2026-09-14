@@ -194,32 +194,41 @@ stages as well as delivery can be incorporated in the risk model.
 +----------------------------------+-----------------------------------+
 | ***Third trimester***            |                                   |
 +----------------------------------+-----------------------------------+
-|                                  | - BMI (updated) \*\*\*STINE       |
-|                                  |   COMMENT: is BMI in 3rd          |
-|                                  |   trimester relevant? It is not a |
-|                                  |   good indication of obesity      |
-|                                  | - Smoking in order to track       |
-|                                  |   changes                         |
-|                                  | - updated HbA1c                   |
-|                                  | - OGTT if available               |
+|                                  | BMI (updated) \*\*\*STINE         |
+|                                  | COMMENT: is BMI in 3rd trimester  |
+|                                  | relevant? It is not a good        |
+|                                  | indication of obesity             |
+|                                  |                                   |
+|                                  | Smoking in order to track changes |
+|                                  |                                   |
+|                                  | updated HbA1c                     |
+|                                  |                                   |
+|                                  | OGTT if available                 |
 +----------------------------------+-----------------------------------+
 | ***Post-partum***                |                                   |
 +----------------------------------+-----------------------------------+
-|                                  | - BMI (updated)                   |
-|                                  | - Gestational age at birth date   |
-|                                  | - Baby birth weight,              |
-|                                  |   anthropometrics                 |
-|                                  | - Type of delivery                |
-|                                  | - Delivery complications          |
-|                                  | - Details of post-partum maternal |
-|                                  |   health (e.g. preclampsia)       |
-|                                  | - Twins/multiple children in one  |
-|                                  |   pregancny                       |
-|                                  |   - If a woman delivers twins or  |
-|                                  |     more babies, this usually     |
-|                                  |     affect the risk of            |
-|                                  |     complications, type of        |
-|                                  |     delivery and gestational age  |
+|                                  | BMI (updated)                     |
+|                                  |                                   |
+|                                  | Gestational age at birth date     |
+|                                  |                                   |
+|                                  | Baby birth weight,                |
+|                                  | anthropometrics                   |
+|                                  |                                   |
+|                                  | Type of delivery                  |
+|                                  |                                   |
+|                                  | Delivery complications            |
+|                                  |                                   |
+|                                  | Details of post-partum maternal   |
+|                                  | health (e.g. preclampsia)         |
+|                                  |                                   |
+|                                  | Twins/multiple children in one    |
+|                                  | pregancny                         |
+|                                  |                                   |
+|                                  | - If a woman delivers twins or    |
+|                                  |   more babies, this usually       |
+|                                  |   affect the risk of              |
+|                                  |   complications, type of delivery |
+|                                  |   and gestational age             |
 +----------------------------------+-----------------------------------+
 
 : Table 1: Available potential predictors in the National Registries
@@ -232,10 +241,10 @@ available source.
 
 ### Definition of cohort
 
-In the full cohort, we will use all pre-pregnancy variables (except
-laboraory measurement).
+In the full cohort, we will use all pre-pregnancy variables except
+laboratory measurements.
 
-- Explain demogrphic risk facotrs
+- Explain demographic risk factors
 
 - Explain diagnosis and prescription risk factors
 
@@ -247,17 +256,39 @@ trimesters. First-trimester BMI is minimally affected by gestational
 weight gain and therefore approximates pre-pregnancy weight status, a
 major determinant of type 2 diabetes. Smoking is associated with a
 higher risk of type 2 diabetes, possibly through systemic inflammation
-and central fat accumulation.
+and central fat accumulation. In Denmark, an OGTT during pregnancy is
+performed when risk factors for gestational diabetes are present. A
+recorded OGTT therefore identifies women in whom gestational diabetes
+was suspected, and both the test itself and a sub-threshold glucose
+value may signal elevated risk of later type 2 diabetes.
 
-- OGTT Include as indication of suspection of GDM (BEWARE GUIDELINE MAY
-  CHNAGE THIS TEST OVER TIME)
+We will further include variables recorded at and after delivery.
+Gestational age at birth, mode of delivery and pregnancy complications
+such as preeclampsia can be linked to maternal metabolic and vascular
+health, and all are available at the postpartum check-up when the model
+is applied. Neonatal anthropometry carries additional information.
+Macrosomia, defined as a birth weight above 4000 g, is associated with
+elevated maternal risk of type 2 diabetes and may reflect hyperglycaemia
+during pregnancy that screening did not capture.
 
 ### Definition of subcohorts
 
-In the case of multiple pregnancies, the risk model is updated after
-each pregnancy. This model integrates data from all stages around a
-pregnancy and is focused on an intervention timing in the post-partum
-period.
+In women with more than one pregnancy, the model is updated after each
+birth, so that every birth contributes an index date. The model
+integrates data from before, during and after each pregnancy and
+predicts risk at the postpartum check-up. We will define subcohorts by
+parity, so that women with a second or later birth contribute variables
+from previous pregnancies as well as from the index pregnancy.
+
+Availability of an HbA1c measurement before the index birth increases
+over calendar time, from 10% of women in 2010 to 25% in 2015 and 40% in
+2020. We will define a subcohort of women with a prior HbA1c
+
+Family history requires register linkage to relatives, and the number of
+linkable relatives varies. Some women have relatives with relevant
+records, such as an older sister with a previous pregnancy, whereas
+recently immigrated women may have none. We will define subcohorts by
+the extent of available family linkage.
 
 ## Statistical methods
 
@@ -315,14 +346,14 @@ dataset.
 ### Developing prediction model
 
 Once all predictors and statistical models have been defined, we will
-use the training dataset from pregnant women in the period 2010 to 2013.
-A prior HbA1c before index is available for 10% of women in 2010, 25% in
-2015 and 40% in 2020. We will handle prior HbA1c in three ways, 1) an
-indicator of a present or absent measurement togehter with
-calendar-time, 2) a submodel restricted to complete cases, and 3)
-multiple imputation from the markers available at baseline. All models
-will be included in a super learner which will choose the best
-performing model using cross validation based on the Brier score.
+use the training dataset from pregnant women in the period 2010 to 2013
+in the full cohort. In the subcohorts, we will use three approaches with
+the partly avialable variable 1) an indicator of a present or absent
+measurement togehter with calendar-time, 2) a submodel restricted to
+complete cases, and 3) multiple imputation from the markers available at
+baseline integrated to the full cohort. All models will be included in a
+super learner which will choose the best performing model using cross
+validation based on the Brier score.
 
 ### Validation
 
@@ -331,9 +362,8 @@ region from the development dataset to test performance across regions;
 second, we will subset the two latest years, 2013 to 2015, to test
 performance on newer data, which will reflect the situation when the
 model is deployed on the 2027 population. Predictive performance will be
-assessed by the Brier score net benifit, and decision curve analysis. We
-wiil subdive and test performance across age-groups, parity, and HbA1c
-present or absent at baseline.
+assessed by the Brier score. We wiil subdive and test performance across
+age-groups, parity, and HbA1c present or absent at baseline.
 
 ### Choosing and creating the final prediction model
 
