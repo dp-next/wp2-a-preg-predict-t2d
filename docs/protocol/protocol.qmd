@@ -90,7 +90,7 @@ to map and remove barriers to healthy lifestyle offerings.
 
 DP-Next prediction-arm aims to develop diabetes risk prediction models
 for the entire population based exclusively on register-based data. This
-subproject for prediction-arm (WP2) will focus on calculating diabetes
+sub project for prediction-arm (WP2) will focus on calculating diabetes
 risk specifically for women in pregnancy, in order to provide a clear
 selection of at-risk women that intervention group (WP4) can focus on.
 An added benefit of focus on this specific group is that various
@@ -125,11 +125,12 @@ Prediction-arm (WP2) will derive the model for a cohort of women who:
 The index date is defined as one week after delivery, corresponding to
 the postpartum check-up at which the model is intended to be used.
 Variables from the first trimester through the postpartum are therefore
-complete at the index date. The model will predict the 10-year risk of
-registry-defined incident T2D. We chose a 10-year horizon because the
-population is young and few will develop T2D within a shorter period. If
-HbA1c data allow, secondary outcomes will be HbA1c levels at 5 and 10
-years after the index birth and HbA1c trajectories over this period.
+complete at the index date. \[INCLUDE minimum follow-up and censoring
+date!!!\]. The model will predict the 10-year risk of registry-defined
+incident T2D. We chose a 10-year horizon because the population is young
+and few will develop T2D within a shorter period. If HbA1c data allow,
+secondary outcomes will be HbA1c levels at 5 and 10 years after the
+index birth and HbA1c trajectories over this period.
 
 ### Definition of available data for prediction
 
@@ -300,7 +301,7 @@ from previous pregnancies as well as from the index pregnancy.
 
 Availability of an HbA1c measurement before the index birth increases
 over calendar time, from 10% of women in 2010 to 25% in 2015 and 40% in
-2020. We will define a subcohort of women with a prior HbA1c
+2020. We will define a subcohort of women with a prior HbA1c.
 
 Family history requires register linkage to relatives, and the number of
 linkable relatives varies. Some women have relatives with relevant
