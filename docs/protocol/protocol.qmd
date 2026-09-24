@@ -312,7 +312,7 @@ factors from the first trimester and the postpartum period. Using the
 OSDC algorithm, we will examine trends in the incidence of type 2
 diabetes in the population and across regions.
 
-### Variable processing
+### Variable preprocessing
 
 We will include predefined variables based on their established
 association with the risk of type 2 diabetes, as listed in *Definition
@@ -321,8 +321,8 @@ may carry hidden indications for type 2 diabetes risk; however, the
 number of potential indicators is large. To select candidates for our
 prediction model, we will create a play dataset based on a pregnancy
 population from 2004 to 2010 to define the set of predictors. Women with
-pregnancies in this period and after 2010 are excluded from play data,
-as their potential event must only be in the development data. We will
+pregnancies after 2010 are excluded from the play data,
+to avoid potential overfitting, i.e. we want the findings from the play data to apply for the general population and not just the sub group we have data on. We will
 include a 10 year history of each diagnosis and medication and uniformly
 test the association between each diagnosis and each medication and 10
 year type 2 diabetes risk. We will produce a Manhattan plot with
@@ -331,8 +331,7 @@ candidates to domain experts in pregnancy related metabolic factors from
 SDCA and SDCC and discuss: (1) whether the indications are biased; and
 (2) the opportunity to collapse overlapping predictors (for example, a
 diagnosis of hypertension together with a prescription for
-antihypertensive medication). In a second step, we will use the combined
-variables and estimate each one 10 year risk with diabetes . We will
+antihypertensive medication). In a second step, we will estimate 10 year risk diabetes for each person in the play data only given one of the remaining variables from step 1. This will be repeated for each remaining variable. We will
 then produce a plot with prevalence in the population on the x axis and
 the magnitude of the association on the y axis. In a second iteration
 with the domain experts, we will discuss the relevance of each predictor
@@ -342,8 +341,8 @@ predictors for the main model.
 
 ### Statistical model selection
 
-With all predictors defined in the play data, we will continue to use
-these data to select our candidate statistical models. The dataset will
+With the predictors defined in the play data together with the variables defined in "Definition of available data for prediction", we will continue to use
+the play data to select our candidate statistical models. The dataset will
 be provided to the team of prediction modellers, who will compete to
 create the best performing model while remaining methodologically
 available to each other. As the primary outcome, the model will aim to
@@ -371,6 +370,7 @@ Developed in the defined subcohort
 
 All models will be included in a super learner, which will select the best-performing model by cross-validation based on the Brier score.
 
+
 ### Validation
 
 For validation, we will use two approaches: first, we will subset one
@@ -381,6 +381,7 @@ on the 2027 population. Predictive performance will be assessed by the
 Brier score to emphasize on individual calbraition of risk. We will
 subdivide and test performance across age-groups, parity, and HbA1c
 present or absent at baseline.
+
 
 ### Choosing and creating the final prediction model
 
@@ -393,6 +394,7 @@ year HbA1c after pregnancy. Our approach follows established principles
 in machine learning and statistical modeling, adhering to standardized
 practices for prediction, reporting, and validation [@collins2024;
 @lopez-ayala2025; @collins2024a; @riley2024].
+
 
 ## Definition of focus group for intervention-arm (WP4)
 
