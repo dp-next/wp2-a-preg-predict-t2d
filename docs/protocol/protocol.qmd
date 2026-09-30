@@ -1,6 +1,5 @@
 ---
-title: "Prediction- (WP2) and intervention-arm (WP4) connection protocol:
-definition of risk group at stage of child delivery"
+title: "Prediction- (WP2) and intervention-arm (WP4) connection protocol: definition of risk group at stage of child delivery"
 # Add all contributors here (orders are unspecified)
 author:
   - name: Hjalte Mikkelsen
@@ -22,23 +21,27 @@ author:
     affiliation:
       - name: Steno Diabetes Center Copenhagen
   - name: Karoline Kragelund Nielsen
-    affiliation: 
+    affiliation:
       - name: Steno Diabetes Center Copenhagen
   - name: Stine Byberg
     affiliation:
       - name: Steno Diabetes Center Copenhagen
 date: last-modified
-format:  
+format:
+  html:
+    toc: true
+    number-sections: true
+    embed-resources: true
   docx:
     toc: true
     number-sections: true
     reference-doc: template-doc.docx
 execute:
-  echo: true #html
+  echo: true
 # bibliography: "file/path"
- 
-editor: 
-  markdown: 
+
+editor:
+  markdown:
     wrap: 72
 ---
 
@@ -72,42 +75,82 @@ definition of risk group at stage of child delivery
 
 ### Description
 
-The work in DP-Next intervention-arm (WP4) will be focused on reduction
-of diabetes risk in women who are pregnant and their families. The
-rationale for this is that perhaps the current definition of gestational
-diabetes in Denmark uses too high a threshold and that many women below
-the current GDM threshold are still at elevated risk of GDM at a
-subsequent pregnancy and at elevated risk of T2D later in life.
-Furthermore, there is a general impression that pregnancies are times
-when women and their families are more receptive to health messages. As
-there is already a coordinated network of care around pregnancies, it
-may be easier to identify a core set of stakeholders and work with them
-to map and remove barriers to healthy lifestyle offerings.
+Globally, the prevalence of type 2 diabetes (T2D) is rising rapidly,
+contributing to reduced life expectancy, lower quality of life, and
+increased healthcare expenditure. In recent years, the development of
+T2D has increased at alarming rates particularly among younger ages,
+with epigenetic effects and prenatal exposures being critical
+determinants. Pregnancy represents a period of metabolic vulnerability
+due to the occurring physiological changes, where underappreciated
+cardiometabolic risks can impact long-term maternal health and fuel the
+intergenerational transmission of obesity and diabetes. Various adverse
+pregnancy outcomes have been shown to be associated with increased
+long-term risk of maternal and child cardiometabolic conditions.
+Gestational diabetes (GDM) is one of the most common of such
+complications, affecting around 6% of deliveries in Denmark. Despite
+being historically recognized as a transient condition, GDM is now
+established as an early marker of cardiometabolic disease, being
+associated with a near tenfold higher risk of future T2D, as well as
+cardiovascular disease, hypertension, and depression.\
+Children of women with GDM, as well as pre-pregnancy obesity, and
+increased gestational weight gain also have higher rates of obesity,
+cardiovascular and cardiometabolic complications later in life, and it
+is suggested that the impact of maternal obesity on childhood obesity is
+independent of glycemic status.
+
+In Denmark, currently used diagnostic criteria for GDM apply a very high
+threshold, while they solely rely on a 2h plasma glucose value for GDM
+diagnosis. Therefore, it is expected that many women who do not meet
+this diagnostic threshold are still at elevated risk of reoccurring GDM
+in a subsequent pregnancy and at elevated risk of T2D later in life.
+Furthermore, there is a general impression that pregnancies and the
+family formation stage are time points in the life course when women and
+their families are more receptive to health messages and behavior
+changes.
+
+To date, the majority of literature exploring prevention strategies for
+T2D focuses on prevention at the time when some degree of glucose
+intolerance is already established. Recent evidence has highlighted the
+need to shift perceptions by redesigning screening and intervention
+approaches to follow a life course approach, instead of anticipating
+abnormal glucose values to present. In this context, the work in DP-Next
+intervention-arm (WP4) will be focused on reducing the risk of diabetes
+in women who have recently given birth and their families. To identify
+women at higher risk who will benefit from the intervention will be
+based on connecting work with DP-Next prediction-arm (WP2).
 
 ## Objectives and hypotheses
 
 ### Definition of risk group for intervention work package (WP4) in prediction work package (WP2)
 
 DP-Next prediction-arm aims to develop diabetes risk prediction models
-for the entire population based exclusively on register-based data. This
-sub project for prediction-arm (WP2) will focus on calculating diabetes
-risk specifically for women in pregnancy, in order to provide a clear
-selection of at-risk women that intervention group (WP4) can focus on.
-An added benefit of focus on this specific group is that various
-additional relevant variables are available for pregnant women based on
-the registration of their first trimester pregnancy checkup. In
-particular BMI, smoking status and blood pressure are recorded, as well
-as HbA1c in many cases.
+for the entire population based exclusively on register-based data. The
+aims and objectives of the work that will be carried out as part of the
+DP-Next prediction-arm (WP2) is described elsewhere. (cite WP2 protocol)
+This subproject for prediction-arm (WP2) will focus on calculating
+diabetes risk specifically for women with a recent delivery, in order to
+provide a clear selection of at-risk women that intervention group (WP4)
+can focus on. An added benefit of focus on this specific group is that
+various additional relevant variables are available for pregnant women
+based on the registration of their first trimester pregnancy checkup. In
+particular, BMI, smoking status, and blood pressure are recorded, as
+well as measured HbA1c before or during pregnancy in many cases.
 
-This study aim:
+`#v(1fr)`{=typst}
 
-- Develop and validate a prediction model that identifies women at high
-  risk of type 2 diabetes after the time of giving birth
+::: box
+The primary aim of DP-Next prediction-arm (WP2) is to: Develop and
+validate a prediction model that identifies women at high risk of type 2
+diabetes after the time of giving birth
+:::
+
+`#v(1fr)`{=typst}
 
 Our long-term goal is to implement the model as a clinically ready tool
-at the postpartum check-up in general practice, so that women at high
-risk of type 2 diabetes can be offered timely initiatives designed from
-intervention-arm (WP4) in DP-NEXT to improve metabolic health.
+at the 8-week postpartum check-up in general practice, so that women at
+high risk of type 2 diabetes can be offered timely initiatives designed
+from intervention-arm (WP4) in DP-NEXT to improve cardiometabolic
+health.
 
 ## Design plan for derivation of specific pregnancy-connected risk prediction model
 
@@ -115,137 +158,464 @@ intervention-arm (WP4) in DP-NEXT to improve metabolic health.
 
 Prediction-arm (WP2) will derive the model for a cohort of women who:
 
-- Have been pregnant at least once between 2010 and 2015
-
+Prediction-arm (WP2) will derive the model for a cohort of women who: -
+Have given birth at least once between 2010 and 2015\
 - Do not have a previous diagnosis of type 1 or type 2 diabetes at index
-  date
+date\
+- Stillbirths will be excluded exclusively for primiparous women
+(parity=1) who experienced a stillbirth
 
 ### Time window for prediction
 
-The index date is defined as one week after delivery, to ensure that all delivery-related data have been recorded. Variables from the first trimester through the postpartum are therefore complete at the index date. These data will be used for a potential use case at the 8-week postpartum check-up.
+The index date is defined as one week after delivery, to ensure that all
+delivery-related data have been recorded. Variables from the first
+trimester through the delivery of child are therefore complete at the
+index date. These data will be used for a potential use case at the
+8-week postpartum check-up.
 
-The model will predict the 10-year risk of registry-defined incident type 2 diabetes (T2D). We chose a 10-year horizon because the population is young, and few women will develop T2D within a shorter period. This requires 10 years of potential follow-up from delivery. Registry data on T2D indigents are available to the end of follow-up on 31 December 2025. We therefore restrict the cohort to deliveries between 2010, when laboratory data become available to some extent, and 2015, which allows a full 10-year follow-up within the available registry data.
+The model will predict the 10-year risk of registry-defined incident
+type 2 diabetes (T2D). We chose a 10-year horizon because the population
+is young, and few women will develop T2D within a shorter period. This
+requires 10 years of potential follow-up from delivery. Registry data on
+T2D incidence are available to the end of follow-up on 31 December 2025.
+We therefore restrict the cohort to deliveries between 2010, when
+laboratory data become available to some extent, and 2015, which allows
+a full 10-year follow-up within the available registry data. Individuals
+are right-censored by end-of-follow up, incedence of type 2 diabetes or
+date of death.
 
-If HbA1c data allow, secondary outcomes will be HbA1c levels at 5 and 10 years after the index birth, and HbA1c trajectories over this period.
+If HbA1c data allow, secondary outcomes will be HbA1c levels at 5 and 10
+years after the index birth, and HbA1c trajectories over this period.
 
 ### Definition of available data for prediction
 
 The prediction models will be built based on general register-based data
-supplemented with the results of the women's first, third trimester and
-post-partum checkups. As the aim is to focus the intervention on the
+supplemented with the results of the women’s first, second, third
+trimester, and delivery based on data from the Medical Birth
+Register(MFR). As the aim is to focus the intervention on the
 post-partum period, risk indicators from pre-pregnancy and all pregnancy
-stages as well as delivery can be incorporated in the risk model.
+stages as well as delivery can be incorporated into the risk model.
 
 - Pre-pregnancy: based on pre-existing register-based data, following
-  the same general-population strategy defined in WP2.
+  the same general-population strategy defined in WP2. It also includes
+  additional information from previous deliveries.
+- During pregnancy: additional data collected at the first, second, and
+  third trimester pregnancy check-up.
+- At delivery: additional data collected around the delivery and early
+  health status of the baby.
 
-- First trimester: additional data collected at the first trimester
-  pregnancy checkup
+All data come from Danish nationwide registries accessed through
+Statistics Denmark (DST) and linked by the pseudonymised CPR number. The
+index birth is identified in the Medical Birth Register, which also
+links the woman to the child and to her earlier deliveries and
+pregnancies, and the parent identifiers in the population register or
+multi-generational registry (`MOR_ID`, `FAR_ID`) link her to her parents
+and siblings for family history.
 
-- Third trimester: additional data collected at subsequent pregnancy
-  checkups (We need to check availability)
+Pre-pregnancy predictors follow the WP2 strategy, using the population,
+education and income registers, the National Patient Registry (LPR) and
+the National Prescription Registry (LMDB), supplemented by earlier
+deliveries in MFR. During pregnancy, MFR contributes BMI and smoking
+from the first antenatal visit, while diagnoses and laboratory results
+are placed in trimesters by their date. Delivery predictors come from
+MFR and from the LPR records of mother and child.
 
-- Post-partum: additional data collected around the delivery, early
-  health status of the baby and post-partum checkups:
+Diagnoses from outpatient and emergency contacts and redeemed
+prescriptions are available from 1995, so the 10-year look-back is
+complete for index births from 2005 onwards. LPR changed data model from
+LPR2 to LPR3 in February 2019, and both versions are combined. The
+laboratory register reached nationwide coverage only in July 2015, so
+laboratory-based predictors are available for a subset of index births
+only. The registries and code systems (ICD-10 in the Danish SKS version,
+SKS procedure codes, ATC, and NPU and local DNK codes) are summarised
+below, and @tbl-predictors gives the source and codes for each
+predictor.
 
-+------------------------------+-------------------------------------+
-| Type                         | Variables                           |
-+==============================+=====================================+
-| ***Pre-pregnancy             |                                     |
-| variables***                 |                                     |
-+------------------------------+-------------------------------------+
-| Demographic variables        | Age                                 |
-|                              |                                     |
-|                              | Ethnicity (western vs non-western   |
-|                              | from WHO)                           |
-|                              |                                     |
-|                              | Socioeconomic indicators:           |
-|                              |                                     |
-|                              | - Education                         |
-|                              |                                     |
-|                              | - Income                            |
-+------------------------------+-------------------------------------+
-| Diagnosis                    | All ICD codes 10-year prior child   |
-|                              | brith from National Patient         |
-|                              | Registry                            |
-|                              |                                     |
-|                              | Specific diagnosis                  |
-|                              |                                     |
-|                              | - Polyendocrine metabolic ovarian   |
-|                              |   syndrome (PMOS)                   |
-|                              | - Gestational diabetes (GDM)        |
-|                              |   current or previous               |
-+------------------------------+-------------------------------------+
-| Medication                   | All ATC codes 10-year prior child   |
-|                              | brith from National Prescription    |
-|                              | Registry                            |
-+------------------------------+-------------------------------------+
-| Biochemical meseures         | From Laboratory Registry:           |
-|                              |                                     |
-|                              | - HbA1c and lipids: 5 years prior   |
-|                              |   to index pregnancy                |
-|                              | - Hb, markers of liver and kidney   |
-|                              |   function if available,            |
-|                              |   inflammatory markers              |
-+------------------------------+-------------------------------------+
-| Family disease history       | Based on multigenerational registry |
-|                              | linkage:                            |
-|                              |                                     |
-|                              | - Family History of T2D: OSDC       |
-|                              |   combined with multigenerational   |
-|                              |   registry                          |
-|                              | - GDM in mother or sisters          |
-+------------------------------+-------------------------------------+
-| ***First trimester***        |                                     |
-+------------------------------+-------------------------------------+
-|                              | Body mass index                     |
-|                              |                                     |
-|                              | Smoking status                      |
-|                              |                                     |
-|                              | Oral glucose tolerance test (OGTT)  |
-|                              | as indication of test for GDM       |
-|                              |                                     |
-|                              | HbA1c as part of blood test         |
-+------------------------------+-------------------------------------+
-| ***Third trimester***        |                                     |
-+------------------------------+-------------------------------------+
-|                              | BMI (updated) \*\*\*STINE COMMENT:  |
-|                              | is BMI in 3rd trimester relevant?   |
-|                              | It is not a good indication of      |
-|                              | obesity                             |
-|                              |                                     |
-|                              | Smoking in order to track changes   |
-|                              |                                     |
-|                              | updated HbA1c                       |
-|                              |                                     |
-|                              | OGTT if available                   |
-+------------------------------+-------------------------------------+
-| ***Post-partum***            |                                     |
-+------------------------------+-------------------------------------+
-|                              | BMI (updated)                       |
-|                              |                                     |
-|                              | Gestational age at birth date       |
-|                              |                                     |
-|                              | Baby birth weight, anthropometrics  |
-|                              |                                     |
-|                              | Type of delivery                    |
-|                              |                                     |
-|                              | Delivery complications (e.g.        |
-|                              | shoulder dystocia, birth trauma)    |
-|                              |                                     |
-|                              | Details of post-partum maternal     |
-|                              | health (e.g. preclampsia)           |
-|                              |                                     |
-|                              | Twins/multiple children in one      |
-|                              | pregancny                           |
-|                              |                                     |
-|                              | - If a woman delivers twins or more |
-|                              |   babies, this usually affect the   |
-|                              |   risk of complications, type of    |
-|                              |   delivery and gestational age      |
-+------------------------------+-------------------------------------+
++-----------------+------------------+----------------------+----------------+
+| Registry (DST   | Coverage         | Codes and key        | Used for       |
+| table)          |                  | variables            |                |
++:================+:=================+:=====================+:===============+
+| Population      | CPR from 1968;   | `FOED_DAG`, `KOEN`,  | Age, region of |
+| register, CPR   | BEF annual from  | `OPR_LAND`,          | origin, child  |
+| (BEF)           | 1980             | `IE_TYPE`, `MOR_ID`, | sex, family    |
+|                 |                  | `FAR_ID`             | linkage        |
++-----------------+------------------+----------------------+----------------+
+| Education       | Annual from 1980 | `HFAUDD` mapped to   | Education      |
+| register (UDDA) |                  | ISCED 2011           |                |
++-----------------+------------------+----------------------+----------------+
+| Income register | Annual from 1980 | `FAMAEKVIVADISP_13`, | Income         |
+| (IND)           |                  | `PERINDKIALT_13`     |                |
++-----------------+------------------+----------------------+----------------+
+| National        | Inpatient from   | ICD-10 (SKS,         | All diagnoses, |
+| Patient         | 1977; outpatient | D-prefixed); SKS     | PMOS, GDM,     |
+| Registry (LPR2: | and emergency    | procedure codes      | pre-eclampsia, |
+| `lpr_adm`,      | from 1995;       | (KMCA, KMAC, BKHD)   | mode of        |
+| `lpr_diag`;     | ICD-10 from      |                      | delivery,      |
+| LPR3:           | 1994; LPR3 from  |                      | delivery and   |
+| `kontakter`,    | Feb 2019         |                      | neonatal       |
+| `diagnoser`)    |                  |                      | complications  |
++-----------------+------------------+----------------------+----------------+
+| Medical Birth   | From 1973;       | Gestational age,     | Pregnancy      |
+| Register (MFR)  | LPR-based from   | birth weight and     | start,         |
+|                 | 1997; smoking    | length, plurality,   | previous       |
+|                 | from late 1997;  | mode of delivery,    | pregnancies,   |
+|                 | height and       | smoking, height and  | BMI, smoking,  |
+|                 | weight from late | weight; mother–child | delivery       |
+|                 | 2003             | link                 | variables      |
++-----------------+------------------+----------------------+----------------+
+| National        | Individual-level | ATC, `EKSD`          | All            |
+| Prescription    | from 1995        |                      | medication,    |
+| Registry (LMDB) |                  |                      | metformin      |
+|                 |                  |                      | (PMOS proxy),  |
+|                 |                  |                      | OSDC           |
++-----------------+------------------+----------------------+----------------+
+| Register of     | Zealand and      | NPU and local DNK    | HbA1c, lipids, |
+| Laboratory      | North Oct 2013,  | codes                | Hb, liver and  |
+| Results for     | Central Nov      |                      | kidney         |
+| Research        | 2013, Capital    |                      | markers, CRP,  |
+| (`lab_forsker`) | Oct 2014,        |                      | OGTT           |
+|                 | Southern Jul     |                      |                |
+|                 | 2015             |                      |                |
++-----------------+------------------+----------------------+----------------+
+| Health Service  | SYSI 1990–2005;  | Service (billing)    | Podiatry       |
+| Registry (SYSI, | SSSY from 2006   | codes                | services in    |
+| SSSY)           |                  |                      | OSDC (family   |
+|                 |                  |                      | history of     |
+|                 |                  |                      | T2D)           |
++-----------------+------------------+----------------------+----------------+
 
-: Table 1: Available potential predictors in the National Registries
+: Danish registries used, their coverage and the codes applied in
+@tbl-predictors
+
++-----------------+--------------------------+-----------------------------+
+| Type            | Variables                | Registry source and codes   |
++=================+==========================+=============================+
+| **Pre-pregnancy |                          |                             |
+| variables**     |                          |                             |
++-----------------+--------------------------+-----------------------------+
+| Demographic     | Age                      | CPR via BEF (DST):          |
+| variables       |                          | `FOED_DAG` (date of birth); |
+|                 |                          | age at delivery date from   |
+|                 |                          | MFR. Maternal age is also   |
+|                 |                          | recorded directly in MFR.   |
++-----------------+--------------------------+-----------------------------+
+|                 | National region of       | BEF (DST): `OPR_LAND`       |
+|                 | origin (western vs       | (country of origin, DST     |
+|                 | non-western from WHO)    | country codes) and          |
+|                 | \[Make a better          | `IE_TYPE` (1 = Danish       |
+|                 | distinction based on     | origin, 2 = immigrant, 3 =  |
+|                 | 10.1210/clinem/dgae113\] | descendant); country codes  |
+|                 | (African Region, Eastern | mapped to WHO regions with  |
+|                 | Mediterranean Region,    | a self-made key.            |
+|                 | European region,         |                             |
+|                 | South-East Asian Region, | Grouping in Nielsen H et    |
+|                 | Western Pacific?)        | al., JCEM 2024              |
+|                 |                          | (10.1210/clinem/dgae113):   |
+|                 |                          | Danish origin (reference);  |
+|                 |                          | single countries with \>    |
+|                 |                          | 150 GDM cases or high GDM   |
+|                 |                          | risk (Turkey, Iraq,         |
+|                 |                          | Pakistan, Somalia, Sri      |
+|                 |                          | Lanka, Afghanistan,         |
+|                 |                          | Morocco, Syria, China);     |
+|                 |                          | remaining countries by WHO  |
+|                 |                          | region (African, Eastern    |
+|                 |                          | Mediterranean, European,    |
+|                 |                          | Americas, South-East Asian, |
+|                 |                          | Western Pacific).           |
++-----------------+--------------------------+-----------------------------+
+|                 | Socioeconomic            | - Education: UDDA (DST),    |
+|                 | indicators:              |   `HFAUDD` (highest         |
+|                 |                          |   completed education)      |
+|                 | - Education              |   mapped to ISCED 2011      |
+|                 | - Income                 |   levels; status in the     |
+|                 |                          |   year before delivery.     |
+|                 |                          |   Often missing for         |
+|                 |                          |   immigrants (coded         |
+|                 |                          |   'uoplyst').               |
+|                 |                          | - Income: IND (DST), e.g.   |
+|                 |                          |   `FAMAEKVIVADISP_13`       |
+|                 |                          |   (equivalised household    |
+|                 |                          |   disposable income) or     |
+|                 |                          |   `PERINDKIALT_13`          |
+|                 |                          |   (personal gross income);  |
+|                 |                          |   year before delivery, as  |
+|                 |                          |   quintiles within calendar |
+|                 |                          |   year.                     |
++-----------------+--------------------------+-----------------------------+
+| Diagnosis       | All ICD codes 10-year    | LPR (DST): LPR2 `lpr_adm` + |
+|                 | prior child birth from   | `lpr_diag` (to Feb 2019)    |
+|                 | National Patient         | and LPR3 `kontakter` +      |
+|                 | Registry                 | `diagnoser` (from Feb       |
+|                 |                          | 2019). ICD-10 in SKS format |
+|                 |                          | (D-prefixed, e.g. DE11); A- |
+|                 |                          | and B-diagnoses; in LPR3    |
+|                 |                          | exclude diagnoses flagged   |
+|                 |                          | `senere_afkraeftet`.        |
+|                 |                          | Inpatient, outpatient and   |
+|                 |                          | emergency contacts          |
+|                 |                          | (outpatient and emergency   |
+|                 |                          | from 1995).                 |
++-----------------+--------------------------+-----------------------------+
+|                 | Specific diagnosis       | - PMOS: LPR ICD-10 DE282    |
+|                 |                          |   (polycystic ovary         |
+|                 | - Polyendocrine          |   syndrome; no separate     |
+|                 |   metabolic ovarian      |   code after the 2026       |
+|                 |   syndrome (PMOS)        |   renaming).                |
+|                 | - Gestational diabetes   |   Under-ascertained in LPR  |
+|                 |   (GDM) from previous    |   because many are          |
+|                 |   pregnancy              |   diagnosed in private      |
+|                 | - Pre-eclampsia or       |   gynaecology practice;     |
+|                 |   gestational            |   possible proxies are      |
+|                 |   hypertension from      |   hirsutism DL680 and       |
+|                 |   previous pregnancy.    |   metformin A10BA02 without |
+|                 |                          |   diabetes (LMDB).          |
+|                 |                          | - GDM: LPR ICD-10 DO244     |
+|                 |                          |   (diabetes arising in      |
+|                 |                          |   pregnancy); DO249         |
+|                 |                          |   (diabetes in pregnancy,   |
+|                 |                          |   unspecified) as           |
+|                 |                          |   sensitivity. Previous     |
+|                 |                          |   pregnancies = earlier     |
+|                 |                          |   deliveries of the same    |
+|                 |                          |   woman in MFR.             |
+|                 |                          | - Pre-eclampsia: LPR ICD-10 |
+|                 |                          |   DO14 (incl. DO142 HELLP), |
+|                 |                          |   DO15 (eclampsia), DO11    |
+|                 |                          |   (pre-existing             |
+|                 |                          |   hypertension with         |
+|                 |                          |   superimposed              |
+|                 |                          |   pre-eclampsia).           |
+|                 |                          |   Gestational hypertension: |
+|                 |                          |   DO13.                     |
++-----------------+--------------------------+-----------------------------+
+| Medication      | All ATC codes 10-year    | LMDB (DST): `ATC` (full     |
+|                 | prior childbirth from    | code) and `EKSD`            |
+|                 | National Prescription    | (dispensing date);          |
+|                 | Registry                 | prescriptions redeemed at   |
+|                 |                          | community pharmacies from   |
+|                 |                          | 1995 (no in-hospital        |
+|                 |                          | medication).                |
++-----------------+--------------------------+-----------------------------+
+| Biochemical     | From Laboratory          | Register of Laboratory      |
+| measures        | Registry:                | Results for Research        |
+|                 |                          | (RLRR), DST table           |
+|                 | - HbA1c and lipids: 3    | `lab_forsker`:              |
+|                 |   years prior to index   | `analysiscode` (NPU),       |
+|                 |   pregnancy              | `samplingdate`, `value`.    |
+|                 | - Hb, markers of liver   |                             |
+|                 |   and kidney function if | - HbA1c: NPU27300           |
+|                 |   available,             |   (mmol/mol); NPU03835 (%,  |
+|                 |   inflammatory markers   |   DCCT).                    |
+|                 |                          | - Lipids: total cholesterol |
+|                 |                          |   NPU01566; HDL NPU01567,   |
+|                 |                          |   NPU10157 (fasting); LDL   |
+|                 |                          |   NPU01568; triglycerides   |
+|                 |                          |   NPU04094, NPU03620        |
+|                 |                          |   (fasting).                |
+|                 |                          | - Haemoglobin: NPU02319.    |
+|                 |                          | - Liver: ALAT NPU19651      |
+|                 |                          | - Kidney: creatinine        |
+|                 |                          |   NPU18016; eGFR DNK35302   |
+|                 |                          |   (CKD-EPI); urine          |
+|                 |                          |   albumin/creatinine ratio  |
+|                 |                          |   NPU19661, NPU03918.       |
+|                 |                          | - Inflammation: CRP         |
+|                 |                          |   NPU19748.                 |
+|                 |                          |                             |
+|                 |                          | Nationwide coverage only    |
+|                 |                          | from Oct 2013 (North,       |
+|                 |                          | Central, Zealand), Oct 2014 |
+|                 |                          | (Capital) and Jul 2015      |
+|                 |                          | (Southern), so a full       |
+|                 |                          | 3-year look-back exists     |
+|                 |                          | only for pregnancies        |
+|                 |                          | starting from mid-2018.     |
++-----------------+--------------------------+-----------------------------+
+| Family disease  | Based on                 | BEF (DST): `MOR_ID` and     |
+| history         | multigenerational        | `FAR_ID` identify parents;  |
+|                 | registry linkage:        | full siblings share both,   |
+|                 |                          | half-siblings one. Parent   |
+|                 | - Family History of T2D: | links are largely missing   |
+|                 |   OSDC combined with     | for women who immigrated as |
+|                 |   multigenerational      | adults.                     |
+|                 |   registry               |                             |
+|                 | - GDM in mother or       | - T2D: OSDC R package       |
+|                 |   sisters                |   (Steno Aarhus; Isaksen et |
+|                 |                          |   al., Clin Epidemiol 2023, |
+|                 |                          |   10.2147/CLEP.S407019) run |
+|                 |                          |   on parents and siblings.  |
+|                 |                          |   Inputs: LPR (ICD-10 DE10  |
+|                 |                          |   to DE14; ICD-8 249, 250), |
+|                 |                          |   LMDB (ATC A10), SSSY/SYSI |
+|                 |                          |   (podiatry services),      |
+|                 |                          |   `lab_forsker` (HbA1c      |
+|                 |                          |   NPU27300, NPU03835).      |
+|                 |                          | - GDM in mother or sisters: |
+|                 |                          |   LPR DO244 (DO249 as       |
+|                 |                          |   sensitivity) in their     |
+|                 |                          |   deliveries (MFR). The     |
+|                 |                          |   mother's pregnancy with   |
+|                 |                          |   the index woman mostly    |
+|                 |                          |   predates ICD-10 (1994),   |
+|                 |                          |   so this is mainly         |
+|                 |                          |   captured through sisters  |
+|                 |                          |   and the mother's later    |
+|                 |                          |   pregnancies.              |
++-----------------+--------------------------+-----------------------------+
+| **During        |                          |                             |
+| pregnancy**     |                          |                             |
++-----------------+--------------------------+-----------------------------+
+|                 | Body mass index          | MFR: maternal height and    |
+|                 |                          | pre-pregnancy weight        |
+|                 |                          | reported at the first       |
+|                 |                          | antenatal visit (recorded   |
+|                 |                          | from late 2003) → BMI.      |
+|                 |                          | Clean implausible values.   |
++-----------------+--------------------------+-----------------------------+
+|                 | Smoking status           | MFR: smoking at the first   |
+|                 |                          | antenatal visit (recorded   |
+|                 |                          | from late 1997; categories  |
+|                 |                          | have changed over time and  |
+|                 |                          | need harmonising).          |
++-----------------+--------------------------+-----------------------------+
+|                 | Oral glucose tolerance   | RLRR (`lab_forsker`): OGTT  |
+|                 | test (OGTT) as           | panel NPU14915              |
+|                 | indication of test for   | (Pt—Glucose-tolerance, 120  |
+|                 | early GDM                | min) plus the 0- and        |
+|                 |                          | 120-min glucose codes used  |
+|                 |                          | by the individual labs      |
+|                 |                          | (venous plasma and          |
+|                 |                          | capillary whole blood; many |
+|                 |                          | codes, so extract all       |
+|                 |                          | glucose-tolerance codes     |
+|                 |                          | from the code list).        |
+|                 |                          | Fasting diagnostic glucose  |
+|                 |                          | DNK35842; plasma glucose    |
+|                 |                          | NPU02192.                   |
++-----------------+--------------------------+-----------------------------+
+|                 | HbA1c as part of         | RLRR (`lab_forsker`): HbA1c |
+|                 | laboratory ordered       | NPU27300 (NPU03835) with    |
+|                 | package                  | `samplingdate` in early     |
+|                 |                          | pregnancy (window to be     |
+|                 |                          | defined relative to         |
+|                 |                          | pregnancy start from MFR).  |
++-----------------+--------------------------+-----------------------------+
+|                 | Gestational diabetes     | LPR: date of first DO244    |
+|                 | (GDM) early (before week | relative to pregnancy start |
+|                 | 20) or late (after week  | (MFR). DO244 is often first |
+|                 | 28) diagnosis            | registered at the birth     |
+|                 |                          | admission, so LPR dates     |
+|                 |                          | will misclassify early GDM  |
+|                 |                          | as late; better to time by  |
+|                 |                          | the first diagnostic OGTT   |
+|                 |                          | (2-h glucose ≥ 9.0 mmol/L)  |
+|                 |                          | in RLRR and use DO244 as    |
+|                 |                          | confirmation.               |
++-----------------+--------------------------+-----------------------------+
+|                 | Pre-eclampsia or         | LPR: DO14 (incl. DO142      |
+|                 | gestational hypertension | HELLP), DO15, DO11;         |
+|                 | early (before week 34)   | gestational hypertension    |
+|                 | or late (at or after     | DO13. Early vs late by      |
+|                 | week 34)                 | first diagnosis date        |
+|                 |                          | relative to pregnancy start |
+|                 |                          | (MFR), or by gestational    |
+|                 |                          | age at delivery \< 34+0     |
+|                 |                          | weeks, which is the usual   |
+|                 |                          | registry proxy for          |
+|                 |                          | early-onset pre-eclampsia.  |
++-----------------+--------------------------+-----------------------------+
+| **At delivery** |                          |                             |
++-----------------+--------------------------+-----------------------------+
+|                 | Gestational age at birth | MFR: gestational age at     |
+|                 | date (in weeks and also  | birth (days; completed      |
+|                 | specified as preterm) -  | weeks); preterm \< 37+0     |
+|                 | Birthweight will be      | weeks. Birthweight          |
+|                 | evaluated as both a      | thresholds: see next row.   |
+|                 | continuous and           |                             |
+|                 | categorical variable     |                             |
+|                 | using thresholds at both |                             |
+|                 | 4,000 and 4,500 grams.   |                             |
+|                 | (? Clinician this is for |                             |
+|                 | macrosomia – decision    |                             |
+|                 | was data driven)         |                             |
++-----------------+--------------------------+-----------------------------+
+|                 | Baby birth weight        | MFR (child's record, linked |
+|                 | (grams) and length (cm)  | to the mother through the   |
+|                 |                          | MFR mother–child CPR link): |
+|                 |                          | birth weight (g) and length |
+|                 |                          | (cm). Macrosomia ≥ 4,000 g  |
+|                 |                          | and ≥ 4,500 g.              |
++-----------------+--------------------------+-----------------------------+
+|                 | Calculate size for       | Derived from MFR birth      |
+|                 | gestational age and sex  | weight, gestational age and |
+|                 | with formula (ask Rasmus | child sex (`KOEN` in BEF).  |
+|                 | Wibæk)                   | The Danish register         |
+|                 |                          | standard is the Marsál et   |
+|                 |                          | al. 1996 sex-specific fetal |
+|                 |                          | weight reference, with      |
+|                 |                          | SGA/LGA as below −2 SD /    |
+|                 |                          | above +2 SD (≈ ±22 % from   |
+|                 |                          | expected weight); confirm   |
+|                 |                          | with Rasmus Wibæk.          |
++-----------------+--------------------------+-----------------------------+
+|                 | Mode of delivery         | MFR (mode of delivery) or   |
+|                 | (vaginal or caesarean)   | LPR: vaginal DO80           |
+|                 |                          | (spontaneous), DO81         |
+|                 |                          | (instrumental); planned     |
+|                 |                          | caesarean DO820, KMCA10B,   |
+|                 |                          | KMCA11; emergency caesarean |
+|                 |                          | DO821, KMCA10A, KMCA10D,    |
+|                 |                          | KMCA10E, KMCA12A, KMCA12B   |
+|                 |                          | (definition from BMC        |
+|                 |                          | Pregnancy Childbirth 2019,  |
+|                 |                          | 10.1186/s12884-019-2331-6). |
++-----------------+--------------------------+-----------------------------+
+|                 | Delivery complications   | - Emergency caesarean: see  |
+|                 | (e.g emergency caesarean |   mode of delivery.         |
+|                 | section, placental       | - Placental abruption: LPR  |
+|                 | abruption neonatal       |   DO45.                     |
+|                 | hypoglycaemia,           | - Neonatal hypoglycaemia:   |
+|                 | spontaneous or induced   |   child's LPR record,       |
+|                 | preterm delivery (?) )   |   DP703, DP704 (DP700 and   |
+|                 |                          |   DP701 = infant of mother  |
+|                 |                          |   with gestational or       |
+|                 |                          |   pre-existing diabetes).   |
+|                 |                          | - Preterm delivery:         |
+|                 |                          |   spontaneous = preterm     |
+|                 |                          |   labour DO60 or preterm    |
+|                 |                          |   rupture of membranes DO42 |
+|                 |                          |   without induction or      |
+|                 |                          |   pre-labour caesarean;     |
+|                 |                          |   induced = induction       |
+|                 |                          |   (BKHD2\*, e.g. BKHD20;    |
+|                 |                          |   KMAC00; KMAC96A) or       |
+|                 |                          |   planned caesarean before  |
+|                 |                          |   37+0 weeks.               |
++-----------------+--------------------------+-----------------------------+
+|                 | Twins/multiple children  | MFR: number of children in  |
+|                 | in one pregnancy         | the delivery (plurality).   |
+|                 |                          | LPR: DO30 (multiple         |
+|                 | - If a woman delivers    | gestation), DZ372 to DZ377  |
+|                 |   twins or more babies,  | (outcome of delivery, twins |
+|                 |   this usually affects   | or more).                   |
+|                 |   the risk of            |                             |
+|                 |   complications, type of |                             |
+|                 |   delivery and           |                             |
+|                 |   gestational age        |                             |
++-----------------+--------------------------+-----------------------------+
+
+: Available potential predictors in the National Registries
+
+Codes are prefixes (DO14 covers DO14\*). ICD-10 codes are given in
+Danish SKS format (D + ICD-10 code). The NPU lists are not exhaustive,
+since laboratories also use local DNK codes; final lists should be built
+from the `lab_forsker` code list inside the DST project. BEF, population
+register; DST, Statistics Denmark; IND, income register; LMDB, National
+Prescription Registry; LPR, National Patient Registry; MFR, Medical
+Birth Register; OSDC, Open-Source Diabetes Classifier; RLRR, Register of
+Laboratory Results for Research; SSSY/SYSI, Health Service Registry;
+UDDA, education register.
 
 Because the data sources in Table 1 differ in temporal and regional
 coverage, we will develop the model in a main cohort using predictors
@@ -281,9 +651,9 @@ Gestational age at birth, mode of delivery and pregnancy complications
 such as preeclampsia can be linked to maternal metabolic and vascular
 health, and all are available at the postpartum check-up when the model
 is applied. Neonatal anthropometry carries additional information.
-Macrosomia, defined as a birth weight above 4000 g, is associated with
-elevated maternal risk of type 2 diabetes and may reflect hyperglycaemia
-during pregnancy that screening did not capture.
+Macrosomia, defined as a birth weight above 4000 g (or \> 4500 g), is
+associated with elevated maternal risk of type 2 diabetes and may
+reflect hyperglycaemia during pregnancy that screening did not capture.
 
 #### Definition of subcohorts
 
@@ -294,7 +664,13 @@ predicts risk at the postpartum check-up. We will define subcohorts by
 parity, so that women with a second or later birth contribute variables
 from previous pregnancies as well as from the index pregnancy.
 
-Availability of an HbA1c measurement before the index birth increases over calendar time, from 10% of women in 2010 to 25% in 2015 and 40% in 2020. We will define a variable of women with a prior HbA1c measurement. Because availability of laboratory measurements in the registries varies by region over the period 2010 to 2015, we will restrict this subcohort to the Central Denmark Region, the North Denmark Region, and the Capital Region, where laboratory measurements are available.
+Availability of an HbA1c measurement before the index birth increases
+over calendar time, from 10% of women in 2010 to 25% in 2015 and 40% in
+2020. We will define a variable of women with a prior HbA1c measurement.
+Because availability of laboratory measurements in the registries varies
+by region over the period 2010 to 2015, we will restrict this subcohort
+to the Central Denmark Region, the North Denmark Region, and the Capital
+Region, where laboratory measurements are available.
 
 Family history requires register linkage to relatives, and the number of
 linkable relatives varies. Some women have relatives with relevant
@@ -308,9 +684,9 @@ the availability of family linkage.
 
 First, we will characterise the study population by demographic factors
 (age, ethnicity, socioeconomic position) and by pregnancy related
-factors from the first trimester and the postpartum period. Using the
-OSDC algorithm, we will examine trends in the incidence of type 2
-diabetes in the population and across regions.
+factors from during the pregnancy and at delivery. Using the OSDC
+algorithm, we will examine trends in the incidence of type 2 diabetes in
+the population and across regions.
 
 ### Variable preprocessing
 
@@ -321,55 +697,64 @@ may carry hidden indications for type 2 diabetes risk; however, the
 number of potential indicators is large. To select candidates for our
 prediction model, we will create a play dataset based on a pregnancy
 population from 2004 to 2010 to define the set of predictors. Women with
-pregnancies after 2010 are excluded from the play data,
-to avoid potential overfitting, i.e. we want the findings from the play data to apply for the general population and not just the sub group we have data on. We will
-include a 10 year history of each diagnosis and medication and uniformly
-test the association between each diagnosis and each medication and 10
-year type 2 diabetes risk. We will produce a Manhattan plot with
-groupings of ICD-10 and ATC codes on the x axis. We will bring the
-candidates to domain experts in pregnancy related metabolic factors from
-SDCA and SDCC and discuss: (1) whether the indications are biased; and
-(2) the opportunity to collapse overlapping predictors (for example, a
-diagnosis of hypertension together with a prescription for
-antihypertensive medication). In a second step, we will estimate 10 year risk diabetes for each person in the play data only given one of the remaining variables from step 1. This will be repeated for each remaining variable. We will
-then produce a plot with prevalence in the population on the x axis and
-the magnitude of the association on the y axis. In a second iteration
-with the domain experts, we will discuss the relevance of each predictor
-based on prevalence of the diagnosis and magnitude of risk. The
-candidates remaining after this discussion will be included as candidate
-predictors for the main model.
+pregnancies after 2010 are excluded from the play data, to avoid
+potential overfitting, i.e. we want the findings from the play data to
+apply for the general population and not just the sub group we have data
+on. We will include a 10 year history of each diagnosis and medication
+and uniformly test the association between each diagnosis and each
+medication and 10 year type 2 diabetes risk. We will produce a Manhattan
+plot with groupings of ICD-10 and ATC codes on the x axis. We will bring
+the candidates to domain experts in pregnancy related metabolic factors
+from SDCA and SDCC and discuss: (1) whether the indications are biased;
+and (2) the opportunity to collapse overlapping predictors (for example,
+a diagnosis of hypertension together with a prescription for
+antihypertensive medication). In a second step, we will estimate 10 year
+risk diabetes for each person in the play data only given one of the
+remaining variables from step 1. This will be repeated for each
+remaining variable. We will then produce a plot with prevalence in the
+population on the x axis and the magnitude of the association on the y
+axis. In a second iteration with the domain experts, we will discuss the
+relevance of each predictor based on prevalence of the diagnosis and
+magnitude of risk. The candidates remaining after this discussion will
+be included as candidate predictors for the main model.
 
 ### Statistical model selection
 
-With the predictors defined in the play data together with the variables defined in "Definition of available data for prediction", we will continue to use
-the play data to select our candidate statistical models. The dataset will
-be provided to the team of prediction modellers, who will compete to
-create the best performing model while remaining methodologically
-available to each other. As the primary outcome, the model will aim to
-predict events of type 2 diabetes and, if the data allow, to predict 5
-year HbA1c levels after pregnancy. The methods available for the
-modellers to choose from could include Cox proportional hazards, Poisson
-regression, LASSO, and random forest, each of which could be applied
-separately or combined in a super learner. The candidate models selected
-on the basis of this step will then be brought to the development
-dataset.
+With the predictors defined in the play data together with the variables
+defined in "Definition of available data for prediction", we will
+continue to use the play data to select our candidate statistical
+models. The dataset will be provided to the team of prediction
+modellers, who will compete to create the best performing model while
+remaining methodologically available to each other. As the primary
+outcome, the model will aim to predict events of type 2 diabetes and, if
+the data allow, to predict 5 year HbA1c levels after pregnancy. The
+methods available for the modellers to choose from could include Cox
+proportional hazards, Poisson regression, LASSO, and random forest, each
+of which could be applied separately or combined in a super learner. The
+candidate models selected on the basis of this step will then be brought
+to the development dataset.
 
 ### Developing prediction model
 
-Once all predictors and statistical models have been defined, we will train the models on data from pregnant women enrolled between 2010 and 2014 in the full cohort. To handle partial marker availability in the cohort, we will use three approaches.
+Once all predictors and statistical models have been defined, we will
+train the models on data from pregnant women enrolled between 2010 and
+2014 in the full cohort. To handle partial marker availability in the
+cohort, we will use three approaches.
 
 Developed in the full cohort
 
-1) Include the variable as a present/absent indicator together with calendar time
+1)  Include the variable as a present/absent indicator together with
+    calendar time
 
-2) Multiple imputation of markers available at baseline, integrated into the full cohort.
+2)  Multiple imputation of markers available at baseline, integrated
+    into the full cohort.
 
 Developed in the defined subcohort
 
-3. A submodel restricted to complete cases in the subcohort.
+3.  A submodel restricted to complete cases in the subcohort.
 
-All models will be included in a super learner, which will select the best-performing model by cross-validation based on the Brier score.
-
+All models will be included in a super learner, which will select the
+best-performing model by cross-validation based on the Brier score.
 
 ### Validation
 
@@ -382,7 +767,6 @@ Brier score to emphasize on individual calbraition of risk. We will
 subdivide and test performance across age-groups, parity, and HbA1c
 present or absent at baseline.
 
-
 ### Choosing and creating the final prediction model
 
 The best performing model from the super learner will be trained on data
@@ -394,7 +778,6 @@ year HbA1c after pregnancy. Our approach follows established principles
 in machine learning and statistical modeling, adhering to standardized
 practices for prediction, reporting, and validation [@collins2024;
 @lopez-ayala2025; @collins2024a; @riley2024].
-
 
 ## Definition of focus group for intervention-arm (WP4)
 
@@ -424,8 +807,7 @@ threshold.
 - Can the model provide explainability? What weights into the risk?
   - Only if someone ask for this. Also, it can lead to causal
     misinterpretations
-- Winner of predcition competition as final model or evaluate top
-  candidates.
+  - 
 :::
 
 ## References
