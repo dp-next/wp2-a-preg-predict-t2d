@@ -1,0 +1,40 @@
+/* style.css */
+.title-slide .authors, .title-slide .affiliations {
+  font-size: 0.5em;
+  line-height: 1.2;
+}
+
+.reveal {
+  font-size: 42px;
+}
+
+/* Top blue bar */
+.reveal::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 18px;
+  background-color: #8b0000;
+  z-index: 999;
+}
+
+
+.reveal .slides::after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 240px;   /* adjust size */
+  height: 120px;
+  background-image: url("images_EDEG/SDCA.jpg"); /* path to your image */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  z-index: 10;
+}
+
+.reveal .title {
+  font-size: 50px; /* Use px, em, or rem */
+}

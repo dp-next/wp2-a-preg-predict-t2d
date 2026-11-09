@@ -1,0 +1,799 @@
+---
+title: "WP2 meeting 10th November 2026"
+subtitle: "Predicting type 2 diabetes after childbirth: protocol and preliminary findings"
+author:
+  - name: Jonas R. Schaarup
+    affiliation: Steno Diabetes Center Aarhus
+  - name: Elpida Vounzoulaki
+    affiliation: Steno Diabetes Center Aarhus
+  - name: Hjalte Mikkelsen
+    affiliation: Steno Diabetes Center Copenhagen
+format:
+  revealjs:
+    css: [style.css, wp2-extra.css]
+    slide-number: c/t
+    controls: false
+    progress: true
+    hash: true
+    footer: "DP-NEXT WP2 meeting - 10 November 2026"
+    embed-resources: true
+    fig-width: 10
+    fig-height: 5.5
+    fig-dpi: 150
+    title-slide-attributes:
+      data-background-color: "#f0f0f0"
+execute:
+  echo: false
+  message: false
+  warning: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+# ----------------------------------------------------------------------
+# HOW TO ADJUST THIS DECK
+#
+# Leave a slide out:   add {visibility="hidden"} after its title, e.g.
+#                      ## Calibration {visibility="hidden"}
+#                      The slide still renders in the file but is skipped in the talk.
+#                      To remove it for good, delete everything from its ## line to the next ## line.
+#
+# Swap in real results: every result slide starts from a small aggregated table, the kind you
+#                      can export from DST (remember n < 5 suppression). Replace the tibble(...) or
+#                      simulation code in the chunk with readRDS("your_file.rds"), keep the column
+#                      names written in the comment, and delete the ::: {.sim-flag} block on that slide.
+#
+# Add a new result:    copy one of the three TEMPLATE slides at the end of "Preliminary findings"
+#                      (figure from file, table from file, plot from an aggregated table), rename the
+#                      title, point it at your file, delete {visibility="hidden"} and #| eval: false.
+#
+# Each result slide is self-contained, so deleting or reordering slides breaks nothing else.
+# ----------------------------------------------------------------------
+
+library(dplyr)
+library(ggplot2)
+library(kableExtra)
+library(ggrepel)
+
+# Colours: SDCA red, blue, amber (checked for colour-blind separation)
+col_red   <- "#990032"
+col_blue  <- "#1d6fa3"
+col_amber <- "#c27a12"
+col_pink  <- "#d9899f"
+
+theme_wp2 <- theme_minimal(base_size = 26) +
+  theme(
+    panel.grid.minor = element_blank(),
+    panel.grid.major = element_line(colour = "grey90"),
+    axis.title = element_text(colour = "grey30"),
+    legend.position = "top",
+    legend.title = element_blank(),
+    plot.title.position = "plot"
+  )
+theme_set(theme_wp2)
+
+# Same table look as the EASD slides
+kbl_wp2 <- function(x, font_size = 26, ...) {
+  kbl(x, ...) |>
+    kable_styling(bootstrap_options = c("striped", "condensed"),
+                  font_size = font_size, full_width = FALSE)
+}
+```
+
+# Background {background-color="#f0f0f0"}
+
+## Why after childbirth? {.smaller}
+
+::: columns
+::: {.column width="50%"}
+- Gestational diabetes (GDM) affects about **6% of deliveries** in Denmark and carries a **near tenfold higher risk** of later type 2 diabetes
+- Danish GDM criteria use a **high threshold** and a **2-h glucose only**, so many women below the threshold are still at elevated risk
+- Pregnancy and family formation are periods where women are **receptive to health messages**
+:::
+
+::: {.column width="50%"}
+![Prediction project to identify women at high risk of type 2 diabetes](docs/images/preg_predict_t2d.png)
+:::
+:::
+
+## Aim {.center}
+
+::: box
+Develop and validate a prediction model that identifies women at **high risk of type 2 diabetes** after giving birth
+:::
+
+::: fragment
+**Long-term goal:** a clinically ready tool at the **8-week postpartum check-up** in general practice, so that high-risk women can be offered the intervention designed in **WP4**
+:::
+
+## Prediction vs association {.smaller}
+
+### Two different questions
+
+::: columns
+::: {.column width="50%"}
+**Association study** (what most of us do)
+
+- Is X a risk factor for type 2 diabetes?
+- Adjust for confounders
+- Interpret the estimate (HR, IRR)
+:::
+
+::: {.column width="50%"}
+::: fragment
+**Prediction model** (this project)
+
+- *Who* will develop type 2 diabetes?
+- Any variable available at the index date may help, causal or not
+- Judge the model by its **predicted risks**: are they accurate (calibration) and do they separate cases from non-cases (discrimination)?
+:::
+:::
+:::
+
+::: fragment
+A predictor's coefficient in the model **should not be read causally**
+:::
+
+::: notes
+For the non-prediction people: we do not care why a predictor works, only that it improves risk estimates in new women.
+:::
+
+# Methods {background-color="#f0f0f0"}
+
+## Study population
+
+::: columns
+::: {.column width="50%"}
+**Women who:**
+
+- gave birth at least once between **2010 and 2015**
+- have no previous diagnosis of type 1 or type 2 diabetes at the index date
+:::
+
+::: {.column width="50%"}
+::: fragment
+**Exclusion:**
+
+- Stillbirth in primiparous women (parity = 1)
+
+**Linkage:** Danish nationwide registries at Statistics Denmark via pseudonymised CPR; the Medical Birth Register links mother, child and earlier pregnancies
+:::
+:::
+:::
+
+## Time window for prediction
+
+::: timeline
+::: {.tl-exp}
+**Exploration**<br>2003-2009
+:::
+::: {.tl-train}
+**Training**<br>2010-2014
+:::
+::: {.tl-test}
+**Test**<br>2015
+:::
+::: {.tl-horizon}
+**Prediction horizon**<br>2016-2025
+:::
+:::
+
+- **Index date:** one week after delivery, so that all delivery data are registered
+- **Outcome:** 10-year risk of registry-defined type 2 diabetes (follow-up to 31 Dec 2025)
+- **Censoring:** emigration, death or end of follow-up
+
+## Predictors at index date
+
+### Before, during and at delivery
+
+::: predictors
+| Pre-pregnancy | During pregnancy | At delivery |
+|:--|:--|:--|
+| **Demographics**<br>[age, origin, education, income]{.pd} | **BMI**<br>[first antenatal visit]{.pd} | **Gestational age**<br>[preterm, spontaneous or induced]{.pd} |
+| **Diagnoses**<br>[all ICD-10, 10 years before]{.pd} | **Smoking**<br>[first antenatal visit]{.pd} | **Newborn size**<br>[weight, length, macrosomia]{.pd} |
+| **Specific diagnoses**<br>[PMOS, previous GDM, pre-eclampsia]{.pd} | **OGTT**<br>[performed; values below threshold]{.pd} | **Size for gestational age**<br>[SGA, LGA by sex]{.pd} |
+| **Medication**<br>[all ATC, 10 years before]{.pd} | **HbA1c**<br>[early pregnancy]{.pd} | **Mode of delivery**<br>[vaginal, planned or emergency CS]{.pd} |
+| **Laboratory**<br>[HbA1c, lipids, liver, kidney, CRP]{.pd} | **Gestational diabetes**<br>[early (< wk 20) or late (> wk 28)]{.pd} | **Complications**<br>[abruption, neonatal hypoglycaemia]{.pd} |
+| **Family history**<br>[T2D and GDM in relatives]{.pd} | **Hypertensive disorders**<br>[pre-eclampsia or GH; early or late]{.pd} | **Plurality**<br>[singleton or multiple]{.pd} |
+:::
+
+## Data sources
+
+### Nationwide registries at Statistics Denmark
+
+```{r}
+#| label: t-registries
+registries <- tibble::tribble(
+  ~Registry,                        ~Coverage,                     ~`Used for`,
+  "Population register (BEF)",      "CPR 1968; BEF 1980",          "Age, origin, family links",
+  "Education, income (UDDA, IND)",  "Annual from 1980",            "Socioeconomic position",
+  "Patient Registry (LPR)",         "Outpatient from 1995",        "Diagnoses, GDM, delivery",
+  "Medical Birth Register (MFR)",   "1973; BMI from 2003",         "Pregnancy, BMI, newborn",
+  "Prescription Registry (LMDB)",   "From 1995",                   "All medication, OSDC",
+  "Laboratory Results (RLRR)",      "Regional, Oct 2013-Jul 2015", "HbA1c, lipids, CRP, OGTT",
+  "Health Service Registry (SSSY)", "SYSI 1990; SSSY 2006",        "Podiatry in OSDC"
+)
+kbl_wp2(registries, font_size = 26)
+```
+
+## Cohort and subcohorts {.smaller}
+
+### Main model and partial data
+
+::: columns
+::: {.column width="50%"}
+**Full cohort**
+
+All nationwide predictors for every index birth, **except laboratory measurements**
+:::
+
+::: {.column width="50%"}
+**Subcohorts** by partly available data
+
+::: fragment
+- **Parity:** second and later births add data from previous pregnancies
+:::
+::: fragment
+- **Prior HbA1c:** 10% of women in 2010, 25% in 2015; restricted to Central, North and Capital Regions
+:::
+::: fragment
+- **Family linkage:** number of linkable relatives varies (e.g. recent immigrants have none)
+:::
+:::
+:::
+
+## Step 1: Predictors
+
+### Selecting predictors in the exploration data
+
+Exploration data: deliveries **2003-2009**, kept apart from model development
+
+::: steps
+::: step
+**1. Screen**<br>Test every ICD-10 and ATC code (10-year history) against 10-year T2D risk. Manhattan plot by code group
+:::
+::: step
+**2. Expert review**<br>SDCA and SDCC experts: is the signal biased? Collapse overlapping predictors (hypertension + antihypertensives)
+:::
+::: step
+**3. Prevalence vs effect**<br>10-year risk given each remaining variable; plot prevalence against strength of association
+:::
+::: step
+**4. Expert review**<br>Keep relevant predictors given prevalence and magnitude of risk
+:::
+:::
+
+## Step 2: Model choice {.smaller}
+
+### Choosing the statistical model
+
+::: columns
+::: {.column width="55%"}
+- The exploration data go to the **team of prediction modellers**, who compete for the best performing model while sharing methods
+- Candidate methods: **Cox**, **Poisson**, **LASSO**, **random forest**
+- Combined in a **super learner** that picks the best model by cross-validated **Brier score**
+:::
+
+::: {.column width="45%"}
+::: {.fragment .box}
+**Brier score:** average squared difference between predicted risk and what happened (0 = perfect). Compare it with a model that gives every woman the same risk
+:::
+:::
+:::
+
+## Step 3: Partial data {.smaller}
+
+### Handling partly available markers
+
+**Developed in the full cohort**
+
+1. Marker as a present/absent indicator, together with calendar time
+2. Multiple imputation of markers available at baseline
+
+**Developed in the subcohort**
+
+3. Submodel restricted to complete cases
+
+::: fragment
+All three enter the super learner, which selects by cross-validated Brier score
+:::
+
+## Validation {.smaller}
+
+### Geographical and temporal test sets
+
+::: columns
+::: {.column width="50%"}
+**Geographical**
+
+Leave one region out of development and test there
+:::
+
+::: {.column width="50%"}
+**Temporal**
+
+Test on **2015** deliveries, closest to the 2027 population where the model will be used
+:::
+:::
+
+::: fragment
+**Performance:** Brier score, to emphasise individual calibration of risk
+
+**Subgroups:** age group, parity, HbA1c present or absent at baseline
+:::
+
+## From model to WP4
+
+### What WP4 receives
+
+::: steps
+::: step
+**Final model**<br>Retrain the best model on 2010-2015 and export from DST
+:::
+::: step
+**R Shiny app**<br>10-year T2D risk and expected 5-year HbA1c, delivered to WP4
+:::
+::: step
+**Run on recent births**<br>Distribution of risk, most informative data, geographical clustering
+:::
+::: step
+**WP4 focus group**<br>e.g. GPs who measure HbA1c routinely in pregnancy; women above a BMI threshold
+:::
+:::
+
+# Preliminary findings {background-color="#f0f0f0"}
+
+## Characteristics
+
+### Study population at the index date
+
+::: {.sim-flag}
+SIMULATED EXAMPLE
+:::
+
+```{r}
+#| label: t-baseline
+# Export from DST: one row per characteristic, already formatted as text
+# Columns: Characteristic, Total, `Type 2 diabetes`, `No type 2 diabetes`
+tab1 <- tibble::tribble(
+  ~Characteristic,                ~Total,             ~`Type 2 diabetes`,  ~`No type 2 diabetes`,
+  "Deliveries, n",                "350,000",          "5,000",             "345,000",
+  "Age at delivery (years)",      "30.5 (5.0)",       "32.0 (5.5)",        "30.5 (5.0)",
+  "BMI, first visit (kg/m²)",     "24.0 (4.5)",       "30.0 (6.0)",        "24.0 (4.5)",
+  "Smoking, first visit",         "30,000 (8.6%)",    "700 (14.0%)",       "29,300 (8.5%)",
+  "Primiparous",                  "150,000 (42.9%)",  "1,900 (38.0%)",     "148,100 (42.9%)",
+  "Gestational diabetes",         "10,000 (2.9%)",    "1,800 (36.0%)",     "8,200 (2.4%)",
+  "Pre-eclampsia",                "10,000 (2.9%)",    "300 (6.0%)",        "9,700 (2.8%)",
+  "Non-Danish origin",            "60,000 (17.1%)",   "1,600 (32.0%)",     "58,400 (16.9%)"
+)
+
+kbl_wp2(tab1, font_size = 26) |>
+  column_spec(2:4, extra_css = "white-space: nowrap;") |>
+  footnote(general = "Categorical variables: n (%). Continuous variables: mean (SD).",
+           general_title = "")
+```
+
+## Incidence of T2D
+
+### Events and rates during follow-up
+
+::: {.sim-flag}
+SIMULATED EXAMPLE
+:::
+
+```{r}
+#| label: t-incidence
+# Export from DST: events and person-years by group
+inc <- tibble::tribble(
+  ~Group,                    ~n,      ~events, ~py,
+  "All deliveries",          350000,  5000,    3300000,
+  "Gestational diabetes",    10000,   1800,    85000,
+  "No gestational diabetes", 340000,  3200,    3215000
+)
+
+inc |>
+  mutate(
+    `Events, n (%)`         = sprintf("%s (%.1f%%)", format(events, big.mark = ","), 100 * events / n),
+    `Rate per 1,000 PY`     = sprintf("%.1f", 1000 * events / py),
+    `95% CI`                = sprintf("%.1f to %.1f",
+                                      1000 * qchisq(0.025, 2 * events) / 2 / py,
+                                      1000 * qchisq(0.975, 2 * (events + 1)) / 2 / py),
+    n = format(n, big.mark = ",")
+  ) |>
+  select(Group, n, `Events, n (%)`, `Rate per 1,000 PY`, `95% CI`) |>
+  kbl_wp2(font_size = 28, align = "lrrrr")
+```
+
+## Cumulative risk
+
+### Type 2 diabetes after delivery by GDM status
+
+::: {.sim-flag}
+SIMULATED EXAMPLE
+:::
+
+```{r}
+#| label: f-cuminc
+# Export from DST: cumulative incidence (e.g. Aalen-Johansen with death as competing risk)
+# Columns: time (years), group, est, lower, upper
+cuminc <- expand.grid(time = seq(0, 10, by = 0.25),
+                      group = c("Gestational diabetes", "No gestational diabetes")) |>
+  mutate(
+    est   = ifelse(group == "Gestational diabetes",
+                   1 - exp(-0.030 * time), 1 - exp(-0.001 * time)),
+    lower = est * 0.92,
+    upper = est * 1.08
+  )
+
+ggplot(cuminc, aes(time, est, colour = group, fill = group)) +
+  geom_ribbon(aes(ymin = lower, ymax = upper), alpha = 0.15, colour = NA) +
+  geom_step(linewidth = 1) +
+  scale_colour_manual(values = c(col_red, col_blue)) +
+  scale_fill_manual(values = c(col_red, col_blue)) +
+  scale_x_continuous(breaks = 0:10) +
+  scale_y_continuous(labels = scales::percent) +
+  labs(x = "Years since delivery", y = "Cumulative incidence of T2D")
+```
+
+## Incidence by region
+
+### Type 2 diabetes incidence by delivery year
+
+::: {.sim-flag}
+SIMULATED EXAMPLE
+:::
+
+```{r}
+#| label: f-trend-region
+# Export from DST: events and person-years by region and delivery year
+# Columns: region, year, events, py
+regions <- c("Capital", "Zealand", "Southern", "Central", "North")
+set.seed(1)
+trend <- expand.grid(region = regions, year = 2010:2015) |>
+  mutate(py     = 100000,
+         events = rpois(n(), lambda = 150 + 5 * (year - 2010)))
+
+trend |>
+  mutate(rate  = 1000 * events / py,
+         lower = 1000 * qchisq(0.025, 2 * events) / 2 / py,
+         upper = 1000 * qchisq(0.975, 2 * (events + 1)) / 2 / py,
+         region = factor(region, levels = regions)) |>
+  ggplot(aes(year, rate)) +
+  geom_errorbar(aes(ymin = lower, ymax = upper), width = 0, colour = col_pink, linewidth = 1) +
+  geom_line(colour = col_red, linewidth = 1) +
+  geom_point(colour = col_red, size = 2.5) +
+  facet_wrap(~region, nrow = 1) +
+  scale_x_continuous(breaks = c(2010, 2015), labels = c("'10", "'15")) +
+  theme(panel.spacing = unit(2.5, "lines")) +
+  labs(x = "Year of delivery", y = "T2D per 1,000 PY")
+```
+
+## Screening codes
+
+### All ICD-10 and ATC codes in the exploration data
+
+::: {.sim-flag}
+SIMULATED EXAMPLE
+:::
+
+```{r}
+#| label: f-manhattan
+# Export from DST: one row per ICD-10 / ATC code from the exploration data
+# Columns: code, group (ICD-10 chapter or ATC main group), hr, p
+set.seed(2)
+groups <- c(paste("ICD", c("E", "I", "K", "N", "O", "F", "J", "M")),
+            paste("ATC", c("A", "C", "G", "H", "N", "R")))
+screen <- tibble(group = rep(groups, each = 40)) |>
+  mutate(code = paste0(sub(".* ", "", group), sprintf("%02d", row_number() %% 100)),
+         hr   = exp(rnorm(n(), 0, 0.3)),
+         p    = runif(n())^4)
+screen$p[c(1, 160, 170, 330)] <- c(1e-40, 1e-30, 1e-25, 1e-20)   # a few strong signals
+screen$code[c(1, 160, 170, 330)] <- c("E282 (PCOS)", "O244 (GDM)", "O14 (Pre-eclampsia)", "A10BA02 (Metformin)")
+
+screen <- screen |>
+  mutate(group = factor(group, levels = groups),
+         pos   = row_number(),
+         shade = as.integer(group) %% 2 == 0)
+bonf  <- 0.05 / nrow(screen)
+axisx <- screen |> group_by(group) |> summarise(mid = mean(pos))
+
+ggplot(screen, aes(pos, -log10(p), colour = shade)) +
+  geom_point(size = 2) +
+  geom_hline(yintercept = -log10(bonf), linetype = "dashed", colour = "grey40") +
+  geom_text_repel(data = filter(screen, p < 1e-15), aes(label = code),
+                  colour = "grey20", size = 6.5, nudge_x = 25, direction = "y",
+                  segment.colour = "grey60") +
+  scale_colour_manual(values = c(col_red, col_pink), guide = "none") +
+  scale_x_continuous(breaks = axisx$mid, labels = axisx$group, expand = expansion(mult = c(0.01, 0.12))) +
+  labs(x = NULL, y = expression(-log[10](p))) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        panel.grid.major.x = element_blank())
+```
+
+## Prevalence vs effect
+
+### Exploration: candidates after first expert review
+
+::: {.sim-flag}
+SIMULATED EXAMPLE
+:::
+
+```{r}
+#| label: f-prev-effect
+# Export from DST: candidates left after expert review
+# Columns: label, prevalence (proportion), hr
+cand <- tibble::tribble(
+  ~label,                       ~prevalence, ~hr,
+  "Previous GDM",               0.020,       9.0,
+  "PCOS",                       0.030,       2.5,
+  "Metformin without diabetes", 0.010,       3.5,
+  "Pre-eclampsia",              0.030,       1.8,
+  "Antihypertensives",          0.020,       2.0,
+  "Glucocorticoids",            0.080,       1.2,
+  "Antidepressants",            0.090,       1.4,
+  "Lipid-lowering drugs",       0.004,       2.8,
+  "Asthma",                     0.070,       1.1,
+  "Hypothyroidism",             0.030,       1.3
+)
+
+ggplot(cand, aes(prevalence, hr)) +
+  geom_hline(yintercept = 1, colour = "grey60") +
+  geom_point(colour = col_red, size = 4) +
+  geom_text_repel(aes(label = label), size = 7, colour = "grey20",
+                  box.padding = 0.6, segment.colour = "grey60") +
+  scale_x_log10(labels = scales::percent) +
+  scale_y_log10(breaks = c(1, 2, 5, 10)) +
+  coord_cartesian(clip = "off") +
+  labs(x = "Prevalence in exploration data (log scale)",
+       y = "HR for 10-year T2D (log)")
+```
+
+## Model performance
+
+### Predictive performance in the 2015 test data
+
+::: {.sim-flag}
+SIMULATED EXAMPLE
+:::
+
+```{r}
+#| label: t-performance
+# Export from DST: one row per model, evaluated in the test data
+# Columns: Model, brier, brier_lo, brier_hi, auc, auc_lo, auc_hi
+perf <- tibble::tribble(
+  ~Model,                     ~brier, ~brier_lo, ~brier_hi, ~auc,  ~auc_lo, ~auc_hi,
+  "Null model (same risk)",   0.0150, 0.0145,    0.0155,    0.500, NA,      NA,
+  "Cox",                      0.0132, 0.0127,    0.0137,    0.840, 0.830,   0.850,
+  "LASSO",                    0.0131, 0.0126,    0.0136,    0.845, 0.835,   0.855,
+  "Random forest",            0.0134, 0.0129,    0.0139,    0.830, 0.820,   0.840,
+  "Super learner",            0.0130, 0.0125,    0.0135,    0.850, 0.840,   0.860
+)
+
+null_brier <- perf$brier[1]
+perf |>
+  mutate(
+    `Brier score (95% CI)` = sprintf("%.4f (%.4f-%.4f)", brier, brier_lo, brier_hi),
+    `Scaled Brier (IPA)`   = sprintf("%.1f%%", 100 * (1 - brier / null_brier)),
+    `AUC (95% CI)`         = ifelse(is.na(auc_lo), sprintf("%.2f", auc),
+                                    sprintf("%.2f (%.2f-%.2f)", auc, auc_lo, auc_hi))
+  ) |>
+  select(Model, `Brier score (95% CI)`, `Scaled Brier (IPA)`, `AUC (95% CI)`) |>
+  kbl_wp2(font_size = 26, align = "lrrr") |>
+  column_spec(2:4, extra_css = "white-space: nowrap;") |>
+  row_spec(5, bold = TRUE) |>
+  footnote(general = "IPA: improvement in Brier score over the null model. Higher is better.",
+           general_title = "")
+```
+
+::: notes
+Brier scores look tiny because T2D is rare. Read the IPA column: how much better than giving everyone the average risk.
+:::
+
+## Calibration
+
+::: {.sim-flag}
+SIMULATED EXAMPLE
+:::
+
+::: columns
+::: {.column width="60%"}
+```{r}
+#| label: f-calibration
+#| fig-width: 6.5
+#| fig-height: 6
+# Export from DST: mean predicted and observed 10-year risk by tenth of predicted risk
+# Columns: decile, predicted, observed, lower, upper
+calib <- tibble(decile = 1:10,
+                predicted = c(0.001, 0.002, 0.003, 0.004, 0.006, 0.008, 0.011, 0.016, 0.027, 0.075)) |>
+  mutate(observed = predicted * c(1.1, 0.9, 1.05, 0.95, 1.1, 0.9, 1.05, 1.0, 0.92, 0.88),
+         lower = observed * 0.8,
+         upper = observed * 1.2)
+
+lim <- c(0, max(calib$upper) * 1.05)
+ggplot(calib, aes(predicted, observed)) +
+  geom_abline(linetype = "dashed", colour = "grey50") +
+  geom_errorbar(aes(ymin = lower, ymax = upper), width = 0, colour = col_pink, linewidth = 1) +
+  geom_point(colour = col_red, size = 3.5) +
+  scale_x_continuous(labels = scales::percent, limits = lim) +
+  scale_y_continuous(labels = scales::percent, limits = lim) +
+  coord_equal() +
+  labs(x = "Predicted 10-year risk", y = "Observed 10-year risk")
+```
+:::
+
+::: {.column .pad-top width="40%"}
+::: small
+Each point is one tenth of women ranked by predicted risk.
+
+Points on the dashed line mean the predicted risks match what happened.
+
+Below the line: the model **overestimates** risk.
+:::
+:::
+:::
+
+## Model estimates
+
+### What drives the predictions?
+
+::: {.sim-flag}
+SIMULATED EXAMPLE
+:::
+
+```{r}
+#| label: f-forest
+# Export from DST: estimates from the Cox model
+# Columns: term, hr, lower, upper
+coefs <- tibble::tribble(
+  ~term,                            ~hr,  ~lower, ~upper,
+  "Gestational diabetes",           8.0,  7.2,    8.9,
+  "BMI, per 5 kg/m²",               1.9,  1.8,    2.0,
+  "Previous GDM",                   2.5,  2.1,    3.0,
+  "Family history of T2D",          1.8,  1.6,    2.0,
+  "Non-Danish origin",              1.7,  1.5,    1.9,
+  "PCOS",                           1.6,  1.3,    1.9,
+  "Pre-eclampsia",                  1.4,  1.2,    1.7,
+  "Smoking",                        1.3,  1.2,    1.5,
+  "Age, per 5 years",               1.2,  1.1,    1.3,
+  "Macrosomia (≥ 4,000 g)",         1.2,  1.0,    1.4
+) |>
+  mutate(term = factor(term, levels = rev(term)))
+
+ggplot(coefs, aes(hr, term)) +
+  geom_vline(xintercept = 1, colour = "grey60") +
+  geom_errorbarh(aes(xmin = lower, xmax = upper), height = 0, colour = col_red, linewidth = 1) +
+  geom_point(colour = col_red, size = 3.5) +
+  scale_x_log10(breaks = c(1, 2, 4, 8)) +
+  labs(x = "Hazard ratio (log scale), mutually adjusted", y = NULL)
+```
+
+::: {.fragment .small}
+Mutually adjusted prediction coefficients, **not causal effects**
+:::
+
+## Reach for WP4
+
+::: {.sim-flag}
+SIMULATED EXAMPLE
+:::
+
+::: columns
+::: {.column width="55%"}
+```{r}
+#| label: f-risk-dist
+#| fig-width: 6
+#| fig-height: 5.5
+# Export from DST: number of women per bin of predicted 10-year risk (0.5%-point bins)
+# Columns: risk_bin (lower edge), n
+riskdist <- tibble(risk_bin = seq(0, 0.195, by = 0.005)) |>
+  mutate(n = round(120000 * exp(-risk_bin / 0.012)))
+cut_top10 <- 0.025   # predicted risk at the 90th percentile
+
+ggplot(riskdist, aes(risk_bin + 0.0025, n, fill = risk_bin >= cut_top10)) +
+  geom_col(width = 0.0045) +
+  geom_vline(xintercept = cut_top10, linetype = "dashed", colour = "grey30") +
+  annotate("text", x = cut_top10, y = max(riskdist$n) * 0.9, label = " Top 10%",
+           hjust = 0, size = 8, colour = "grey20") +
+  scale_fill_manual(values = c(col_pink, col_red), guide = "none") +
+  scale_x_continuous(labels = scales::percent, limits = c(0, 0.10)) +
+  scale_y_continuous(labels = scales::comma) +
+  labs(x = "Predicted 10-year risk", y = "Women")
+```
+:::
+
+::: {.column .pad-top width="45%"}
+```{r}
+#| label: t-capture
+# Export from DST: performance at risk cut-offs in the test data
+# Columns: Group, flagged, captured, ppv
+capture <- tibble::tribble(
+  ~`Highest risk`, ~`Cases captured`, ~`PPV`,
+  "Top 5%",        "45%",             "13%",
+  "Top 10%",       "60%",             "9%",
+  "Top 20%",       "75%",             "6%"
+)
+kbl_wp2(capture, font_size = 26, align = "lrr")
+```
+
+::: small
+**Cases captured:** share of all women who develop T2D within 10 years that are in the group
+
+**PPV:** share of the group who develop T2D
+:::
+:::
+:::
+
+## TEMPLATE: figure from file {visibility="hidden"}
+
+### Subtitle describing the result
+
+![](results/my_figure.png){fig-align="center" .r-stretch}
+
+## TEMPLATE: table from file {visibility="hidden"}
+
+### Subtitle describing the result
+
+```{r}
+#| label: t-template
+#| eval: false
+# Exported table, one row per line on the slide, already formatted as text
+my_table <- readRDS("results/my_table.rds")
+kbl_wp2(my_table, font_size = 26)
+```
+
+## TEMPLATE: plot from aggregated table {visibility="hidden"}
+
+### Subtitle describing the result
+
+```{r}
+#| label: f-template
+#| eval: false
+# Exported aggregated table. Columns: x, y, group
+my_data <- readRDS("results/my_data.rds")
+
+ggplot(my_data, aes(x, y, colour = group)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 3) +
+  scale_colour_manual(values = c(col_red, col_blue, col_amber)) +
+  labs(x = "x-axis label", y = "y-axis label")
+```
+
+# Discussion {background-color="#f0f0f0"}
+
+## Open questions
+
+### For discussion today
+
+::: {.discuss .small}
+1. **Optimism:** bootstrap correction on top of the regional and temporal test sets?
+2. **Repeated births:** women contribute several births; split folds and test set by woman
+3. **Censoring:** IPCW for the Brier score; death as a competing risk
+4. **HbA1c:** indicator with calendar time, imputation or subcohort model?
+5. **Region of origin:** WHO regions or the grouping in Nielsen et al. (JCEM 2024)?
+6. **Newborn size:** SGA/LGA reference (Marsál 1996?); macrosomia at 4,000 or 4,500 g
+7. **Explainability:** should WP4 see what drives a woman's risk?
+:::
+
+## Thank you {.center}
+
+::: columns
+::: {.column width="50%"}
+This work is supported by **DP-NEXT**
+
+Questions and input for the protocol are very welcome
+:::
+
+::: {.column width="50%"}
+::: small
+Co-authors of the protocol:
+
+- Ulla Kampmann
+- Daniel R. Witte
+- Thomas Gerds
+- Karoline Kragelund Nielsen
+- Stine Byberg
+:::
+:::
+:::

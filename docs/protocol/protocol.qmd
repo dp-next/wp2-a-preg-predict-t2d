@@ -73,6 +73,9 @@ describing the study. Find checklists
 Prediction- (WP2) and intervention-arm (WP4) connection protocol:
 definition of risk group at stage of child delivery
 
+![Prediction project to indentify women at high risk of type 2
+diabetes](docs/images/preg_predict_t2d.png)
+
 ### Description
 
 Globally, the prevalence of type 2 diabetes (T2D) is rising rapidly,
@@ -158,14 +161,53 @@ health.
 
 Prediction-arm (WP2) will derive the model for a cohort of women who:
 
-Prediction-arm (WP2) will derive the model for a cohort of women who: -
-Have given birth at least once between 2010 and 2015\
+Prediction-arm (WP2) will derive the model for a cohort of women who:
+
+- Have given birth at least once between 2010 and 2015\
 - Do not have a previous diagnosis of type 1 or type 2 diabetes at index
 date\
 - Stillbirths will be excluded exclusively for primiparous women
 (parity=1) who experienced a stillbirth
 
 ### Time window for prediction
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+# Needs: install.packages(c("DiagrammeR", "DiagrammeRsvg", "rsvg"))
+# Fonts (SDCA brand): Poppins for headings, Noto Sans for text. Falls back to a default font if not installed.
+library(DiagrammeR)
+
+g <- grViz('
+digraph timeline {
+  graph [bgcolor="white", pad="0.4"];
+  node  [shape=plaintext, fontname="Noto Sans", fontsize=12, fontcolor="#5c0020"];
+
+  bar [label=<
+    <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="2" CELLPADDING="9">
+      <TR><TD COLSPAN="4" HEIGHT="5" CELLPADDING="0" BGCOLOR="#990032"></TD></TR>
+      <TR><TD COLSPAN="4" ALIGN="LEFT" CELLPADDING="4"><FONT FACE="Poppins" POINT-SIZE="20" COLOR="#990032"><B>Data periods and prediction horizon</B></FONT></TD></TR>
+      <TR><TD COLSPAN="4" HEIGHT="8" CELLPADDING="0"></TD></TR>
+      <TR>
+        <TD WIDTH="336" HEIGHT="62" FIXEDSIZE="TRUE" BGCOLOR="#f3dfe4"><FONT FACE="Poppins"><B>Exploration</B></FONT><BR/>2003-2009</TD>
+        <TD WIDTH="240" HEIGHT="62" FIXEDSIZE="TRUE" BGCOLOR="#d9899f"><FONT FACE="Poppins"><B>Training</B></FONT><BR/>2010-2014</TD>
+        <TD WIDTH="48"  HEIGHT="62" FIXEDSIZE="TRUE" BGCOLOR="#990032"><FONT COLOR="white"><FONT FACE="Poppins"><B>Test</B></FONT><BR/>2015</FONT></TD>
+        <TD WIDTH="480" HEIGHT="62" FIXEDSIZE="TRUE" BORDER="1" COLOR="#990032" STYLE="dashed"><FONT COLOR="#990032"><FONT FACE="Poppins"><B>Prediction horizon</B></FONT><BR/>2016-2025</FONT></TD>
+      </TR>
+      <TR><TD COLSPAN="4" HEIGHT="8" CELLPADDING="0"></TD></TR>
+    </TABLE>
+  >];
+}
+')
+
+g   # preview in RStudio viewer
+
+# Optional: save as PNG
+# library(DiagrammeRsvg); library(rsvg)
+# export_svg(g) |> charToRaw() |> rsvg_png("timeline.png", width = 3000)
+```
+
 
 The index date is defined as one week after delivery, to ensure that all
 delivery-related data have been recorded. Variables from the first
@@ -179,15 +221,82 @@ is young, and few women will develop T2D within a shorter period. This
 requires 10 years of potential follow-up from delivery. Registry data on
 T2D incidence are available to the end of follow-up on 31 December 2025.
 We therefore restrict the cohort to deliveries between 2010, when
-laboratory data become available to some extent, and 2015, which allows
+laboratory data become more available and HbA1c has been implemented for diagnosis of type 2 diabetes, and 2015, which allows
 a full 10-year follow-up within the available registry data. Individuals
-are right-censored by end-of-follow up, incedence of type 2 diabetes or
-date of death.
+are right-censored by end-of-follow up, date of emigration, date of incidence of type 2 diabetes or date of death.
 
 If HbA1c data allow, secondary outcomes will be HbA1c levels at 5 and 10
 years after the index birth, and HbA1c trajectories over this period.
 
 ### Definition of available data for prediction
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+# Needs: install.packages(c("DiagrammeR", "DiagrammeRsvg", "rsvg"))
+# Fonts (SDCA brand): Poppins for headings, Noto Sans for text. Falls back to a default font if not installed.
+library(DiagrammeR)
+
+g <- grViz('
+digraph predictors {
+  graph [bgcolor="white", pad="0.4"];
+  node  [shape=plaintext, fontname="Noto Sans", fontsize=11, fontcolor="#5c0020"];
+
+  p [label=<
+    <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="3" CELLPADDING="8">
+      <TR><TD COLSPAN="3" HEIGHT="5" CELLPADDING="0" BGCOLOR="#990032"></TD></TR>
+
+      <TR>
+        <TD WIDTH="330" HEIGHT="58" FIXEDSIZE="TRUE" BGCOLOR="#f3dfe4"><FONT FACE="Poppins" POINT-SIZE="14"><B>Pre-pregnancy</B></FONT><BR/>before pregnancy start</TD>
+        <TD WIDTH="330" HEIGHT="58" FIXEDSIZE="TRUE" BGCOLOR="#d9899f"><FONT FACE="Poppins" POINT-SIZE="14"><B>During pregnancy</B></FONT><BR/>pregnancy start to delivery</TD>
+        <TD WIDTH="330" HEIGHT="58" FIXEDSIZE="TRUE" BGCOLOR="#990032"><FONT COLOR="white"><FONT FACE="Poppins" POINT-SIZE="14"><B>At delivery</B></FONT><BR/>birth and newborn</FONT></TD>
+      </TR>
+
+      <TR>
+        <TD WIDTH="330" HEIGHT="56" FIXEDSIZE="TRUE" ALIGN="LEFT" BALIGN="LEFT" BORDER="1" COLOR="#e6cdd4"><B>Demographics</B><BR/><FONT COLOR="#6b6b6b" POINT-SIZE="10">age, region of origin, education, income</FONT></TD>
+        <TD WIDTH="330" HEIGHT="56" FIXEDSIZE="TRUE" ALIGN="LEFT" BALIGN="LEFT" BORDER="1" COLOR="#e6cdd4"><B>BMI</B><BR/><FONT COLOR="#6b6b6b" POINT-SIZE="10">first antenatal visit</FONT></TD>
+        <TD WIDTH="330" HEIGHT="56" FIXEDSIZE="TRUE" ALIGN="LEFT" BALIGN="LEFT" BORDER="1" COLOR="#e6cdd4"><B>Gestational age</B><BR/><FONT COLOR="#6b6b6b" POINT-SIZE="10">at birth; preterm, spontaneous or induced</FONT></TD>
+      </TR>
+      <TR>
+        <TD WIDTH="330" HEIGHT="56" FIXEDSIZE="TRUE" ALIGN="LEFT" BALIGN="LEFT" BORDER="1" COLOR="#e6cdd4"><B>Diagnoses</B><BR/><FONT COLOR="#6b6b6b" POINT-SIZE="10">all ICD-10 codes, 10 years before pregnancy start</FONT></TD>
+        <TD WIDTH="330" HEIGHT="56" FIXEDSIZE="TRUE" ALIGN="LEFT" BALIGN="LEFT" BORDER="1" COLOR="#e6cdd4"><B>Smoking</B><BR/><FONT COLOR="#6b6b6b" POINT-SIZE="10">first antenatal visit</FONT></TD>
+        <TD WIDTH="330" HEIGHT="56" FIXEDSIZE="TRUE" ALIGN="LEFT" BALIGN="LEFT" BORDER="1" COLOR="#e6cdd4"><B>Newborn size</B><BR/><FONT COLOR="#6b6b6b" POINT-SIZE="10">birth weight and length;<BR/>macrosomia at 4,000 and 4,500 g</FONT></TD>
+      </TR>
+      <TR>
+        <TD WIDTH="330" HEIGHT="56" FIXEDSIZE="TRUE" ALIGN="LEFT" BALIGN="LEFT" BORDER="1" COLOR="#e6cdd4"><B>Specific diagnoses</B><BR/><FONT COLOR="#6b6b6b" POINT-SIZE="10">PMOS, previous GDM, previous pre-eclampsia<BR/>or gestational hypertension</FONT></TD>
+        <TD WIDTH="330" HEIGHT="56" FIXEDSIZE="TRUE" ALIGN="LEFT" BALIGN="LEFT" BORDER="1" COLOR="#e6cdd4"><B>OGTT</B><BR/><FONT COLOR="#6b6b6b" POINT-SIZE="10">test performed;<BR/>glucose values below the GDM threshold</FONT></TD>
+        <TD WIDTH="330" HEIGHT="56" FIXEDSIZE="TRUE" ALIGN="LEFT" BALIGN="LEFT" BORDER="1" COLOR="#e6cdd4"><B>Size for gestational age</B><BR/><FONT COLOR="#6b6b6b" POINT-SIZE="10">by gestational age and sex (SGA, LGA)</FONT></TD>
+      </TR>
+      <TR>
+        <TD WIDTH="330" HEIGHT="56" FIXEDSIZE="TRUE" ALIGN="LEFT" BALIGN="LEFT" BORDER="1" COLOR="#e6cdd4"><B>Medication</B><BR/><FONT COLOR="#6b6b6b" POINT-SIZE="10">all ATC codes, 10 years before pregnancy start</FONT></TD>
+        <TD WIDTH="330" HEIGHT="56" FIXEDSIZE="TRUE" ALIGN="LEFT" BALIGN="LEFT" BORDER="1" COLOR="#e6cdd4"><B>HbA1c</B><BR/><FONT COLOR="#6b6b6b" POINT-SIZE="10">measured in early pregnancy</FONT></TD>
+        <TD WIDTH="330" HEIGHT="56" FIXEDSIZE="TRUE" ALIGN="LEFT" BALIGN="LEFT" BORDER="1" COLOR="#e6cdd4"><B>Mode of delivery</B><BR/><FONT COLOR="#6b6b6b" POINT-SIZE="10">vaginal, planned or emergency caesarean</FONT></TD>
+      </TR>
+      <TR>
+        <TD WIDTH="330" HEIGHT="56" FIXEDSIZE="TRUE" ALIGN="LEFT" BALIGN="LEFT" BORDER="1" COLOR="#e6cdd4"><B>Laboratory</B><BR/><FONT COLOR="#6b6b6b" POINT-SIZE="10">HbA1c, lipids, liver, kidney markers, CRP;<BR/>up to 3 years before pregnancy start</FONT></TD>
+        <TD WIDTH="330" HEIGHT="56" FIXEDSIZE="TRUE" ALIGN="LEFT" BALIGN="LEFT" BORDER="1" COLOR="#e6cdd4"><B>Gestational diabetes</B><BR/><FONT COLOR="#6b6b6b" POINT-SIZE="10">early (before week 20) or late (after week 28)</FONT></TD>
+        <TD WIDTH="330" HEIGHT="56" FIXEDSIZE="TRUE" ALIGN="LEFT" BALIGN="LEFT" BORDER="1" COLOR="#e6cdd4"><B>Complications</B><BR/><FONT COLOR="#6b6b6b" POINT-SIZE="10">placental abruption, neonatal hypoglycaemia</FONT></TD>
+      </TR>
+      <TR>
+        <TD WIDTH="330" HEIGHT="56" FIXEDSIZE="TRUE" ALIGN="LEFT" BALIGN="LEFT" BORDER="1" COLOR="#e6cdd4"><B>Family history</B><BR/><FONT COLOR="#6b6b6b" POINT-SIZE="10">T2D in parents and siblings;<BR/>GDM in mother and sisters</FONT></TD>
+        <TD WIDTH="330" HEIGHT="56" FIXEDSIZE="TRUE" ALIGN="LEFT" BALIGN="LEFT" BORDER="1" COLOR="#e6cdd4"><B>Pre-eclampsia / gestational hypertension</B><BR/><FONT COLOR="#6b6b6b" POINT-SIZE="10">early (before week 34) or late</FONT></TD>
+        <TD WIDTH="330" HEIGHT="56" FIXEDSIZE="TRUE" ALIGN="LEFT" BALIGN="LEFT" BORDER="1" COLOR="#e6cdd4"><B>Plurality</B><BR/><FONT COLOR="#6b6b6b" POINT-SIZE="10">singleton or multiple birth</FONT></TD>
+      </TR>
+
+      <TR><TD COLSPAN="3" HEIGHT="6" CELLPADDING="0"></TD></TR>
+      <TR><TD COLSPAN="3" BORDER="1" COLOR="#990032" STYLE="dashed"><FONT COLOR="#990032"><B>Index date:</B> one week after delivery.   <B>Outcome:</B> 10-year risk of type 2 diabetes</FONT></TD></TR>
+    </TABLE>
+  >];
+}
+')
+
+g   # preview in RStudio viewer
+
+# Optional: save as PNG
+# library(DiagrammeRsvg); library(rsvg)
+# export_svg(g) |> charToRaw() |> rsvg_png("predictors.png", width = 3000)
+```
 
 The prediction models will be built based on general register-based data
 supplemented with the results of the women’s first, second, third
@@ -212,7 +321,7 @@ pregnancies, and the parent identifiers in the population register or
 multi-generational registry (`MOR_ID`, `FAR_ID`) link her to her parents
 and siblings for family history.
 
-Pre-pregnancy predictors follow the WP2 strategy, using the population,
+Pre-pregnancy predictors follow the DP-NEXT WP2 strategy, using the population,
 education and income registers, the National Patient Registry (LPR) and
 the National Prescription Registry (LMDB), supplemented by earlier
 deliveries in MFR. During pregnancy, MFR contributes BMI and smoking
@@ -221,15 +330,216 @@ are placed in trimesters by their date. Delivery predictors come from
 MFR and from the LPR records of mother and child.
 
 Diagnoses from outpatient and emergency contacts and redeemed
-prescriptions are available from 1995, so the 10-year look-back is
-complete for index births from 2005 onwards. LPR changed data model from
-LPR2 to LPR3 in February 2019, and both versions are combined. The
+prescriptions are available from 1995 in LPR and LMBD, so the 10-year look-back is
+complete for index births from 2005 onwards. The
 laboratory register reached nationwide coverage only in July 2015, so
 laboratory-based predictors are available for a subset of index births
 only. The registries and code systems (ICD-10 in the Danish SKS version,
 SKS procedure codes, ATC, and NPU and local DNK codes) are summarised
 below, and @tbl-predictors gives the source and codes for each
 predictor.
+
+Because the data sources differs in temporal and regional
+coverage, we will develop the model in a main cohort using predictors
+available nationwide for all index births. We will evaluate additional
+predictors in sub-cohorts defined by the coverage of each partially
+available source.
+
+### Definition of full cohort
+
+In the full cohort, we will use all pre-pregnancy variables except laboratory measurements.
+
+We defined potential candidates of predictors form the above mentioned registries based on their indications of risk of type 2 diabetes. The first is age at delivery of child. We will population proven risk factors from registry on socio economic position either by highest education achieved or family income quartile. We will include ethnicity 
+
+Extending the registry information we will include family history of type 2 diabetes by either first, second, and third degree of relatives as well and maternal and sister diagnosis of gestational diabetes. These will the risk carried by heritability from envoriment and genes. 
+
+
+- Explain diagnosis and prescription risk factors
+  - PMOS, GDM, ......
+  - Metformin, gluccorticoids, anti-hypertenive, lipid-lowering medication
+
+ Nearly all pregnant women attend the scheduled antenatal visits, where
+BMI and smoking status are recorded as standard in the first and third
+trimesters. First-trimester BMI is minimally affected by gestational
+weight gain and therefore approximates pre-pregnancy weight status, a
+major determinant of type 2 diabetes. Smoking is associated with a
+higher risk of type 2 diabetes, possibly through systemic inflammation
+and central fat accumulation. In Denmark, an OGTT during pregnancy is
+performed when risk factors for gestational diabetes are present. A
+recorded OGTT therefore identifies women in whom gestational diabetes
+was suspected, and both the test itself and a sub-threshold glucose
+value may signal elevated risk of later type 2 diabetes.
+
+We will further include variables recorded at and after delivery.
+Gestational age at birth, mode of delivery and pregnancy complications
+such as preeclampsia can be linked to maternal metabolic and vascular
+health. Neonatal anthropometry carries additional information which can be influence by maternal metabolic health. Macrosomia, defined as a birth weight above 4000 g (or \> 4500 g), is associated with elevated maternal risk of type 2 diabetes and may
+reflect hyperglycaemia during pregnancy that screening for GDM did not capture.
+
+#### Definition of subcohorts
+
+In women with more than one pregnancy, the model is updated after each
+birth, so that every birth contributes an index date. The model
+integrates data from before, during and after each pregnancy and
+predicts risk at the postpartum check-up. We will define subcohorts by
+parity, so that women with a second or later birth contribute variables
+from previous pregnancies as well as from the index pregnancy.
+
+Availability of an HbA1c measurement before the index birth increases
+over calendar time, from 10% of women in 2010 to 25% in 2015 and 40% in
+2020. We will define a variable of women with a prior HbA1c measurement.
+Because availability of laboratory measurements in the registries varies
+by region over the period 2010 to 2015, we will restrict this subcohort
+to the Central Denmark Region, the North Denmark Region, and the Capital
+Region, where laboratory measurements are available.
+
+Family history requires register linkage to relatives, and the number of
+linkable relatives varies. Some women have relatives with relevant
+records, such as an older sister with a previous pregnancy, whereas
+recently immigrated women may have none. We will define subcohorts by
+the availability of family linkage.
+
+## Statistical methods
+
+### Descriptive statistics
+
+First, we will characterise the study population by demographic factors
+(age, ethnicity, socioeconomic position) and by pregnancy related
+factors from during the pregnancy and at delivery. Using the OSDC
+algorithm, we will examine trends in the incidence of type 2 diabetes in
+the population and across regions.
+
+### Variable preprocessing
+
+We will include predefined variables based on their established
+association with the risk of type 2 diabetes, as listed in *Definition
+of the potential predictors for prediction*. Diagnoses and medications
+may carry hidden indications for type 2 diabetes risk; however, the
+number of potential indicators is large. To select candidates for our
+prediction model, we will create a exploration dataset based on a
+pregnancy population from 2004 to 2010 to define the set of predictors.
+Women with pregnancies after 2010 are excluded from the exploration
+data, to avoid potential overfitting, i.e. we want the findings from the
+exploration data to apply for the general population and not just the
+sub group we have data on. We will include a 10 year history of each
+diagnosis and medication and uniformly test the association between each
+diagnosis and each medication and 10 year type 2 diabetes risk. We will
+produce a Manhattan plot with groupings of ICD-10 and ATC codes on the x
+axis. We will bring the candidates to domain experts in pregnancy
+related metabolic factors from SDCA and SDCC and discuss: (1) whether
+the indications are biased; and (2) the opportunity to collapse
+overlapping predictors (for example, a diagnosis of hypertension
+together with a prescription for antihypertensive medication). In a
+second step, we will estimate 10 year risk diabetes for each person in
+the exploration data only given one of the remaining variables from
+step 1. This will be repeated for each remaining variable. We will then
+produce a plot with prevalence in the population on the x axis and the
+magnitude of the association on the y axis. In a second iteration with
+the domain experts, we will discuss the relevance of each predictor
+based on prevalence of the diagnosis and magnitude of risk. The
+candidates remaining after this discussion will be included as candidate
+predictors for the main model.
+
+### Statistical model selection
+
+With the predictors defined in the exploration data together with the
+variables defined in "Definition of available data for prediction", we
+will continue to use the exploration data to select our candidate
+statistical models. The dataset will be provided to the team of
+prediction modellers, who will compete to create the best performing
+model while remaining methodologically available to each other. As the
+primary outcome, the model will aim to predict events of type 2 diabetes
+and, if the data allow, to predict 5 year HbA1c levels after pregnancy.
+The methods available for the modellers to choose from could include Cox
+proportional hazards, Poisson regression, LASSO, and random forest, each
+of which could be applied separately or combined in a super learner. The
+candidate models selected on the basis of this step will then be brought
+to the development dataset.
+
+### Developing prediction model
+
+Once all predictors and statistical models have been defined, we will
+train the models on data from pregnant women enrolled between 2010 and
+2014 in the full cohort. To handle partial marker availability in the
+cohort, we will use three approaches.
+
+Developed in the full cohort
+
+1)  Include the variable as a present/absent indicator together with
+    calendar time
+
+2)  Multiple imputation of markers available at baseline, integrated
+    into the full cohort.
+
+Developed in the defined subcohort
+
+3.  A submodel restricted to complete cases in the subcohort.
+
+All models will be included in a super learner, which will select the
+best-performing model by cross-validation based on the Brier score.
+
+*Jonas comment: Should we use optimism corrections by bootstrap?*
+
+### Validation
+
+For validation, we will use two approaches: first, we will subset one
+region from the development dataset to test performance across regions;
+second, we will subset the latest year (2015) to test performance on
+newer data, which will reflect the situation when the model is deployed
+on the 2027 population. Predictive performance will be assessed by the
+Brier score to emphasize on individual calbraition of risk. We will
+subdivide and test performance across age-groups, parity, and HbA1c
+present or absent at baseline.
+
+### Choosing and creating the final prediction model
+
+The best performing model from the super learner will be trained on data
+from the entire period from 2010 to 2015 and exported from the protected
+environment it was developed in. It will then be built into an R Shiny
+app, which will be provided to the group in WP4. Our model will provide
+an estimate of the 10 year risk of type 2 diabetes and the expected 5
+year HbA1c after pregnancy. Our approach follows established principles
+in machine learning and statistical modeling, adhering to standardized
+practices for prediction, reporting, and validation [@collins2024;
+@lopez-ayala2025; @collins2024a; @riley2024].
+
+## Definition of focus group for intervention-arm (WP4)
+
+After the pregnancy risk model has been developed, it can be run for
+more recent age cohorts, and an up-to-date descriptive analysis can be
+made of the distribution of long-term T2D risk among recently pregnant
+women. This descriptive analysis will show which data are most
+informative for the estimation of future diabetes risk. It can also be
+used to explore geographical variation and clustering of risk factors.
+WP4 can then choose a more focused group of high-risk women in the
+postpartum period, and geographical settings. It may be worth
+considering focusing on GPs that measure HbA1c routinely in pregnant
+women (improved risk prediction), and on women above a given BMI
+threshold.
+
+::: content-hidden
+### Discussion points
+
+- How to handle double preqnancy?
+  - Include number of births as a variable
+  - Only handle variable of most recent pregnancy
+- How to handle subpopulation with relevant predictors (e.g. HbA1c).
+  - Investigate descriptives of subpopulation with HbA1c with target
+    population (all pregnant women)
+  - HbA1c (yes/no) and interaction if HbA1c yes then include value - if
+    posible.....
+- Can the model provide explainability? What weights into the risk?
+  - Only if someone ask for this. Also, it can lead to causal
+    misinterpretations
+  - 
+:::
+
+## References
+
+
+## Supplemental material
+
+### Table 1S: Registry sources
 
 +-----------------+------------------+----------------------+----------------+
 | Registry (DST   | Coverage         | Codes and key        | Used for       |
@@ -287,6 +597,9 @@ predictor.
 : Danish registries used, their coverage and the codes applied in
 @tbl-predictors
 
+
+### Table 1S: Potential predictors
+
 +-----------------+--------------------------+-----------------------------+
 | Type            | Variables                | Registry source and codes   |
 +=================+==========================+=============================+
@@ -295,9 +608,8 @@ predictor.
 +-----------------+--------------------------+-----------------------------+
 | Demographic     | Age                      | CPR via BEF (DST):          |
 | variables       |                          | `FOED_DAG` (date of birth); |
-|                 |                          | age at delivery date from   |
-|                 |                          | MFR. Maternal age is also   |
-|                 |                          | recorded directly in MFR.   |
+|                 |                          | aternal age at delivery     |
+|                 |                          | date from MFR.              |
 +-----------------+--------------------------+-----------------------------+
 |                 | National region of       | BEF (DST): `OPR_LAND`       |
 |                 | origin (western vs       | (country of origin, DST     |
@@ -352,33 +664,23 @@ predictor.
 |                 |                          | and B-diagnoses; in LPR3    |
 |                 |                          | exclude diagnoses flagged   |
 |                 |                          | `senere_afkraeftet`.        |
-|                 |                          | Inpatient, outpatient and   |
-|                 |                          | emergency contacts          |
-|                 |                          | (outpatient and emergency   |
-|                 |                          | from 1995).                 |
 +-----------------+--------------------------+-----------------------------+
 |                 | Specific diagnosis       | - PMOS: LPR ICD-10 DE282    |
 |                 |                          |   (polycystic ovary         |
-|                 | - Polyendocrine          |   syndrome; no separate     |
-|                 |   metabolic ovarian      |   code after the 2026       |
-|                 |   syndrome (PMOS)        |   renaming).                |
-|                 | - Gestational diabetes   |   Under-ascertained in LPR  |
-|                 |   (GDM) from previous    |   because many are          |
-|                 |   pregnancy              |   diagnosed in private      |
-|                 | - Pre-eclampsia or       |   gynaecology practice;     |
-|                 |   gestational            |   possible proxies are      |
-|                 |   hypertension from      |   hirsutism DL680 and       |
-|                 |   previous pregnancy.    |   metformin A10BA02 without |
-|                 |                          |   diabetes (LMDB).          |
-|                 |                          | - GDM: LPR ICD-10 DO244     |
+|                 | - Polyendocrine          |   syndrome).                |
+|                 |   metabolic ovarian      |   Under-ascertained in LPR  |
+|                 |   syndrome (PMOS)        |   because many are          |
+|                 | - Gestational diabetes   |   diagnosed in private      |
+|                 |   (GDM) from previous    |   gynaecology practice;     |
+|                 |   pregnancy              |   possible proxies are      |
+|                 | - Pre-eclampsia or       |   hirsutism DL680 and       |
+|                 |   gestational            |   metformin A10BA02 without |
+|                 |   hypertension from      |   diabetes (LMDB).          |
+|                 |   previous pregnancy.    | - GDM: LPR ICD-10 DO244     |
 |                 |                          |   (diabetes arising in      |
 |                 |                          |   pregnancy); DO249         |
 |                 |                          |   (diabetes in pregnancy,   |
-|                 |                          |   unspecified) as           |
-|                 |                          |   sensitivity. Previous     |
-|                 |                          |   pregnancies = earlier     |
-|                 |                          |   deliveries of the same    |
-|                 |                          |   woman in MFR.             |
+|                 |                          |   unspecified).             |
 |                 |                          | - Pre-eclampsia: LPR ICD-10 |
 |                 |                          |   DO14 (incl. DO142 HELLP), |
 |                 |                          |   DO15 (eclampsia), DO11    |
@@ -422,26 +724,18 @@ predictor.
 |                 |                          |   NPU19661, NPU03918.       |
 |                 |                          | - Inflammation: CRP         |
 |                 |                          |   NPU19748.                 |
-|                 |                          |                             |
-|                 |                          | Nationwide coverage only    |
-|                 |                          | from Oct 2013 (North,       |
-|                 |                          | Central, Zealand), Oct 2014 |
-|                 |                          | (Capital) and Jul 2015      |
-|                 |                          | (Southern), so a full       |
-|                 |                          | 3-year look-back exists     |
-|                 |                          | only for pregnancies        |
-|                 |                          | starting from mid-2018.     |
 +-----------------+--------------------------+-----------------------------+
-| Family disease  | Based on                 | BEF (DST): `MOR_ID` and     |
-| history         | multigenerational        | `FAR_ID` identify parents;  |
-|                 | registry linkage:        | full siblings share both,   |
-|                 |                          | half-siblings one. Parent   |
-|                 | - Family History of T2D: | links are largely missing   |
-|                 |   OSDC combined with     | for women who immigrated as |
-|                 |   multigenerational      | adults.                     |
-|                 |   registry               |                             |
-|                 | - GDM in mother or       | - T2D: OSDC R package       |
-|                 |   sisters                |   (Steno Aarhus; Isaksen et |
+| Family disease  | Based on                 | BEF and multigenerational   |
+| history         | multigenerational        | registry (DST): `MOR_ID`    |
+|                 | registry linkage:        | and `FAR_ID` identify       |
+|                 |                          | parents; full siblings      |
+|                 | - Family History of T2D: | share both, half-siblings   |
+|                 |   OSDC combined with     | one. Parent links are       |
+|                 |   multigenerational      | largely missing for women   |
+|                 |   registry               | who immigrated as adults.   |
+|                 | - GDM in mother or       |                             |
+|                 |   sisters                | - T2D: OSDC R package       |
+|                 |                          |   (Steno Aarhus; Isaksen et |
 |                 |                          |   al., Clin Epidemiol 2023, |
 |                 |                          |   10.2147/CLEP.S407019) run |
 |                 |                          |   on parents and siblings.  |
@@ -470,8 +764,7 @@ predictor.
 |                 |                          | pre-pregnancy weight        |
 |                 |                          | reported at the first       |
 |                 |                          | antenatal visit (recorded   |
-|                 |                          | from late 2003) → BMI.      |
-|                 |                          | Clean implausible values.   |
+|                 |                          | from late 2003)             |
 +-----------------+--------------------------+-----------------------------+
 |                 | Smoking status           | MFR: smoking at the first   |
 |                 |                          | antenatal visit (recorded   |
@@ -497,9 +790,9 @@ predictor.
 |                 | HbA1c as part of         | RLRR (`lab_forsker`): HbA1c |
 |                 | laboratory ordered       | NPU27300 (NPU03835) with    |
 |                 | package                  | `samplingdate` in early     |
-|                 |                          | pregnancy (window to be     |
-|                 |                          | defined relative to         |
-|                 |                          | pregnancy start from MFR).  |
+|                 |                          | pregnancy or prior          |
+|                 |                          | pregnancy in a window up to |
+|                 |                          | 3 years                     |
 +-----------------+--------------------------+-----------------------------+
 |                 | Gestational diabetes     | LPR: date of first DO244    |
 |                 | (GDM) early (before week | relative to pregnancy start |
@@ -528,10 +821,10 @@ predictor.
 | **At delivery** |                          |                             |
 +-----------------+--------------------------+-----------------------------+
 |                 | Gestational age at birth | MFR: gestational age at     |
-|                 | date (in weeks and also  | birth (days; completed      |
-|                 | specified as preterm) -  | weeks); preterm \< 37+0     |
-|                 | Birthweight will be      | weeks. Birthweight          |
-|                 | evaluated as both a      | thresholds: see next row.   |
+|                 | date (in weeks and also  | birth (days) and            |
+|                 | specified as preterm) -  | birthweight                 |
+|                 | Birthweight will be      |                             |
+|                 | evaluated as both a      |                             |
 |                 | continuous and           |                             |
 |                 | categorical variable     |                             |
 |                 | using thresholds at both |                             |
@@ -616,198 +909,3 @@ Prescription Registry; LPR, National Patient Registry; MFR, Medical
 Birth Register; OSDC, Open-Source Diabetes Classifier; RLRR, Register of
 Laboratory Results for Research; SSSY/SYSI, Health Service Registry;
 UDDA, education register.
-
-Because the data sources in Table 1 differ in temporal and regional
-coverage, we will develop the model in a main cohort using predictors
-available nationwide for all index births. We will evaluate additional
-predictors in sub-cohorts defined by the coverage of each partially
-available source.
-
-### Definition of cohort
-
-In the full cohort, we will use all pre-pregnancy variables except
-laboratory measurements.
-
-- Explain demographic risk factors
-
-- Explain diagnosis and prescription risk factors
-
-- Explain family disease history risk factors
-
-Nearly all pregnant women attend the scheduled antenatal visits, where
-BMI and smoking status are recorded as standard in the first and third
-trimesters. First-trimester BMI is minimally affected by gestational
-weight gain and therefore approximates pre-pregnancy weight status, a
-major determinant of type 2 diabetes. Smoking is associated with a
-higher risk of type 2 diabetes, possibly through systemic inflammation
-and central fat accumulation. In Denmark, an OGTT during pregnancy is
-performed when risk factors for gestational diabetes are present. A
-recorded OGTT therefore identifies women in whom gestational diabetes
-was suspected, and both the test itself and a sub-threshold glucose
-value may signal elevated risk of later type 2 diabetes.
-
-We will further include variables recorded at and after delivery.
-Gestational age at birth, mode of delivery and pregnancy complications
-such as preeclampsia can be linked to maternal metabolic and vascular
-health, and all are available at the postpartum check-up when the model
-is applied. Neonatal anthropometry carries additional information.
-Macrosomia, defined as a birth weight above 4000 g (or \> 4500 g), is
-associated with elevated maternal risk of type 2 diabetes and may
-reflect hyperglycaemia during pregnancy that screening did not capture.
-
-#### Definition of subcohorts
-
-In women with more than one pregnancy, the model is updated after each
-birth, so that every birth contributes an index date. The model
-integrates data from before, during and after each pregnancy and
-predicts risk at the postpartum check-up. We will define subcohorts by
-parity, so that women with a second or later birth contribute variables
-from previous pregnancies as well as from the index pregnancy.
-
-Availability of an HbA1c measurement before the index birth increases
-over calendar time, from 10% of women in 2010 to 25% in 2015 and 40% in
-2020. We will define a variable of women with a prior HbA1c measurement.
-Because availability of laboratory measurements in the registries varies
-by region over the period 2010 to 2015, we will restrict this subcohort
-to the Central Denmark Region, the North Denmark Region, and the Capital
-Region, where laboratory measurements are available.
-
-Family history requires register linkage to relatives, and the number of
-linkable relatives varies. Some women have relatives with relevant
-records, such as an older sister with a previous pregnancy, whereas
-recently immigrated women may have none. We will define subcohorts by
-the availability of family linkage.
-
-## Statistical methods
-
-### Descriptive statistics
-
-First, we will characterise the study population by demographic factors
-(age, ethnicity, socioeconomic position) and by pregnancy related
-factors from during the pregnancy and at delivery. Using the OSDC
-algorithm, we will examine trends in the incidence of type 2 diabetes in
-the population and across regions.
-
-### Variable preprocessing
-
-We will include predefined variables based on their established
-association with the risk of type 2 diabetes, as listed in *Definition
-of the potential predictors for prediction*. Diagnoses and medications
-may carry hidden indications for type 2 diabetes risk; however, the
-number of potential indicators is large. To select candidates for our
-prediction model, we will create a play dataset based on a pregnancy
-population from 2004 to 2010 to define the set of predictors. Women with
-pregnancies after 2010 are excluded from the play data, to avoid
-potential overfitting, i.e. we want the findings from the play data to
-apply for the general population and not just the sub group we have data
-on. We will include a 10 year history of each diagnosis and medication
-and uniformly test the association between each diagnosis and each
-medication and 10 year type 2 diabetes risk. We will produce a Manhattan
-plot with groupings of ICD-10 and ATC codes on the x axis. We will bring
-the candidates to domain experts in pregnancy related metabolic factors
-from SDCA and SDCC and discuss: (1) whether the indications are biased;
-and (2) the opportunity to collapse overlapping predictors (for example,
-a diagnosis of hypertension together with a prescription for
-antihypertensive medication). In a second step, we will estimate 10 year
-risk diabetes for each person in the play data only given one of the
-remaining variables from step 1. This will be repeated for each
-remaining variable. We will then produce a plot with prevalence in the
-population on the x axis and the magnitude of the association on the y
-axis. In a second iteration with the domain experts, we will discuss the
-relevance of each predictor based on prevalence of the diagnosis and
-magnitude of risk. The candidates remaining after this discussion will
-be included as candidate predictors for the main model.
-
-### Statistical model selection
-
-With the predictors defined in the play data together with the variables
-defined in "Definition of available data for prediction", we will
-continue to use the play data to select our candidate statistical
-models. The dataset will be provided to the team of prediction
-modellers, who will compete to create the best performing model while
-remaining methodologically available to each other. As the primary
-outcome, the model will aim to predict events of type 2 diabetes and, if
-the data allow, to predict 5 year HbA1c levels after pregnancy. The
-methods available for the modellers to choose from could include Cox
-proportional hazards, Poisson regression, LASSO, and random forest, each
-of which could be applied separately or combined in a super learner. The
-candidate models selected on the basis of this step will then be brought
-to the development dataset.
-
-### Developing prediction model
-
-Once all predictors and statistical models have been defined, we will
-train the models on data from pregnant women enrolled between 2010 and
-2014 in the full cohort. To handle partial marker availability in the
-cohort, we will use three approaches.
-
-Developed in the full cohort
-
-1)  Include the variable as a present/absent indicator together with
-    calendar time
-
-2)  Multiple imputation of markers available at baseline, integrated
-    into the full cohort.
-
-Developed in the defined subcohort
-
-3.  A submodel restricted to complete cases in the subcohort.
-
-All models will be included in a super learner, which will select the
-best-performing model by cross-validation based on the Brier score.
-
-### Validation
-
-For validation, we will use two approaches: first, we will subset one
-region from the development dataset to test performance across regions;
-second, we will subset the latest year (2015) to test performance on
-newer data, which will reflect the situation when the model is deployed
-on the 2027 population. Predictive performance will be assessed by the
-Brier score to emphasize on individual calbraition of risk. We will
-subdivide and test performance across age-groups, parity, and HbA1c
-present or absent at baseline.
-
-### Choosing and creating the final prediction model
-
-The best performing model from the super learner will be trained on data
-from the entire period from 2010 to 2015 and exported from the protected
-environment it was developed in. It will then be built into an R Shiny
-app, which will be provided to the group in WP4. Our model will provide
-an estimate of the 10 year risk of type 2 diabetes and the expected 5
-year HbA1c after pregnancy. Our approach follows established principles
-in machine learning and statistical modeling, adhering to standardized
-practices for prediction, reporting, and validation [@collins2024;
-@lopez-ayala2025; @collins2024a; @riley2024].
-
-## Definition of focus group for intervention-arm (WP4)
-
-After the pregnancy risk model has been developed, it can be run for
-more recent age cohorts, and an up-to-date descriptive analysis can be
-made of the distribution of long-term T2D risk among recently pregnant
-women. This descriptive analysis will show which data are most
-informative for the estimation of future diabetes risk. It can also be
-used to explore geographical variation and clustering of risk factors.
-WP4 can then choose a more focused group of high-risk women in the
-postpartum period, and geographical settings. It may be worth
-considering focusing on GPs that measure HbA1c routinely in pregnant
-women (improved risk prediction), and on women above a given BMI
-threshold.
-
-::: content-hidden
-### Discussion points
-
-- How to handle double preqnancy?
-  - Include number of births as a variable
-  - Only handle variable of most recent pregnancy
-- How to handle subpopulation with relevant predictors (e.g. HbA1c).
-  - Investigate descriptives of subpopulation with HbA1c with target
-    population (all pregnant women)
-  - HbA1c (yes/no) and interaction if HbA1c yes then include value - if
-    posible.....
-- Can the model provide explainability? What weights into the risk?
-  - Only if someone ask for this. Also, it can lead to causal
-    misinterpretations
-  - 
-:::
-
-## References

@@ -1,0 +1,105 @@
+/* wp2-extra.css: additions on top of style.css (style.css is unchanged) */
+
+/* SDCA brand colours used in the protocol figures */
+:root {
+  --sdca-red: #990032;
+  --sdca-dark: #5c0020;
+  --sdca-pink: #d9899f;
+  --sdca-light: #f3dfe4;
+}
+
+.reveal h2 { color: var(--sdca-dark); }
+.reveal .slides section h3 { color: var(--sdca-red); font-size: 34px !important; margin-bottom: 0.4em; }
+
+/* Title slide: three presenters side by side without wrapping */
+.reveal .quarto-title-authors { gap: 0.5em; }
+.reveal .quarto-title-author-name { font-size: 0.75em; white-space: nowrap; }
+.reveal .quarto-title-affiliation { font-size: 0.55em !important; }
+
+/* Aim box (same as `::: box` in the protocol) */
+.reveal .box {
+  border-left: 8px solid var(--sdca-red);
+  background: var(--sdca-light);
+  padding: 0.6em 0.9em;
+  margin: 0.6em 0;
+}
+
+/* Row of process steps: ::: {.steps} containing ::: {.step} blocks */
+.reveal .steps {
+  display: flex;
+  gap: 14px;
+  align-items: stretch;
+  margin-top: 0.6em;
+}
+.reveal .step {
+  flex: 1;
+  background: var(--sdca-light);
+  border-top: 6px solid var(--sdca-red);
+  padding: 0.5em 0.6em;
+  font-size: 0.62em;
+  line-height: 1.3;
+}
+.reveal .step strong { color: var(--sdca-red); }
+
+/* Tag on every slide with simulated numbers. Delete the ::: {.sim-flag} line when real results go in */
+.reveal .sim-flag {
+  position: absolute;
+  top: 10px;    /* in the title row, just left of the logo */
+  right: 255px;
+  z-index: 11;
+  background: #c27a12;
+  color: white;
+  font-size: 0.4em;
+  font-weight: bold;
+  padding: 0.15em 0.6em;
+  border-radius: 4px;
+}
+
+/* Smaller text inside a block: ::: small */
+.reveal .small { font-size: 0.7em; }
+
+/* Discussion slide: numbered questions */
+.reveal .discuss li { margin-bottom: 0.35em; }
+
+/* Push a column below the logo */
+.reveal .pad-top { padding-top: 3em; }
+
+/* Timeline (redrawn from the protocol figure at slide size) */
+.reveal .timeline {
+  display: flex;
+  gap: 4px;
+  margin: 2.2em 0 1em 0;   /* clears the logo */
+  font-size: 0.6em;
+  text-align: center;
+  line-height: 1.3;
+}
+.reveal .timeline > div { padding: 0.5em 0.3em; color: var(--sdca-dark); }
+.reveal .tl-exp     { flex: 7;  background: var(--sdca-light); }
+.reveal .tl-train   { flex: 5;  background: var(--sdca-pink); }
+.reveal .tl-test    { flex: 2;  background: var(--sdca-red); color: white !important; }
+.reveal .tl-horizon { flex: 10; border: 2px dashed var(--sdca-red); color: var(--sdca-red) !important; }
+
+/* Predictor overview (redrawn from the protocol figure at slide size) */
+.reveal .predictors table {
+  width: 100%;
+  font-size: 0.56em;
+  line-height: 1.15;
+  border-collapse: separate;
+  border-spacing: 4px;
+}
+.reveal .predictors th {
+  text-align: center !important;
+  padding: 0.35em;
+  border: none;
+  font-size: 1.1em;
+}
+.reveal .predictors th:nth-child(1) { background: var(--sdca-light); color: var(--sdca-dark); }
+.reveal .predictors th:nth-child(2) { background: var(--sdca-pink);  color: var(--sdca-dark); }
+.reveal .predictors th:nth-child(3) { background: var(--sdca-red);   color: white; }
+.reveal .predictors td {
+  border: 1px solid #e6cdd4;
+  padding: 0.25em 0.45em;
+  vertical-align: top;
+  width: 33%;
+}
+.reveal .predictors .pd { color: #555; font-size: 0.85em; }
