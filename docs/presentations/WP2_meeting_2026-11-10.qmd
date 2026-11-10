@@ -203,6 +203,7 @@ Definition of population
 
 - gave birth at least once between **2010 and 2015**
 - have no previous diagnosis of type 1 or type 2 diabetes at the index date
+- age at delivery between 18-49 years
 :::
 
 ::: {.column width="50%"}
@@ -211,7 +212,6 @@ Definition of population
 
 - Stillbirth in primiparous women (parity = 1)
 
-**Linkage:** Danish nationwide registries at Statistics Denmark via pseudonymised CPR; the Medical Birth Register links mother, child and earlier pregnancies
 :::
 :::
 :::
@@ -388,7 +388,7 @@ Test on **2015** deliveries, closest to the 2027 population where the model will
 
 ## Ethnicity
 
-![Incidence trends of type 2 diabetes by period](table_figures/ethnicity_cum_incidence.png){.r-stretch fig-align="center"}
+![Cummulative incidence trends of type 2 diabetes by ethnicity](table_figures/ethnicity_cum_incidence.png){.r-stretch fig-align="center"}
 
 
 ## Trends in smoking distribution over calendar and by region
@@ -442,7 +442,7 @@ tab1_part(c("hba1c_available", "hba1c_value", "gestational_age", "weight_baby",
 
 ## Model performance on exploration data
 
-Model trained on data from 2003-2009
+Model trained on data from 2003-2008
 
 ### First models in the test data 2009
 
@@ -547,7 +547,7 @@ kbl_wp2(capture, font_size = 26, align = "lrr")
 
 ## From model to WP4
 
-### What we WP4 could receives
+### What WP4 could receives
 
 ::: steps
 ::: step
