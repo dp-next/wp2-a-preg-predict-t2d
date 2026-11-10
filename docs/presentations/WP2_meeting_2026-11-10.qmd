@@ -108,33 +108,12 @@ Develop and validate a prediction model that identifies women at **high risk of 
 **Long-term goal:** a clinically ready tool at the **8-week postpartum check-up** in general practice, so that high-risk women can be offered the intervention designed in **WP4**
 :::
 
-## Prediction vs association {.smaller}
-
-### Two different questions
-
-::: columns
-::: {.column width="50%"}
-**Association study** (what most of us do)
-
-- Is X a risk factor for type 2 diabetes?
-- Adjust for confounders
-- Interpret the estimate (HR, IRR)
-:::
-
-::: {.column width="50%"}
-::: fragment
-**Prediction model** (this project)
+## Prediction model {.smaller}
 
 - *Who* will develop type 2 diabetes?
 - Any variable available at the index date may help, causal or not
 - Judge the model by its **predicted risks**: are they accurate (calibration) and do they separate cases from non-cases (discrimination)?
-:::
-:::
-:::
 
-::: fragment
-A predictor's coefficient in the model **should not be read causally**
-:::
 
 ::: notes
 For the non-prediction people: we do not care why a predictor works, only that it improves risk estimates in new women.

@@ -1,0 +1,16 @@
+"","model","AUC","Brier","IPA","label","short"
+"1","age",0.65385334813021,0.0086223872163182,0.00195822831875947,"AUC 65.4 
+Brier 0.9 
+IPA 0.2%","age: AUC 65.4, Brier 0.9, IPA 0.2%"
+"2","age+gdm_status",0.789169233197238,0.00824835272710159,0.0452527400267398,"AUC 78.9 
+Brier 0.8 
+IPA 4.5%","age+gdm_status: AUC 78.9, Brier 0.8, IPA 4.5%"
+"3","age+gdm_status+bmi+smoking",0.877816592095095,0.00805080087747503,0.0681193769630934,"AUC 87.8 
+Brier 0.8 
+IPA 6.8%","age+gdm_status+bmi+smoking: AUC 87.8, Brier 0.8, IPA 6.8%"
+"4","age+gdm_status+bmi+smoking+highest_education_group",0.880070039335966,0.00800414263355658,0.0735200711392696,"AUC 88.0 
+Brier 0.8 
+IPA 7.4%","age+gdm_status+bmi+smoking+highest_education_group: AUC 88.0, Brier 0.8, IPA 7.4%"
+"5","age+gdm_status+bmi+smoking+highest_education_group+pre_eclampsia_current+weight_baby+length_baby+gestational_age",0.886050767946756,0.00792967518601548,0.0821396820906127,"AUC 88.6 
+Brier 0.8 
+IPA 8.2%","age+gdm_status+bmi+smoking+highest_education_group+pre_eclampsia_current+weight_baby+length_baby+gestational_age: AUC 88.6, Brier 0.8, IPA 8.2%"

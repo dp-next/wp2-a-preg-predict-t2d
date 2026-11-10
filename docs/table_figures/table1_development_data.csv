@@ -1,0 +1,61 @@
+**Characteristic**,"**Missing, n (%)**","**N = 253,507**"
+__age__,0 (0%),30.8 (5.1)
+__ethnicity__,0 (0%),NA
+Danish,NA,"209,875 (83%)"
+AFRO,NA,"1,725 (0.7%)"
+AMRO,NA,"1,564 (0.6%)"
+EMRO,NA,"11,154 (4.4%)"
+EURO,NA,"22,692 (9.0%)"
+SEARO,NA,"2,782 (1.1%)"
+WPRO,NA,"3,565 (1.4%)"
+Unknown,NA,150 (<0.1%)
+__highest_education_group__,"64,877 (26%)",NA
+Low education,NA,"23,581 (13%)"
+Medium education,NA,"59,946 (32%)"
+High education,NA,"105,103 (56%)"
+__income_quartile__,183 (<0.1%),NA
+Q1,NA,"33,173 (13%)"
+Q2,NA,"73,896 (29%)"
+Q3,NA,"81,138 (32%)"
+Q4,NA,"65,117 (26%)"
+__paritet_cat__,"1,798 (0.7%)",NA
+1,NA,"214,113 (85%)"
+2,NA,"28,404 (11%)"
+3+,NA,"9,192 (3.7%)"
+__bmi__,0 (0%),24.3 (5.0)
+__smoking__,0 (0%),NA
+non_smoker,NA,"219,319 (87%)"
+stopped_smoking_during_pregnancy,NA,"8,710 (3.4%)"
+smoked_during_pregnancy,NA,"22,526 (8.9%)"
+missing,NA,"2,952 (1.2%)"
+__gdm_current__,0 (0%),NA
+early,NA,"6,411 (2.5%)"
+late,NA,"7,149 (2.8%)"
+none,NA,"239,227 (94%)"
+normal,NA,720 (0.3%)
+__gdm_previous__,0 (0%),NA
+0,NA,"247,368 (98%)"
+1,NA,"6,139 (2.4%)"
+__pre_eclampsia_current__,0 (0%),NA
+early,NA,"7,562 (3.0%)"
+late,NA,"6,645 (2.6%)"
+none,NA,"239,300 (94%)"
+__pre_eclampsia_previous__,0 (0%),NA
+0,NA,"243,460 (96%)"
+1,NA,"10,047 (4.0%)"
+__hba1c_value__,"228,296 (90%)",33.5 (4.1)
+__hba1c_available__,0 (0%),NA
+0,NA,"228,296 (90%)"
+1,NA,"25,211 (9.9%)"
+__gestational_age__,0 (0%),278 (12)
+__macrosomic_baby__,0 (0%),NA
+0,NA,"205,344 (81%)"
+1,NA,"48,163 (19%)"
+__weight_baby__,0 (0%),"3,470 (552)"
+__length_baby__,0 (0%),52 (3)
+__head_circumference__,7 (<0.1%),34 (4)
+__c_section__,"198,258 (78%)",NA
+1,NA,"55,249 (100%)"
+__t2d_fu__,0 (0%),NA
+alive,NA,"248,321 (98%)"
+diabetes,NA,"5,186 (2.0%)"
