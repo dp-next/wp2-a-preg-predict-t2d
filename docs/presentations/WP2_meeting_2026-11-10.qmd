@@ -74,6 +74,81 @@ theme_wp2 <- theme_minimal(base_size = 26) +
   )
 theme_set(theme_wp2)
 
+# ---- Table 1 from the DST export (results/table1_development_data.csv) ----
+# Readable names for the variables. Add a line here if you add a variable to the export.
+tab1_labels <- c(
+  age                     = "Age, years",
+  ethnicity               = "Region of origin (WHO)",
+  highest_education_group = "Education",
+  income_quartile         = "Income quartile",
+  paritet_cat             = "Parity",
+  bmi                     = "BMI, kg/m²",
+  smoking                 = "Smoking",
+  gdm_current             = "GDM, this pregnancy",
+  gdm_previous            = "Previous GDM",
+  pre_eclampsia_current   = "Pre-eclampsia, this pregnancy",
+  pre_eclampsia_previous  = "Previous pre-eclampsia",
+  hba1c_value             = "HbA1c, mmol/mol",
+  hba1c_available         = "HbA1c available",
+  gestational_age         = "Gestational age, days",
+  macrosomic_baby         = "Macrosomia",
+  weight_baby             = "Birth weight, g",
+  length_baby             = "Birth length, cm",
+  head_circumference      = "Head circumference, cm",
+  c_section               = "Caesarean section",
+  t2d_fu                  = "T2D in follow-up"
+)
+# Yes/no variables: show only this level, on the variable's own line
+tab1_one_line <- c(gdm_previous = "1", pre_eclampsia_previous = "1", hba1c_available = "1",
+                   macrosomic_baby = "1", c_section = "1", t2d_fu = "diabetes")
+# Readable names for category levels
+tab1_levels <- c(
+  non_smoker = "Non-smoker", stopped_smoking_during_pregnancy = "Stopped in pregnancy",
+  smoked_during_pregnancy = "Smoked in pregnancy", missing = "Missing",
+  early = "Early", late = "Late", none = "None", normal = "Normal"
+)
+
+tab1_raw <- read.csv("table_figures/table1_development_data.csv", check.names = FALSE,
+                     colClasses = "character")
+names(tab1_raw) <- c("label", "missing", "value")
+tab1_n <- gsub("\\*", "", names(read.csv("table_figures/table1_development_data.csv",
+                                          check.names = FALSE, nrows = 1))[3])
+is_var <- grepl("^__.*__$", tab1_raw$label)
+var_name <- ifelse(is_var, gsub("__", "", tab1_raw$label), NA)
+tab1_raw$var <- var_name[cummax(seq_along(var_name) * !is.na(var_name))]
+tab1_raw$is_var <- is_var
+
+# Make a kable for a set of variables, e.g. tab1_part(c("age", "bmi"))
+tab1_part <- function(vars, font_size = 20) {
+  rows <- list()
+  for (v in vars) {
+    d <- tab1_raw[tab1_raw$var == v, ]
+    head_row <- d[d$is_var, ]
+    lev <- d[!d$is_var, ]
+    if (v %in% names(tab1_one_line)) {
+      val <- lev$value[lev$label == tab1_one_line[[v]]]
+      rows[[length(rows) + 1]] <- data.frame(Characteristic = tab1_labels[[v]],
+        value = val, Missing = head_row$missing, level = FALSE)
+    } else {
+      rows[[length(rows) + 1]] <- data.frame(Characteristic = tab1_labels[[v]],
+        value = ifelse(is.na(head_row$value) | head_row$value == "NA", "", head_row$value),
+        Missing = head_row$missing, level = FALSE)
+      if (nrow(lev) > 0) {
+        lab <- ifelse(lev$label %in% names(tab1_levels), tab1_levels[lev$label], lev$label)
+        rows[[length(rows) + 1]] <- data.frame(Characteristic = lab, value = lev$value,
+                                               Missing = "", level = TRUE)
+      }
+    }
+  }
+  out <- do.call(rbind, rows)
+  lvl <- which(out$level)
+  names(out)[2] <- tab1_n
+  kbl_wp2(out[, 1:3], font_size = font_size, align = "lrr", row.names = FALSE) |>
+    add_indent(lvl) |>
+    row_spec(which(!out$level), bold = TRUE) |>
+    column_spec(2:3, extra_css = "white-space: nowrap;")
+}
+
 # Same table look as the EASD slides
 kbl_wp2 <- function(x, font_size = 26, ...) {
   kbl(x, ...) |>
@@ -94,7 +169,7 @@ kbl_wp2 <- function(x, font_size = 26, ...) {
 :::
 
 ::: {.column width="50%"}
-![Prediction project to identify women at high risk of type 2 diabetes](docs/images/preg_predict_t2d.png)
+![Prediction project to identify women at high risk of type 2 diabetes](table_figures/preg_predict_t2d.png)
 :::
 :::
 
@@ -120,6 +195,8 @@ For the non-prediction people: we do not care why a predictor works, only that i
 :::
 
 # Methods {background-color="#f0f0f0"}
+
+Definition of population
 
 ## Study population
 
@@ -197,7 +274,7 @@ registries <- tibble::tribble(
 kbl_wp2(registries, font_size = 26)
 ```
 
-## Cohort and subcohorts {.smaller}
+## Cohort and subcohorts for prediction model {.smaller}
 
 ### Main model and partial data
 
@@ -223,9 +300,55 @@ All nationwide predictors for every index birth, **except laboratory measurement
 :::
 :::
 
-## Step 1: Predictors
+## Descriptive
 
-### Selecting predictors in the exploration data
+## Trends in incidence type 2 diabetes
+
+![Incidence trends of type 2 diabetes by period](table_figures/fig_rate_by_delivery_period.png){.r-stretch fig-align="center"}
+
+## Trends in incidence type 2 diabetes by region
+
+![Incidence trends of type 2 diabetes by region](table_figures/fig_rate_by_region.png){.r-stretch fig-align="center"}
+
+
+## Define predictors
+
+## The usual suspects
+
+## Body mass index
+
+![Incidence trends of type 2 diabetes by period](table_figures/bmi_cum_incidence.png){.r-stretch fig-align="center"}
+
+## Trends in BMI distribution over calendar
+
+![BMI distribtion](table_figures/bmi_distribution_overall.png){.r-stretch fig-align="center"}
+## and by region..
+
+![BMI distribtion](table_figures/bmi_distribution_by_region.png){.r-stretch fig-align="center"}
+
+## Education
+
+![Cummulative incidence of type 2 diabetes](table_figures/highest_education_group_cum_incidence.png){.r-stretch fig-align="center"}
+
+## Ethnicity
+
+
+![Incidence trends of type 2 diabetes by period](table_figures/ethnicity_cum_incidence.png){.r-stretch fig-align="center"}
+
+## Trends in BMI distribution over calendar
+
+![BMI distribtion](table_figures/bmi_distribution_overall.png){.r-stretch fig-align="center"}
+
+![BMI distribtion](table_figures/bmi_distribution_by_region.png){.r-stretch fig-align="center"}
+
+## Trends in smoking distribution over calendar
+
+![Smoking distribtion](table_figures/smoking_distribution_overall.png){.r-stretch fig-align="center"}
+
+
+![Smoking distribtion](table_figures/smoking_distribution_by_region.png){.r-stretch fig-align="center"}
+
+## Selecting predictors in the exploration data
 
 Exploration data: deliveries **2003-2009**, kept apart from model development
 
@@ -279,6 +402,12 @@ Exploration data: deliveries **2003-2009**, kept apart from model development
 All three enter the super learner, which selects by cross-validated Brier score
 :::
 
+## HbA1c availability
+
+### HbA1c in the 3 years before the index date, by region
+
+![](table_figures/hba1c_by_region.png){fig-align="center" .r-stretch}
+
 ## Validation {.smaller}
 
 ### Geographical and temporal test sets
@@ -324,333 +453,101 @@ Test on **2015** deliveries, closest to the 2027 population where the model will
 
 # Preliminary findings {background-color="#f0f0f0"}
 
-## Characteristics
+## Population: the mother
 
-### Study population at the index date
+### Development data, mean (SD) or n (%)
 
-::: {.sim-flag}
-SIMULATED EXAMPLE
+::: columns
+::: {.column width="50%"}
+```{r}
+#| label: t1-mother-a
+tab1_part(c("age", "ethnicity", "highest_education_group"), font_size = 18)
+```
+:::
+::: {.column width="50%"}
+```{r}
+#| label: t1-mother-b
+tab1_part(c("income_quartile", "paritet_cat", "bmi", "smoking"), font_size = 18)
+```
+:::
 :::
 
-```{r}
-#| label: t-baseline
-# Export from DST: one row per characteristic, already formatted as text
-# Columns: Characteristic, Total, `Type 2 diabetes`, `No type 2 diabetes`
-tab1 <- tibble::tribble(
-  ~Characteristic,                ~Total,             ~`Type 2 diabetes`,  ~`No type 2 diabetes`,
-  "Deliveries, n",                "350,000",          "5,000",             "345,000",
-  "Age at delivery (years)",      "30.5 (5.0)",       "32.0 (5.5)",        "30.5 (5.0)",
-  "BMI, first visit (kg/m²)",     "24.0 (4.5)",       "30.0 (6.0)",        "24.0 (4.5)",
-  "Smoking, first visit",         "30,000 (8.6%)",    "700 (14.0%)",       "29,300 (8.5%)",
-  "Primiparous",                  "150,000 (42.9%)",  "1,900 (38.0%)",     "148,100 (42.9%)",
-  "Gestational diabetes",         "10,000 (2.9%)",    "1,800 (36.0%)",     "8,200 (2.4%)",
-  "Pre-eclampsia",                "10,000 (2.9%)",    "300 (6.0%)",        "9,700 (2.8%)",
-  "Non-Danish origin",            "60,000 (17.1%)",   "1,600 (32.0%)",     "58,400 (16.9%)"
-)
-
-kbl_wp2(tab1, font_size = 26) |>
-  column_spec(2:4, extra_css = "white-space: nowrap;") |>
-  footnote(general = "Categorical variables: n (%). Continuous variables: mean (SD).",
-           general_title = "")
-```
-
-## Incidence of T2D
-
-### Events and rates during follow-up
-
-::: {.sim-flag}
-SIMULATED EXAMPLE
+::: notes
+Education is missing for 26%. Parity: 85% are parity 1 (check what the variable counts).
 :::
 
+## Pregnancy and birth
+
+### Development data, mean (SD) or n (%)
+
+::: columns
+::: {.column width="50%"}
 ```{r}
-#| label: t-incidence
-# Export from DST: events and person-years by group
-inc <- tibble::tribble(
-  ~Group,                    ~n,      ~events, ~py,
-  "All deliveries",          350000,  5000,    3300000,
-  "Gestational diabetes",    10000,   1800,    85000,
-  "No gestational diabetes", 340000,  3200,    3215000
-)
-
-inc |>
-  mutate(
-    `Events, n (%)`         = sprintf("%s (%.1f%%)", format(events, big.mark = ","), 100 * events / n),
-    `Rate per 1,000 PY`     = sprintf("%.1f", 1000 * events / py),
-    `95% CI`                = sprintf("%.1f to %.1f",
-                                      1000 * qchisq(0.025, 2 * events) / 2 / py,
-                                      1000 * qchisq(0.975, 2 * (events + 1)) / 2 / py),
-    n = format(n, big.mark = ",")
-  ) |>
-  select(Group, n, `Events, n (%)`, `Rate per 1,000 PY`, `95% CI`) |>
-  kbl_wp2(font_size = 28, align = "lrrrr")
+#| label: t1-preg-a
+tab1_part(c("gdm_current", "gdm_previous", "pre_eclampsia_current", "pre_eclampsia_previous"))
 ```
-
-## Cumulative risk
-
-### Type 2 diabetes after delivery by GDM status
-
-::: {.sim-flag}
-SIMULATED EXAMPLE
+:::
+::: {.column width="50%"}
+```{r}
+#| label: t1-preg-b
+# c_section is left out: in the export 0 is coded as missing. Add "c_section" here once recoded.
+tab1_part(c("hba1c_available", "hba1c_value", "gestational_age", "weight_baby",
+            "length_baby", "macrosomic_baby", "t2d_fu"))
+```
+:::
 :::
 
-```{r}
-#| label: f-cuminc
-# Export from DST: cumulative incidence (e.g. Aalen-Johansen with death as competing risk)
-# Columns: time (years), group, est, lower, upper
-cuminc <- expand.grid(time = seq(0, 10, by = 0.25),
-                      group = c("Gestational diabetes", "No gestational diabetes")) |>
-  mutate(
-    est   = ifelse(group == "Gestational diabetes",
-                   1 - exp(-0.030 * time), 1 - exp(-0.001 * time)),
-    lower = est * 0.92,
-    upper = est * 1.08
-  )
-
-ggplot(cuminc, aes(time, est, colour = group, fill = group)) +
-  geom_ribbon(aes(ymin = lower, ymax = upper), alpha = 0.15, colour = NA) +
-  geom_step(linewidth = 1) +
-  scale_colour_manual(values = c(col_red, col_blue)) +
-  scale_fill_manual(values = c(col_red, col_blue)) +
-  scale_x_continuous(breaks = 0:10) +
-  scale_y_continuous(labels = scales::percent) +
-  labs(x = "Years since delivery", y = "Cumulative incidence of T2D")
-```
-
-## Incidence by region
-
-### Type 2 diabetes incidence by delivery year
-
-::: {.sim-flag}
-SIMULATED EXAMPLE
-:::
-
-```{r}
-#| label: f-trend-region
-# Export from DST: events and person-years by region and delivery year
-# Columns: region, year, events, py
-regions <- c("Capital", "Zealand", "Southern", "Central", "North")
-set.seed(1)
-trend <- expand.grid(region = regions, year = 2010:2015) |>
-  mutate(py     = 100000,
-         events = rpois(n(), lambda = 150 + 5 * (year - 2010)))
-
-trend |>
-  mutate(rate  = 1000 * events / py,
-         lower = 1000 * qchisq(0.025, 2 * events) / 2 / py,
-         upper = 1000 * qchisq(0.975, 2 * (events + 1)) / 2 / py,
-         region = factor(region, levels = regions)) |>
-  ggplot(aes(year, rate)) +
-  geom_errorbar(aes(ymin = lower, ymax = upper), width = 0, colour = col_pink, linewidth = 1) +
-  geom_line(colour = col_red, linewidth = 1) +
-  geom_point(colour = col_red, size = 2.5) +
-  facet_wrap(~region, nrow = 1) +
-  scale_x_continuous(breaks = c(2010, 2015), labels = c("'10", "'15")) +
-  theme(panel.spacing = unit(2.5, "lines")) +
-  labs(x = "Year of delivery", y = "T2D per 1,000 PY")
-```
-
-## Screening codes
-
-### All ICD-10 and ATC codes in the exploration data
-
-::: {.sim-flag}
-SIMULATED EXAMPLE
-:::
-
-```{r}
-#| label: f-manhattan
-# Export from DST: one row per ICD-10 / ATC code from the exploration data
-# Columns: code, group (ICD-10 chapter or ATC main group), hr, p
-set.seed(2)
-groups <- c(paste("ICD", c("E", "I", "K", "N", "O", "F", "J", "M")),
-            paste("ATC", c("A", "C", "G", "H", "N", "R")))
-screen <- tibble(group = rep(groups, each = 40)) |>
-  mutate(code = paste0(sub(".* ", "", group), sprintf("%02d", row_number() %% 100)),
-         hr   = exp(rnorm(n(), 0, 0.3)),
-         p    = runif(n())^4)
-screen$p[c(1, 160, 170, 330)] <- c(1e-40, 1e-30, 1e-25, 1e-20)   # a few strong signals
-screen$code[c(1, 160, 170, 330)] <- c("E282 (PCOS)", "O244 (GDM)", "O14 (Pre-eclampsia)", "A10BA02 (Metformin)")
-
-screen <- screen |>
-  mutate(group = factor(group, levels = groups),
-         pos   = row_number(),
-         shade = as.integer(group) %% 2 == 0)
-bonf  <- 0.05 / nrow(screen)
-axisx <- screen |> group_by(group) |> summarise(mid = mean(pos))
-
-ggplot(screen, aes(pos, -log10(p), colour = shade)) +
-  geom_point(size = 2) +
-  geom_hline(yintercept = -log10(bonf), linetype = "dashed", colour = "grey40") +
-  geom_text_repel(data = filter(screen, p < 1e-15), aes(label = code),
-                  colour = "grey20", size = 6.5, nudge_x = 25, direction = "y",
-                  segment.colour = "grey60") +
-  scale_colour_manual(values = c(col_red, col_pink), guide = "none") +
-  scale_x_continuous(breaks = axisx$mid, labels = axisx$group, expand = expansion(mult = c(0.01, 0.12))) +
-  labs(x = NULL, y = expression(-log[10](p))) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1),
-        panel.grid.major.x = element_blank())
-```
-
-## Prevalence vs effect
-
-### Exploration: candidates after first expert review
-
-::: {.sim-flag}
-SIMULATED EXAMPLE
-:::
-
-```{r}
-#| label: f-prev-effect
-# Export from DST: candidates left after expert review
-# Columns: label, prevalence (proportion), hr
-cand <- tibble::tribble(
-  ~label,                       ~prevalence, ~hr,
-  "Previous GDM",               0.020,       9.0,
-  "PCOS",                       0.030,       2.5,
-  "Metformin without diabetes", 0.010,       3.5,
-  "Pre-eclampsia",              0.030,       1.8,
-  "Antihypertensives",          0.020,       2.0,
-  "Glucocorticoids",            0.080,       1.2,
-  "Antidepressants",            0.090,       1.4,
-  "Lipid-lowering drugs",       0.004,       2.8,
-  "Asthma",                     0.070,       1.1,
-  "Hypothyroidism",             0.030,       1.3
-)
-
-ggplot(cand, aes(prevalence, hr)) +
-  geom_hline(yintercept = 1, colour = "grey60") +
-  geom_point(colour = col_red, size = 4) +
-  geom_text_repel(aes(label = label), size = 7, colour = "grey20",
-                  box.padding = 0.6, segment.colour = "grey60") +
-  scale_x_log10(labels = scales::percent) +
-  scale_y_log10(breaks = c(1, 2, 5, 10)) +
-  coord_cartesian(clip = "off") +
-  labs(x = "Prevalence in exploration data (log scale)",
-       y = "HR for 10-year T2D (log)")
-```
 
 ## Model performance
 
-### Predictive performance in the 2015 test data
-
-::: {.sim-flag}
-SIMULATED EXAMPLE
-:::
+### First models in the test data
 
 ```{r}
-#| label: t-performance
-# Export from DST: one row per model, evaluated in the test data
-# Columns: Model, brier, brier_lo, brier_hi, auc, auc_lo, auc_hi
-perf <- tibble::tribble(
-  ~Model,                     ~brier, ~brier_lo, ~brier_hi, ~auc,  ~auc_lo, ~auc_hi,
-  "Null model (same risk)",   0.0150, 0.0145,    0.0155,    0.500, NA,      NA,
-  "Cox",                      0.0132, 0.0127,    0.0137,    0.840, 0.830,   0.850,
-  "LASSO",                    0.0131, 0.0126,    0.0136,    0.845, 0.835,   0.855,
-  "Random forest",            0.0134, 0.0129,    0.0139,    0.830, 0.820,   0.840,
-  "Super learner",            0.0130, 0.0125,    0.0135,    0.850, 0.840,   0.860
-)
+#| label: t-score
+# Export from DST: results/table_score_testdata.csv (columns model, AUC, Brier, IPA)
+# Short names for the models, in the order of the rows in the file
+model_names <- c("Basic", "Extended")
 
-null_brier <- perf$brier[1]
-perf |>
-  mutate(
-    `Brier score (95% CI)` = sprintf("%.4f (%.4f-%.4f)", brier, brier_lo, brier_hi),
-    `Scaled Brier (IPA)`   = sprintf("%.1f%%", 100 * (1 - brier / null_brier)),
-    `AUC (95% CI)`         = ifelse(is.na(auc_lo), sprintf("%.2f", auc),
-                                    sprintf("%.2f (%.2f-%.2f)", auc, auc_lo, auc_hi))
-  ) |>
-  select(Model, `Brier score (95% CI)`, `Scaled Brier (IPA)`, `AUC (95% CI)`) |>
-  kbl_wp2(font_size = 26, align = "lrrr") |>
-  column_spec(2:4, extra_css = "white-space: nowrap;") |>
-  row_spec(5, bold = TRUE) |>
-  footnote(general = "IPA: improvement in Brier score over the null model. Higher is better.",
-           general_title = "")
+score <- read.csv("table_figures/table_score_testdata.csv")
+pretty_vars <- function(x) {
+  x <- gsub("\\+", ", ", x)
+  x <- gsub("gdm_status", "GDM", x)
+  x <- gsub("bmi", "BMI", x)
+  x <- gsub("highest_education_group", "education", x)
+  x <- gsub("pre_eclampsia_current", "pre-eclampsia", x)
+  x <- gsub("weight_baby", "birth weight", x)
+  x <- gsub("length_baby", "birth length", x)
+  x <- gsub("gestational_age", "gestational age", x)
+  x
+}
+null_brier <- mean(score$Brier / (1 - score$IPA))   # Brier of the model that gives everyone the same risk
+
+score_tab <- data.frame(
+  Model        = c("Null (same risk for all)", model_names),
+  Predictors   = c("none", pretty_vars(score$model)),
+  AUC          = c("0.50", sprintf("%.3f", score$AUC)),
+  `Brier score` = sprintf("%.4f", c(null_brier, score$Brier)),
+  IPA          = c("0%", sprintf("%.1f%%", 100 * score$IPA)),
+  check.names  = FALSE
+)
+kbl_wp2(score_tab, font_size = 26, align = "llrrr") |>
+  column_spec(2, width = "22em") |>
+  column_spec(3:5, extra_css = "white-space: nowrap;")
 ```
 
-::: notes
-Brier scores look tiny because T2D is rare. Read the IPA column: how much better than giving everyone the average risk.
-:::
+## Discrimination
+
+### ROC curves for the two models
+
+![](table_figures/AUC.jpeg){fig-align="center" .r-stretch}
+
 
 ## Calibration
 
-::: {.sim-flag}
-SIMULATED EXAMPLE
-:::
+### Predicted versus observed 10-year risk
 
-::: columns
-::: {.column width="60%"}
-```{r}
-#| label: f-calibration
-#| fig-width: 6.5
-#| fig-height: 6
-# Export from DST: mean predicted and observed 10-year risk by tenth of predicted risk
-# Columns: decile, predicted, observed, lower, upper
-calib <- tibble(decile = 1:10,
-                predicted = c(0.001, 0.002, 0.003, 0.004, 0.006, 0.008, 0.011, 0.016, 0.027, 0.075)) |>
-  mutate(observed = predicted * c(1.1, 0.9, 1.05, 0.95, 1.1, 0.9, 1.05, 1.0, 0.92, 0.88),
-         lower = observed * 0.8,
-         upper = observed * 1.2)
+![](table_figures/calibration_plot.jpeg){fig-align="center" .r-stretch}
 
-lim <- c(0, max(calib$upper) * 1.05)
-ggplot(calib, aes(predicted, observed)) +
-  geom_abline(linetype = "dashed", colour = "grey50") +
-  geom_errorbar(aes(ymin = lower, ymax = upper), width = 0, colour = col_pink, linewidth = 1) +
-  geom_point(colour = col_red, size = 3.5) +
-  scale_x_continuous(labels = scales::percent, limits = lim) +
-  scale_y_continuous(labels = scales::percent, limits = lim) +
-  coord_equal() +
-  labs(x = "Predicted 10-year risk", y = "Observed 10-year risk")
-```
-:::
-
-::: {.column .pad-top width="40%"}
-::: small
-Each point is one tenth of women ranked by predicted risk.
-
-Points on the dashed line mean the predicted risks match what happened.
-
-Below the line: the model **overestimates** risk.
-:::
-:::
-:::
-
-## Model estimates
-
-### What drives the predictions?
-
-::: {.sim-flag}
-SIMULATED EXAMPLE
-:::
-
-```{r}
-#| label: f-forest
-# Export from DST: estimates from the Cox model
-# Columns: term, hr, lower, upper
-coefs <- tibble::tribble(
-  ~term,                            ~hr,  ~lower, ~upper,
-  "Gestational diabetes",           8.0,  7.2,    8.9,
-  "BMI, per 5 kg/m²",               1.9,  1.8,    2.0,
-  "Previous GDM",                   2.5,  2.1,    3.0,
-  "Family history of T2D",          1.8,  1.6,    2.0,
-  "Non-Danish origin",              1.7,  1.5,    1.9,
-  "PCOS",                           1.6,  1.3,    1.9,
-  "Pre-eclampsia",                  1.4,  1.2,    1.7,
-  "Smoking",                        1.3,  1.2,    1.5,
-  "Age, per 5 years",               1.2,  1.1,    1.3,
-  "Macrosomia (≥ 4,000 g)",         1.2,  1.0,    1.4
-) |>
-  mutate(term = factor(term, levels = rev(term)))
-
-ggplot(coefs, aes(hr, term)) +
-  geom_vline(xintercept = 1, colour = "grey60") +
-  geom_errorbarh(aes(xmin = lower, xmax = upper), height = 0, colour = col_red, linewidth = 1) +
-  geom_point(colour = col_red, size = 3.5) +
-  scale_x_log10(breaks = c(1, 2, 4, 8)) +
-  labs(x = "Hazard ratio (log scale), mutually adjusted", y = NULL)
-```
-
-::: {.fragment .small}
-Mutually adjusted prediction coefficients, **not causal effects**
-:::
 
 ## Reach for WP4
 
@@ -704,40 +601,6 @@ kbl_wp2(capture, font_size = 26, align = "lrr")
 :::
 :::
 
-## TEMPLATE: figure from file {visibility="hidden"}
-
-### Subtitle describing the result
-
-![](results/my_figure.png){fig-align="center" .r-stretch}
-
-## TEMPLATE: table from file {visibility="hidden"}
-
-### Subtitle describing the result
-
-```{r}
-#| label: t-template
-#| eval: false
-# Exported table, one row per line on the slide, already formatted as text
-my_table <- readRDS("results/my_table.rds")
-kbl_wp2(my_table, font_size = 26)
-```
-
-## TEMPLATE: plot from aggregated table {visibility="hidden"}
-
-### Subtitle describing the result
-
-```{r}
-#| label: f-template
-#| eval: false
-# Exported aggregated table. Columns: x, y, group
-my_data <- readRDS("results/my_data.rds")
-
-ggplot(my_data, aes(x, y, colour = group)) +
-  geom_line(linewidth = 1) +
-  geom_point(size = 3) +
-  scale_colour_manual(values = c(col_red, col_blue, col_amber)) +
-  labs(x = "x-axis label", y = "y-axis label")
-```
 
 # Discussion {background-color="#f0f0f0"}
 
