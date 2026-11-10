@@ -306,7 +306,7 @@ All nationwide predictors for every index birth, **except laboratory measurement
 
 ![Incidence trends of type 2 diabetes by period](table_figures/fig_rate_by_delivery_period.png){.r-stretch fig-align="center"}
 
-## Trends in incidence type 2 diabetes by region
+## Trends in incidence of type 2 diabetes by region
 
 ![Incidence trends of type 2 diabetes by region](table_figures/fig_rate_by_region.png){.r-stretch fig-align="center"}
 
