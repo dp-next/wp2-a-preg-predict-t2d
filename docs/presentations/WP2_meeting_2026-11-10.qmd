@@ -166,19 +166,8 @@ kbl_wp2 <- function(x, font_size = 26, ...) {
 - Discuss how to present our work to WP4 (intervention team)
 
 
-
-## Why after childbirth? {.smaller}
-
-::: columns
-::: {.column width="50%"}
-- Gestational diabetes (GDM) affects about **6% of deliveries** in Denmark and carries a **near tenfold higher risk** of later type 2 diabetes
-- Danish GDM criteria use a **high threshold** and a **2-h glucose only**, so many women below the threshold are still at elevated risk
-- Pregnancy and family formation are periods where women are **more receptive to health messages**
-:::
-
-::: {.column width="50%"}
+::: {.column width="100%"}
 ![Prediction project to identify women at high risk of type 2 diabetes](table_figures/preg_predict_t2d.png)
-:::
 :::
 
 ## Aim {.center}
@@ -252,6 +241,8 @@ Definition of population
 
 ### Before, during and at delivery
 
+Know risk factors that can be identified in the registries are included
+
 ::: predictors
 | Pre-pregnancy | During pregnancy | At delivery |
 |:--|:--|:--|
@@ -263,24 +254,6 @@ Definition of population
 | **Family history**<br>[T2D and GDM in relatives]{.pd} | **Hypertensive disorders**<br>[pre-eclampsia or GH; early or late]{.pd} | **Plurality**<br>[singleton or multiple]{.pd} |
 :::
 
-## Data sources
-
-### Nationwide registries at Statistics Denmark
-
-```{r}
-#| label: t-registries
-registries <- tibble::tribble(
-  ~Registry,                        ~Coverage,                     ~`Used for`,
-  "Population register (BEF)",      "CPR 1968; BEF 1980",          "Age, origin, family links",
-  "Education, income (UDDA, IND)",  "Annual from 1980",            "Socioeconomic position",
-  "Patient Registry (LPR)",         "Outpatient from 1995",        "Diagnoses, GDM, delivery",
-  "Medical Birth Register (MFR)",   "1973; BMI from 2003",         "Pregnancy, BMI, newborn",
-  "Prescription Registry (LMDB)",   "From 1995",                   "All medication, OSDC",
-  "Laboratory Results (RLRR)",      "Regional, Oct 2013-Jul 2015", "HbA1c, lipids, CRP, OGTT",
-  "Health Service Registry (SSSY)", "SYSI 1990; SSSY 2006",        "Podiatry in OSDC"
-)
-kbl_wp2(registries, font_size = 26)
-```
 
 ## Cohort and subcohorts for prediction model {.smaller}
 
@@ -309,6 +282,7 @@ All nationwide predictors for every index birth, **except laboratory measurement
 :::
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 ## Trends in incidence of type 2 diabetes
 
@@ -359,6 +333,9 @@ All nationwide predictors for every index birth, **except laboratory measurement
 >>>>>>> 08e42b0935886c54c5fbe633cf91e4364682e033
 
 ## Selecting predictors in the exploration data
+=======
+## Finding potential predictors in the exploration data
+>>>>>>> f24c918584987c1791e9c9496ee3c3506870da0d
 
 Exploration data: deliveries **2003-2009**, kept apart from model development
 
@@ -408,10 +385,6 @@ methods will be shared
 
 3. Submodel restricted to complete cases
 
-::: fragment
-All three enter the super learner, which selects by cross-validated Brier score
-:::
-
 ## Validation {.smaller}
 
 ### Geographical and temporal test sets
@@ -436,24 +409,6 @@ Test on **2015** deliveries, closest to the 2027 population where the model will
 **Subgroups:** age group, parity, HbA1c present or absent at baseline
 :::
 
-## From model to WP4
-
-### What WP4 receives
-
-::: steps
-::: step
-**Final model**<br>Retrain the best model on 2010-2015 and export from DST
-:::
-::: step
-**R Shiny app**<br>10-year T2D risk and expected 5-year HbA1c, delivered to WP4
-:::
-::: step
-**Run on recent births**<br>Distribution of risk, most informative data, geographical clustering
-:::
-::: step
-**WP4 focus group**<br>e.g. GPs who measure HbA1c routinely in pregnancy; women above a BMI threshold
-:::
-:::
 
 # Preliminary findings {background-color="#f0f0f0"}
 
@@ -476,12 +431,7 @@ Test on **2015** deliveries, closest to the 2027 population where the model will
 
 ![Incidence trends of type 2 diabetes by period](table_figures/bmi_cum_incidence.png){.r-stretch fig-align="center"}
 
-## Trends in BMI distribution over calendar
-
-![BMI distribtion](table_figures/bmi_distribution_overall.png)
-
-
-## And by region..
+## Trends in BMI distribution over calendar and by region
 
 ![BMI distribtion](table_figures/bmi_distribution_by_region.png)
 
@@ -494,15 +444,10 @@ Test on **2015** deliveries, closest to the 2027 population where the model will
 ![Incidence trends of type 2 diabetes by period](table_figures/ethnicity_cum_incidence.png){.r-stretch fig-align="center"}
 
 
+## Trends in smoking distribution over calendar and by region
 
-## Trends in smoking distribution over calendar
+![Smoking distribtion](table_figures/bmi_distribution_by_region.png)
 
-![Smoking distribtion](table_figures/smoking_distribution_overall.png)
-
-
-## And by region...
-
-![Smoking distribtion](table_figures/smoking_distribution_by_region.png)
 
 ## Population development data
 
@@ -653,6 +598,25 @@ kbl_wp2(capture, font_size = 26, align = "lrr")
 :::
 :::
 
+## From model to WP4
+
+### What we WP4 could receives
+
+::: steps
+::: step
+**Final model**<br>Retrain the best model on 2010-2015 and export from DST
+:::
+::: step
+**R Shiny app**<br>10-year T2D risk and expected 5-year HbA1c, delivered to WP4
+:::
+::: step
+**Run on recent births**<br>Distribution of risk, most informative data, geographical clustering
+:::
+::: step
+**WP4 focus group**<br>e.g. GPs who measure HbA1c routinely in pregnancy; women above a BMI threshold
+:::
+:::
+
 # Discussion {background-color="#f0f0f0"}
 
 ## Open questions
@@ -660,11 +624,19 @@ kbl_wp2(capture, font_size = 26, align = "lrr")
 ### For discussion today
 
 ::: {.discuss .small}
+
 1. **Optimism:** bootstrap correction on top of the regional and temporal test sets?
 2. **Repeated births:** women contribute several births; split folds and test set by woman
 3. **Censoring:** IPCW for the Brier score; death as a competing risk
 4. **HbA1c:** indicator with calendar time, imputation or subcohort model?
 5. **Region of origin:** WHO regions or the grouping in Nielsen et al. (JCEM 2024)?
+
+## Open questions
+
+### For discussion today
+
+::: {.discuss .small}
+
 6. **Mode of delivery:** suggested categories: spontaneous vaginal, instrumental/assisted, planned c-section, emergency c-section- issues with identifying where data comes from
 7. **Parity:** handled categorically, currently extreme values>6 regarded as missing (0.6% of population)
 8. **History from previous pregnancies:** (for parity>1)- potential subset cohorts
