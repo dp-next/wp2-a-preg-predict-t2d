@@ -165,7 +165,7 @@ kbl_wp2 <- function(x, font_size = 26, ...) {
 ::: {.column width="50%"}
 - Gestational diabetes (GDM) affects about **6% of deliveries** in Denmark and carries a **near tenfold higher risk** of later type 2 diabetes
 - Danish GDM criteria use a **high threshold** and a **2-h glucose only**, so many women below the threshold are still at elevated risk
-- Pregnancy and family formation are periods where women are **receptive to health messages**
+- Pregnancy and family formation are periods where women are **more receptive to health messages**
 :::
 
 ::: {.column width="50%"}
