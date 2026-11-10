@@ -1374,11 +1374,6 @@ Hjalte Mikkelsen
 </div>
 
 </section>
-<section>
-<section id="background" class="title-slide slide level1 center" data-background-color="#f0f0f0">
-<h1>Background</h1>
-
-</section>
 <section id="aim-for-today" class="slide level2">
 <h2>Aim for today</h2>
 <ul>
@@ -1404,27 +1399,6 @@ Hjalte Mikkelsen
 <p><strong>Long-term goal:</strong> a clinically ready tool at the <strong>8-week postpartum check-up</strong> in general practice, so that high-risk women can be offered the intervention designed in <strong>WP4</strong></p>
 </div>
 </section>
-<section id="prediction-model" class="slide level2 smaller">
-<h2>Prediction model</h2>
-<ul>
-<li><em>Who</em> will develop type 2 diabetes?</li>
-<li>Any variable available at the index date may help, causal or not</li>
-<li>Judge the model by its <strong>predicted risks</strong>: are they accurate (calibration) and do they separate cases from non-cases (discrimination)?</li>
-</ul>
-<aside class="notes">
-<p>For the non-prediction people: we do not care why a predictor works, only that it improves risk estimates in new women.</p>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
-</section></section>
 <section>
 <section id="methods" class="title-slide slide level1 center" data-background-color="#f0f0f0">
 <h1>Methods</h1>
@@ -1474,7 +1448,6 @@ display:block!important;
 <section id="predictors-at-index-date" class="slide level2">
 <h2>Predictors at index date</h2>
 <h3 id="before-during-and-at-delivery">Before, during and at delivery</h3>
-<p>Know risk factors that can be identified in the registries are included</p>
 <div class="predictors">
 <table class="caption-top">
 <colgroup>
@@ -1585,10 +1558,10 @@ display:block!important;
 <li>handling of predictors (splines, interaction, penalization)</li>
 </ol></li>
 </ul></li>
+<li><p>Some candidate methods: <strong>Cox</strong>, <strong>Poisson</strong>, <strong>LASSO</strong>, <strong>random forest</strong><br>
+</p></li>
+<li><p>Combined in a <strong>super learner</strong> that picks the best model by cross-validated <strong>Brier score</strong></p></li>
 </ul>
-<p>methods will be shared<br>
-- Some candidate methods: <strong>Cox</strong>, <strong>Poisson</strong>, <strong>LASSO</strong>, <strong>random forest</strong><br>
-- Combined in a <strong>super learner</strong> that picks the best model by cross-validated <strong>Brier score</strong></p>
 </section>
 <section id="partial-data" class="slide level2">
 <h2>Partial data</h2>
@@ -2094,7 +2067,7 @@ display:block!important;
 </section>
 <section id="from-model-to-wp4" class="slide level2">
 <h2>From model to WP4</h2>
-<h3 id="what-wp4-could-receives">What WP4 could receives</h3>
+<h3 id="what-wp4-could-receive">What WP4 could receive</h3>
 <div class="steps">
 <div class="step">
 <p><strong>Final model</strong><br>Retrain the best model on 2010-2015 and export from DST</p>
@@ -2125,6 +2098,12 @@ display:block!important;
 <li><strong>Censoring:</strong> IPCW for the Brier score; death as a competing risk</li>
 <li><strong>HbA1c:</strong> indicator with calendar time, imputation or subcohort model?</li>
 <li><strong>Region of origin:</strong> WHO regions or the grouping in Nielsen et al. (JCEM 2024)?</li>
+</ol>
+<section id="open-questions-1" class="slide level2">
+<h2>Open questions</h2>
+<h3 id="for-discussion-today-1">For discussion today</h3>
+<div class="discuss small">
+<ol start="6" type="1">
 <li><strong>Mode of delivery:</strong> suggested categories: spontaneous vaginal, instrumental/assisted, planned c-section, emergency c-section- issues with identifying where data comes from</li>
 <li><strong>Parity:</strong> handled categorically, currently extreme values&gt;6 regarded as missing (0.6% of population)</li>
 <li><strong>History from previous pregnancies:</strong> (for parity&gt;1)- potential subset cohorts</li>
@@ -2153,6 +2132,8 @@ display:block!important;
 </div>
 </div></div>
 
+</section>
+</div>
 </section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">

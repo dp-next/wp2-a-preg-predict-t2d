@@ -178,17 +178,6 @@ Develop and validate a prediction model that identifies women at **high risk of 
 **Long-term goal:** a clinically ready tool at the **8-week postpartum check-up** in general practice, so that high-risk women can be offered the intervention designed in **WP4**
 :::
 
-## Prediction model {.smaller}
-
-- *Who* will develop type 2 diabetes?
-- Any variable available at the index date may help, causal or not
-- Judge the model by its **predicted risks**: are they accurate (calibration) and do they separate cases from non-cases (discrimination)?
-
-
-::: notes
-For the non-prediction people: we do not care why a predictor works, only that it improves risk estimates in new women.
-:::
-
 # Methods {background-color="#f0f0f0"}
 
 Definition of population
@@ -278,6 +267,9 @@ All nationwide predictors for every index birth, **except laboratory measurement
 :::
 
 
+
+
+
 ## Finding potential predictors in the exploration data
 
 Exploration data: deliveries **2003-2009**, kept apart from model development
@@ -363,7 +355,6 @@ Test on **2015** deliveries, closest to the 2027 population where the model will
 ## Trends in incidence type 2 diabetes by region
 
 ![Incidence trends of type 2 diabetes by region](table_figures/fig_rate_by_region.png){.r-stretch fig-align="center"}
-
 
 ## The usual suspects as predictors
 
@@ -564,11 +555,19 @@ kbl_wp2(capture, font_size = 26, align = "lrr")
 ### For discussion today
 
 ::: {.discuss .small}
+
 1. **Optimism:** bootstrap correction on top of the regional and temporal test sets?
 2. **Repeated births:** women contribute several births; split folds and test set by woman
 3. **Censoring:** IPCW for the Brier score; death as a competing risk
 4. **HbA1c:** indicator with calendar time, imputation or subcohort model?
 5. **Region of origin:** WHO regions or the grouping in Nielsen et al. (JCEM 2024)?
+
+## Open questions
+
+### For discussion today
+
+::: {.discuss .small}
+
 6. **Mode of delivery:** suggested categories: spontaneous vaginal, instrumental/assisted, planned c-section, emergency c-section- issues with identifying where data comes from
 7. **Parity:** handled categorically, currently extreme values>6 regarded as missing (0.6% of population)
 8. **History from previous pregnancies:** (for parity>1)- potential subset cohorts
