@@ -159,6 +159,14 @@ kbl_wp2 <- function(x, font_size = 26, ...) {
 
 # Background {background-color="#f0f0f0"}
 
+## Aim for today
+
+- Present and get feedback on current protocol  
+- Present some preliminary findings 
+- Discuss how to present our work to WP4 (intervention team)
+
+
+
 ## Why after childbirth? {.smaller}
 
 ::: columns
@@ -300,55 +308,7 @@ All nationwide predictors for every index birth, **except laboratory measurement
 :::
 :::
 
-## Descriptive
 
-## Trends in incidence of type 2 diabetes
-
-![Incidence trends of type 2 diabetes by period](table_figures/fig_rate_by_delivery_period.png){.r-stretch fig-align="center"}
-
-## Trends in incidence type 2 diabetes by region
-
-![Incidence trends of type 2 diabetes by region](table_figures/fig_rate_by_region.png){.r-stretch fig-align="center"}
-
-
-## Define predictors
-
-## The usual suspects
-
-## Body mass index
-
-![Incidence trends of type 2 diabetes by period](table_figures/bmi_cum_incidence.png){.r-stretch fig-align="center"}
-
-## Trends in BMI distribution over calendar
-
-![BMI distribtion](table_figures/bmi_distribution_overall.png){fig-align="center" .r-stretch}
-
-{fig-align="center" .r-stretch}
-## and by region..
-
-![BMI distribtion](table_figures/bmi_distribution_by_region.png){.r-stretch fig-align="center"}
-
-## Education
-
-![Cummulative incidence of type 2 diabetes](table_figures/highest_education_group_cum_incidence.png){.r-stretch fig-align="center"}
-
-## Ethnicity
-
-
-![Incidence trends of type 2 diabetes by period](table_figures/ethnicity_cum_incidence.png){.r-stretch fig-align="center"}
-
-## Trends in BMI distribution over calendar
-
-![BMI distribtion](table_figures/bmi_distribution_overall.png){.r-stretch fig-align="center"}
-
-![BMI distribtion](table_figures/bmi_distribution_by_region.png){.r-stretch fig-align="center"}
-
-## Trends in smoking distribution over calendar
-
-![Smoking distribtion](table_figures/smoking_distribution_overall.png){.r-stretch fig-align="center"}
-
-
-![Smoking distribtion](table_figures/smoking_distribution_by_region.png){.r-stretch fig-align="center"}
 
 ## Selecting predictors in the exploration data
 
@@ -369,27 +329,27 @@ Exploration data: deliveries **2003-2009**, kept apart from model development
 :::
 :::
 
-## Step 2: Model choice {.smaller}
+## Model choice {.smaller}
 
-### Choosing the statistical model
+### Choosing the statistical model and predictors
 
-::: columns
-::: {.column width="55%"}
-- The exploration data go to the **team of prediction modellers**, who compete for the best performing model while sharing methods
-- Candidate methods: **Cox**, **Poisson**, **LASSO**, **random forest**
+- The exploration data go to the **team of prediction modellers**, who compete for the best performing model in terms of:
+
+- 1. choice of statistical / ML method  
+- 2. included predictors
+- 3. handling of predictors (splines, interaction, penalization) 
+
+methods will be shared
+- Some candidate methods: **Cox**, **Poisson**, **LASSO**, **random forest**
 - Combined in a **super learner** that picks the best model by cross-validated **Brier score**
-:::
 
-::: {.column width="45%"}
-::: {.fragment .box}
-**Brier score:** average squared difference between predicted risk and what happened (0 = perfect). Compare it with a model that gives every woman the same risk
-:::
-:::
-:::
+## Partial data
 
-## Step 3: Partial data {.smaller}
+### HbA1c availability
 
-### Handling partly available markers
+![](table_figures/hba1c_by_region.png){fig-align="center" .r-stretch}
+
+## Handling partly available markers
 
 **Developed in the full cohort**
 
@@ -403,12 +363,6 @@ Exploration data: deliveries **2003-2009**, kept apart from model development
 ::: fragment
 All three enter the super learner, which selects by cross-validated Brier score
 :::
-
-## HbA1c availability
-
-### HbA1c in the 3 years before the index date, by region
-
-![](table_figures/hba1c_by_region.png){fig-align="center" .r-stretch}
 
 ## Validation {.smaller}
 
@@ -455,7 +409,54 @@ Test on **2015** deliveries, closest to the 2027 population where the model will
 
 # Preliminary findings {background-color="#f0f0f0"}
 
-## Population: the mother
+## Descriptive
+
+## Trends in incidence of type 2 diabetes
+
+![Incidence trends of type 2 diabetes by period](table_figures/fig_rate_by_delivery_period.png){.r-stretch fig-align="center"}
+
+## Trends in incidence type 2 diabetes by region
+
+![Incidence trends of type 2 diabetes by region](table_figures/fig_rate_by_region.png){.r-stretch fig-align="center"}
+
+
+## Define predictors
+
+## The usual suspects
+
+## Body mass index
+
+![Incidence trends of type 2 diabetes by period](table_figures/bmi_cum_incidence.png){.r-stretch fig-align="center"}
+
+## Trends in BMI distribution over calendar
+
+![BMI distribtion](table_figures/bmi_distribution_overall.png)
+
+
+## And by region..
+
+![BMI distribtion](table_figures/bmi_distribution_by_region.png)
+
+## Education
+
+![Cummulative incidence of type 2 diabetes](table_figures/highest_education_group_cum_incidence.png){.r-stretch fig-align="center"}
+
+## Ethnicity
+
+![Incidence trends of type 2 diabetes by period](table_figures/ethnicity_cum_incidence.png){.r-stretch fig-align="center"}
+
+
+
+## Trends in smoking distribution over calendar
+
+![Smoking distribtion](table_figures/smoking_distribution_overall.png)
+
+
+## And by region...
+
+![Smoking distribtion](table_figures/smoking_distribution_by_region.png)
+
+## Population development data
 
 ### Development data, mean (SD) or n (%)
 
@@ -499,10 +500,11 @@ tab1_part(c("hba1c_available", "hba1c_value", "gestational_age", "weight_baby",
 :::
 :::
 
+## Model performance on exploration data
 
-## Model performance
+Model trained on data from 2003-2009
 
-### First models in the test data
+### First models in the test data 2009
 
 ```{r}
 #| label: t-score
