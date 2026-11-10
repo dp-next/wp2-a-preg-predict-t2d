@@ -157,8 +157,6 @@ kbl_wp2 <- function(x, font_size = 26, ...) {
 }
 ```
 
-# Background {background-color="#f0f0f0"}
-
 ## Aim for today
 
 - Present and get feedback on current protocol  
@@ -241,8 +239,6 @@ Definition of population
 
 ### Before, during and at delivery
 
-Know risk factors that can be identified in the registries are included
-
 ::: predictors
 | Pre-pregnancy | During pregnancy | At delivery |
 |:--|:--|:--|
@@ -305,14 +301,13 @@ Exploration data: deliveries **2003-2009**, kept apart from model development
 
 ### Choosing the statistical model and predictors
 
-- The exploration data go to the **team of prediction modellers**, who compete for the best performing model in terms of:
+- The exploration data (2003-2009) go to the **team of prediction modellers**, who compete for the best performing model in terms of: 
 
-- 1. choice of statistical / ML method  
-- 2. included predictors
-- 3. handling of predictors (splines, interaction, penalization) 
+  - 1. choice of statistical / ML method  
+  - 2. included predictors
+  - 3. handling of predictors (splines, interaction, penalization) 
 
-methods will be shared
-- Some candidate methods: **Cox**, **Poisson**, **LASSO**, **random forest**
+- Some candidate methods: **Cox**, **Poisson**, **LASSO**, **random forest**  
 - Combined in a **super learner** that picks the best model by cross-validated **Brier score**
 
 ## Partial data
@@ -370,9 +365,7 @@ Test on **2015** deliveries, closest to the 2027 population where the model will
 ![Incidence trends of type 2 diabetes by region](table_figures/fig_rate_by_region.png){.r-stretch fig-align="center"}
 
 
-## Define predictors
-
-## The usual suspects
+## The usual suspects as predictors
 
 ## Body mass index
 
@@ -442,7 +435,7 @@ tab1_part(c("hba1c_available", "hba1c_value", "gestational_age", "weight_baby",
 
 ## Model performance on exploration data
 
-Model trained on data from 2003-2008
+Cause-specific cox proportional harzard models trained on data from 2003-2008
 
 ### First models in the test data 2009
 
@@ -547,7 +540,7 @@ kbl_wp2(capture, font_size = 26, align = "lrr")
 
 ## From model to WP4
 
-### What WP4 could receives
+### What WP4 could receive
 
 ::: steps
 ::: step
