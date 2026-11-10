@@ -321,7 +321,9 @@ All nationwide predictors for every index birth, **except laboratory measurement
 
 ## Trends in BMI distribution over calendar
 
-![BMI distribtion](table_figures/bmi_distribution_overall.png){.r-stretch fig-align="center"}
+![BMI distribtion](table_figures/bmi_distribution_overall.png){fig-align="center" .r-stretch}
+
+{fig-align="center" .r-stretch}
 ## and by region..
 
 ![BMI distribtion](table_figures/bmi_distribution_by_region.png){.r-stretch fig-align="center"}
@@ -600,7 +602,6 @@ kbl_wp2(capture, font_size = 26, align = "lrr")
 :::
 :::
 :::
-
 
 # Discussion {background-color="#f0f0f0"}
 
