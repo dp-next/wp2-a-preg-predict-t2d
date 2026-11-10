@@ -615,7 +615,7 @@ kbl_wp2(capture, font_size = 26, align = "lrr")
 4. **HbA1c:** indicator with calendar time, imputation or subcohort model?
 5. **Region of origin:** WHO regions or the grouping in Nielsen et al. (JCEM 2024)?
 6. **Mode of delivery:** suggested categories: spontaneous vaginal, instrumental/assisted, planned c-section, emergency c-section- issues with identifying where data comes from
-7. **Parity:** currently handled categorically, extreme values>6 regarded as missing (0.6% of population)
+7. **Parity:** handled categorically, currently extreme values>6 regarded as missing (0.6% of population)
 8. **History from previous pregnancies:** (for parity>1)- potential subset cohorts
 9. **GDM/Pre-Eclampsia:** Defined diagnostic window early/normal/late - clinically useful? 
 10. **Newborn size:** SGA/LGA reference (Marsál 1996?); macrosomia at 4,000 or 4,500 g
