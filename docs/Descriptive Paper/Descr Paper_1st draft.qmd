@@ -6,8 +6,18 @@ editor: visual
 
 ## Introduction
 
+- Rise in type 2 prevalence, more young onset
+
+- Intergenerational trasmission and impact
+
+- Pregnancy: a critical period for intervention
+
 ## Methods
 
 -Data sources description
 
 \- Pregnant cohort definition
+
+## Results 
+
+## Discussion
