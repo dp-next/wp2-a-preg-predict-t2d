@@ -157,8 +157,6 @@ kbl_wp2 <- function(x, font_size = 26, ...) {
 }
 ```
 
-# Background {background-color="#f0f0f0"}
-
 ## Aim for today
 
 - Present and get feedback on current protocol  
@@ -180,17 +178,6 @@ Develop and validate a prediction model that identifies women at **high risk of 
 **Long-term goal:** a clinically ready tool at the **8-week postpartum check-up** in general practice, so that high-risk women can be offered the intervention designed in **WP4**
 :::
 
-## Prediction model {.smaller}
-
-- *Who* will develop type 2 diabetes?
-- Any variable available at the index date may help, causal or not
-- Judge the model by its **predicted risks**: are they accurate (calibration) and do they separate cases from non-cases (discrimination)?
-
-
-::: notes
-For the non-prediction people: we do not care why a predictor works, only that it improves risk estimates in new women.
-:::
-
 # Methods {background-color="#f0f0f0"}
 
 Definition of population
@@ -203,6 +190,7 @@ Definition of population
 
 - gave birth at least once between **2010 and 2015**
 - have no previous diagnosis of type 1 or type 2 diabetes at the index date
+- age at delivery between 18-49 years
 :::
 
 ::: {.column width="50%"}
@@ -211,7 +199,6 @@ Definition of population
 
 - Stillbirth in primiparous women (parity = 1)
 
-**Linkage:** Danish nationwide registries at Statistics Denmark via pseudonymised CPR; the Medical Birth Register links mother, child and earlier pregnancies
 :::
 :::
 :::
@@ -240,8 +227,6 @@ Definition of population
 ## Predictors at index date
 
 ### Before, during and at delivery
-
-Know risk factors that can be identified in the registries are included
 
 ::: predictors
 | Pre-pregnancy | During pregnancy | At delivery |
@@ -282,60 +267,10 @@ All nationwide predictors for every index birth, **except laboratory measurement
 :::
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-## Trends in incidence of type 2 diabetes
-
-![Incidence trends of type 2 diabetes by period](table_figures/fig_rate_by_delivery_period.png){.r-stretch fig-align="center"}
-
-## Trends in incidence of type 2 diabetes by region
-
-![Incidence trends of type 2 diabetes by region](table_figures/fig_rate_by_region.png){.r-stretch fig-align="center"}
 
 
-## Define predictors
 
-## The usual suspects
-
-## Body mass index
-
-![Incidence trends of type 2 diabetes by period](table_figures/bmi_cum_incidence.png){.r-stretch fig-align="center"}
-
-## Trends in BMI distribution over calendar
-
-![BMI distribtion](table_figures/bmi_distribution_overall.png){.r-stretch fig-align="center"}
-## and by region..
-
-![BMI distribtion](table_figures/bmi_distribution_by_region.png){.r-stretch fig-align="center"}
-
-## Education
-
-![Cummulative incidence of type 2 diabetes](table_figures/highest_education_group_cum_incidence.png){.r-stretch fig-align="center"}
-
-## Ethnicity
-
-
-![Incidence trends of type 2 diabetes by period](table_figures/ethnicity_cum_incidence.png){.r-stretch fig-align="center"}
-
-## Trends in BMI distribution over calendar
-
-![BMI distribtion](table_figures/bmi_distribution_overall.png){.r-stretch fig-align="center"}
-
-![BMI distribtion](table_figures/bmi_distribution_by_region.png){.r-stretch fig-align="center"}
-
-## Trends in smoking distribution over calendar
-
-![Smoking distribtion](table_figures/smoking_distribution_overall.png){.r-stretch fig-align="center"}
-
-
-![Smoking distribtion](table_figures/smoking_distribution_by_region.png){.r-stretch fig-align="center"}
-=======
->>>>>>> 08e42b0935886c54c5fbe633cf91e4364682e033
-
-## Selecting predictors in the exploration data
-=======
 ## Finding potential predictors in the exploration data
->>>>>>> f24c918584987c1791e9c9496ee3c3506870da0d
 
 Exploration data: deliveries **2003-2009**, kept apart from model development
 
@@ -358,14 +293,13 @@ Exploration data: deliveries **2003-2009**, kept apart from model development
 
 ### Choosing the statistical model and predictors
 
-- The exploration data go to the **team of prediction modellers**, who compete for the best performing model in terms of:
+- The exploration data (2003-2009) go to the **team of prediction modellers**, who compete for the best performing model in terms of: 
 
-- 1. choice of statistical / ML method  
-- 2. included predictors
-- 3. handling of predictors (splines, interaction, penalization) 
+  - 1. choice of statistical / ML method  
+  - 2. included predictors
+  - 3. handling of predictors (splines, interaction, penalization) 
 
-methods will be shared
-- Some candidate methods: **Cox**, **Poisson**, **LASSO**, **random forest**
+- Some candidate methods: **Cox**, **Poisson**, **LASSO**, **random forest**  
 - Combined in a **super learner** that picks the best model by cross-validated **Brier score**
 
 ## Partial data
@@ -422,10 +356,7 @@ Test on **2015** deliveries, closest to the 2027 population where the model will
 
 ![Incidence trends of type 2 diabetes by region](table_figures/fig_rate_by_region.png){.r-stretch fig-align="center"}
 
-
-## Define predictors
-
-## The usual suspects
+## The usual suspects as predictors
 
 ## Body mass index
 
@@ -441,7 +372,7 @@ Test on **2015** deliveries, closest to the 2027 population where the model will
 
 ## Ethnicity
 
-![Incidence trends of type 2 diabetes by period](table_figures/ethnicity_cum_incidence.png){.r-stretch fig-align="center"}
+![Cummulative incidence trends of type 2 diabetes by ethnicity](table_figures/ethnicity_cum_incidence.png){.r-stretch fig-align="center"}
 
 
 ## Trends in smoking distribution over calendar and by region
@@ -495,7 +426,7 @@ tab1_part(c("hba1c_available", "hba1c_value", "gestational_age", "weight_baby",
 
 ## Model performance on exploration data
 
-Model trained on data from 2003-2009
+Cause-specific cox proportional harzard models trained on data from 2003-2008
 
 ### First models in the test data 2009
 
@@ -600,7 +531,7 @@ kbl_wp2(capture, font_size = 26, align = "lrr")
 
 ## From model to WP4
 
-### What we WP4 could receives
+### What WP4 could receive
 
 ::: steps
 ::: step
