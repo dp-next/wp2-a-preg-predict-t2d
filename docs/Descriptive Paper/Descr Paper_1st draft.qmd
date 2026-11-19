@@ -1,5 +1,5 @@
 ---
-title: "Descriptive Paper_1st draft"
+title: "Characteristics of the population of pregnant women in Denmark and need for type 2 diabetes prevention"
 format: html
 editor: visual
 ---
@@ -12,12 +12,24 @@ editor: visual
 
 - Pregnancy: a critical period for intervention
 
+- In this context, we aimed to investigate key demographic and health related characteristics/trends in prevalence of type 2 diabetes risk factors of pregnant women in Denmark over the last two decades, highlighting the need for targeted type 2 diabetes prevention strategies.
+
+------------------------------------------------------------------------
+
 ## Methods
 
--Data sources description
+-Data Sources and Cohort Definition
 
-\- Pregnant cohort definition
+This was a longitudinal register-based study using data from the Danish National Registers.
+
+------------------------------------------------------------------------
 
 ## Results 
 
+A total of X pregnancies were recorded between ... and ... Mean age at pregnancy was , mean pre pregnancy BMI...
+
+------------------------------------------------------------------------
+
 ## Discussion
+
+-- literature on increasing LGA babies, discuss
