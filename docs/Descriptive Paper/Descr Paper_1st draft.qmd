@@ -12,11 +12,11 @@ editor: visual
 
 - Pregnancy: a critical period for intervention
 
-- In this context, we aimed to investigate key demographic and health related characteristics/trends in prevalence of type 2 diabetes risk factors of pregnant women in Denmark over the last two decades, highlighting the need for targeted type 2 diabetes prevention strategies.
-
 - DP Next - aim of DPNext then women after pregnancy choice- data driven (abundance of data) and underserved population & room for prevention
 
 - Aim: To understand what is driving the risk profile we need to understand trends in risk factors and outcomes. This is a brief overview
+
+- In this context, we aimed to investigate key demographic and health related characteristics/trends in prevalence of type 2 diabetes risk factors of pregnant women in Denmark over the last two decades, highlighting the need for targeted type 2 diabetes prevention strategies.
 
 - Descriptives of risk factors that are going in the model.
 
