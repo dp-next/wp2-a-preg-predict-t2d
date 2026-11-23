@@ -48,6 +48,8 @@ This was a longitudinal register-based study using data from the Danish National
 
 - Subtracting gestational age from date to define the pregnancy date
 
+In the Danish registers, each individual is assigned a PNR (from CPR but de-identified)
+
 The study cohort included all pregnancies recorded within the danish nationwide registries between ... and ....
 
 For each pregnancy contributing to the study population, the index date was defined as...
@@ -56,6 +58,8 @@ Individuals who were diagnosed with type 1 or type 2 diabetes at index date (?) 
 
 The risk prediction model involved a subset of this cohort including only pregnancies occuring 2010 and 2015
 
+Diagnoses of type 2 diabetes were identified using the OSDC algorithm.
+
 Covariate Definitions
 
 All covariates of interest were recorded at three time periods: pre-pregnancy, during and at delivery. Pre-pregnancy
@@ -63,6 +67,10 @@ All covariates of interest were recorded at three time periods: pre-pregnancy, d
 BMI:
 
 Diagnoses of GDM, Pre-Eclampsia/Eclampsia and
+
+Statistical model
+
+This model is aimed at predicting the the 10 year risk of type 2 diabetes. All models will be incorporated into a super learner which will select the best performing model using cross-validation based on the Brier score. (citation)
 
 ------------------------------------------------------------------------
 
@@ -75,3 +83,5 @@ A total of X pregnancies were recorded between ... and ... Mean age at pregnancy
 ## Discussion
 
 -- literature on increasing LGA babies, discuss
+
+-- we observed geographical variation
