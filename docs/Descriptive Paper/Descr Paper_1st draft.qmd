@@ -1,5 +1,16 @@
 ---
 title: "Characteristics of the population of pregnant women in Denmark and need for type 2 diabetes prevention"
+# Add all contributors here (order unspecified)
+author:
+ -  name: Elpida Vounzoulaki
+    affiliation: Steno Diabetes Center Aarhus
+ -  name: Jonas Rosborg Schaarup
+    affiliation: Steno Diabetes Center Aarhus
+ - name: Hjalte Mikkelsen
+    affiliation: Steno Diabetes Center Copenhagen
+ - name: Daniel R Witte
+   affiliation: Steno Diabetes Center Aarhus
+date: last-modified
 format: html
 editor: visual
 ---
@@ -12,7 +23,7 @@ editor: visual
 
 - Pregnancy: a critical period for intervention
 
-- DP Next - aim of DPNext then women after pregnancy choice- data driven (abundance of data) and underserved population & room for prevention
+- DP-Next is a project aiming to develop diabetes risk prediction models for the entire population of Denmark using data from the nationwide registers. A key focus population for these prediction models is women post pregnancy. The decision was data driven (abundance of data) and underserved population & room for prevention .
 
 - Aim: To understand what is driving the risk profile we need to understand trends in risk factors and outcomes. This is a brief overview
 
@@ -37,7 +48,17 @@ This was a longitudinal register-based study using data from the Danish National
 
 - Subtracting gestational age from date to define the pregnancy date
 
+The study cohort included all pregnancies recorded within the danish nationwide registries between ... and ....
+
+For each pregnancy contributing to the study population, the index date was defined as...
+
+Individuals who were diagnosed with type 1 or type 2 diabetes at index date (?) were excluded.
+
+The risk prediction model involved a subset of this cohort including only pregnancies occuring 2010 and 2015
+
 Covariate Definitions
+
+All covariates of interest were recorded at three time periods: pre-pregnancy, during and at delivery. Pre-pregnancy
 
 BMI:
 
