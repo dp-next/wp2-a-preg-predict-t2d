@@ -21,7 +21,7 @@ editor: visual
 
 - Intergenerational trasmission and impact
 
-- Pregnancy: a critical period for intervention
+- Pregnancy: a critical period for intervention - high motivation for behavioural changes and more frequent contact with healthcare providers
 
 - DP-Next is a project aiming to develop diabetes risk prediction models for the entire population of Denmark using data from the nationwide registers. A key focus population for these prediction models is women post pregnancy. The decision was data driven (abundance of data) and underserved population & room for prevention .
 
