@@ -29,9 +29,7 @@ editor: visual
 
 - Literature has highlighted the need to understand what is driving the risk profile we need to understand trends in risk factors and outcomes.
 
-- In this context, we aimed to investigate and describe trends in key demographic and health related characteristics in prevalence of type 2 diabetes risk factors of pregnant women in Denmark over the last two decades, and summarise results of this calculated risk.
-
-- Descriptives of risk factors that are going in the model.
+- In this context, we aimed to investigate and describe trends in prevalence of key demographic and health related characteristics/ type 2 diabetes risk factors of pregnant women in Denmark over the last two decades, alongsize a summary of their calculated risk.
 
 ------------------------------------------------------------------------
 
@@ -73,7 +71,7 @@ This model is aimed at predicting the the 10 year risk of type 2 diabetes. All m
 
 ------------------------------------------------------------------------
 
-## Results 
+## Results
 
 A total of X pregnancies were recorded between ... and ... Mean age at pregnancy was , mean pre pregnancy BMI...
 
