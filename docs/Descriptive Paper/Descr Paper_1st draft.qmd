@@ -19,7 +19,7 @@ editor: visual
 
 - Rise in type 2 prevalence, more individuals with young onset
 
-- Intergenerational trasmission and impact
+- A key driver of these rates = Intergenerational trasmission – briefly discuss impact
 
 - Pregnancy: a critical period for intervention - high motivation for behavioural changes and more frequent contact with healthcare providers
 
@@ -27,14 +27,11 @@ editor: visual
 
 - DP-Next is a project aiming to develop large scale diabetes risk prediction models for the entire population of Denmark using data from the nationwide registers. A key focus population for these prediction models is women post pregnancy. The rationale behind this decision combines clinical need and data availability. First, due to frequent contact with healthcare, there is an abundance of data. Additionally, women post pregnancy, including those with established risk factors underserved population & room for prevention .
 
-- Aim: To understand what is driving the risk profile we need to understand trends in risk factors and outcomes. This is a brief overview
+- Literature has highlighted the need to understand what is driving the risk profile we need to understand trends in risk factors and outcomes.
 
-- In this context, we aimed to investigate key demographic and health related characteristics/trends in prevalence of type 2 diabetes risk factors of pregnant women in Denmark over the last two decades, highlighting the need for targeted type 2 diabetes prevention strategies.
+- In this context, we aimed to investigate and describe trends in key demographic and health related characteristics in prevalence of type 2 diabetes risk factors of pregnant women in Denmark over the last two decades, and summarise results of this calculated risk.
 
 - Descriptives of risk factors that are going in the model.
-
-  1.  trends
-  2.   calculation of risk prediction model - results of calculated risk
 
 ------------------------------------------------------------------------
 
