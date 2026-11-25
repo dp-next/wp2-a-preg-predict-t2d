@@ -6,10 +6,10 @@ author:
     affiliation: Steno Diabetes Center Aarhus
  -  name: Jonas Rosborg Schaarup
     affiliation: Steno Diabetes Center Aarhus
- - name: Hjalte Mikkelsen
+ -  name: Hjalte Mikkelsen
     affiliation: Steno Diabetes Center Copenhagen
- - name: Daniel R Witte
-   affiliation: Steno Diabetes Center Aarhus
+ -  name: Daniel R Witte
+    affiliation: Steno Diabetes Center Aarhus
 date: last-modified
 format: html
 editor: visual
@@ -23,7 +23,9 @@ editor: visual
 
 - Pregnancy: a critical period for intervention - high motivation for behavioural changes and more frequent contact with healthcare providers
 
-- DP-Next is a project aiming to develop diabetes risk prediction models for the entire population of Denmark using data from the nationwide registers. A key focus population for these prediction models is women post pregnancy. The decision was data driven (abundance of data) and underserved population & room for prevention .
+- Pregnancy: a metabolic stress test/period of metabolic vulnerability - can reveal individuals at high risk (mention GDM tenfold risk, other pregnancy complications)
+
+- DP-Next is a project aiming to develop large scale diabetes risk prediction models for the entire population of Denmark using data from the nationwide registers. A key focus population for these prediction models is women post pregnancy. The rationale behind this decision combines clinical need and data availability. First, due to frequent contact with healthcare, there is an abundance of data. Additionally, women post pregnancy, including those with established risk factors underserved population & room for prevention .
 
 - Aim: To understand what is driving the risk profile we need to understand trends in risk factors and outcomes. This is a brief overview
 
@@ -77,6 +79,8 @@ This model is aimed at predicting the the 10 year risk of type 2 diabetes. All m
 ## Results 
 
 A total of X pregnancies were recorded between ... and ... Mean age at pregnancy was , mean pre pregnancy BMI...
+
+Fig 1: Flowchart of pregnancies (N% unique individuals)
 
 ------------------------------------------------------------------------
 
