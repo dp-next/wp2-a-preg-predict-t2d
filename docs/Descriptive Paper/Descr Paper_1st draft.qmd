@@ -23,7 +23,7 @@ editor: visual
 
 - Pregnancy: a critical period for intervention - high motivation for behavioural changes and more frequent contact with healthcare providers
 
-- Pregnancy: a metabolic stress test/period of metabolic vulnerability - can reveal individuals at high risk (mention GDM tenfold risk, other pregnancy complications)
+- Pregnancy: a metabolic stress test/period of metabolic vulnerability - can reveal individuals at high risk. One of the most prominent risk factors for future type 2 diabetes is GDM –tenfold risk. Beyond GDM other pregnancy complications have been linked to an increased risk of T2DM including LGA babies, preterm delivery and hypertensive disorders of pregnancy (cit <https://pmc.ncbi.nlm.nih.gov/articles/PMC8114492/> and <https://pubmed.ncbi.nlm.nih.gov/38723259/> )
 
 - DP-Next is a project aiming to develop large scale diabetes risk prediction models for the entire population of Denmark using data from the nationwide registers. A key focus population for these prediction models is women post pregnancy. The rationale behind this decision combines clinical need and data availability. First, due to frequent contact with healthcare, there is an abundance of data. Additionally, women post pregnancy, including those with established risk factors underserved population & room for prevention .
 
