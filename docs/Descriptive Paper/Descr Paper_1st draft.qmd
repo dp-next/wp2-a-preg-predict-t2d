@@ -59,11 +59,11 @@ Diagnoses of type 2 diabetes were identified using the OSDC algorithm.
 
 Covariate Definitions
 
-All covariates of interest were recorded at three time periods: pre-pregnancy, during and at delivery. Pre-pregnancy
+All covariates of interest were recorded at three time periods: pre-pregnancy, during and at delivery. Pre-pregnancy variables were measured
 
 BMI:
 
-Diagnoses of GDM, Pre-Eclampsia/Eclampsia and
+Diagnoses of GDM, Pre-Eclampsia/Eclampsia and PMOS
 
 Statistical model
 
