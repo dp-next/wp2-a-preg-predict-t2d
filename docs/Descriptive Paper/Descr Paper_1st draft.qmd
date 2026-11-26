@@ -77,6 +77,10 @@ A total of X pregnancies were recorded between ... and ... Mean age at pregnancy
 
 Fig 1: Flowchart of pregnancies (N% unique individuals)
 
+Table 1: Baseline Characteristics
+
+- question: is it better to present summary baseline characteristics for all pregnancies (cohort identified) or restrict to unique individuals - inclined to say the first
+
 ------------------------------------------------------------------------
 
 ## Discussion
