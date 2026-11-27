@@ -77,9 +77,35 @@ A total of X pregnancies were recorded between ... and ... Mean age at pregnancy
 
 Fig 1: Flowchart of pregnancies (N% unique individuals)
 
-Table 1: Baseline Characteristics
-
 - question: is it better to present summary baseline characteristics for all pregnancies (cohort identified) or restrict to unique individuals - inclined to say the first
+
+  | Variable | N= total no of pregnancies recorded | N(%) of data missing |
+  |------------------------|------------------------|------------------------|
+  | Age |  |  |
+  | BMI (kg/m2) |  |  |
+  | BMI |  |  |
+  | Underweight |  |  |
+  | Normal |  |  |
+  | Overweight |  |  |
+  | Obese |  |  |
+  | Ethnicity |  |  |
+  | Education Level |  |  |
+  | Income Quartile |  |  |
+  | Parity |  |  |
+  | Smoking |  |  |
+  | GDM (current preg) |  |  |
+  | GDM (previous) |  |  |
+  | Pre-Eclampsia (current) |  |  |
+  | Pre-Eclampsia (past) |  |  |
+  | Delivery Mode |  |  |
+  | Spontaneous Vaginal |  |  |
+  | Instrumental |  |  |
+  | C-section |  |  |
+  | Gestational age (weeks) |  |  |
+  | Baby length (cm) |  |  |
+  | Baby weight (grams) |  |  |
+  | Head circumference (?) |  |  |
+  |  |  |  |
 
 ------------------------------------------------------------------------
 
